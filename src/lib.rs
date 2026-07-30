@@ -420,6 +420,7 @@ pub fn validate_tree(root: &Path) -> Result<ValidationReport, ValidationError> {
     }
 
     let mut package_names = BTreeMap::new();
+    let mut recipes = Vec::new();
     for path in &package_paths {
         let text = read(path)?;
         let recipe = parse_recipe(&text).map_err(|error| at_file(path, error))?;
@@ -433,7 +434,9 @@ pub fn validate_tree(root: &Path) -> Result<ValidationReport, ValidationError> {
                 ),
             ));
         }
+        recipes.push((path.clone(), recipe));
     }
+    validate_dependency_graph(&recipes)?;
 
     let cosmic_path = lock_dir.join("cosmic-epoch.toml");
     let cosmic_text = read(&cosmic_path)?;
@@ -445,6 +448,73 @@ pub fn validate_tree(root: &Path) -> Result<ValidationReport, ValidationError> {
         locks: 1,
         cosmic_components: cosmic.component.len(),
     })
+}
+
+fn validate_dependency_graph(recipes: &[(PathBuf, Recipe)]) -> Result<(), ValidationError> {
+    let mut providers = BTreeMap::<String, String>::new();
+    for (_, recipe) in recipes {
+        providers.insert(recipe.package.name.clone(), recipe.package.name.clone());
+    }
+    for (path, recipe) in recipes {
+        for capability in &recipe.runtime.provides {
+            if let Some(previous) = providers.get(capability) {
+                if previous != &recipe.package.name {
+                    return Err(ValidationError::new(
+                        display(path),
+                        format!(
+                            "runtime capability {capability} is already provided by {previous}"
+                        ),
+                    ));
+                }
+            } else {
+                providers.insert(capability.clone(), recipe.package.name.clone());
+            }
+        }
+    }
+
+    let mut dependencies = BTreeMap::<String, BTreeSet<String>>::new();
+    for (path, recipe) in recipes {
+        let package = &recipe.package.name;
+        let mut resolved = BTreeSet::new();
+        for dependency in &recipe.runtime.depends {
+            let provider = providers.get(dependency).ok_or_else(|| {
+                ValidationError::new(
+                    display(path),
+                    format!(
+                        "runtime dependency {dependency} has no package or capability provider"
+                    ),
+                )
+            })?;
+            if provider == package {
+                return Err(ValidationError::new(
+                    display(path),
+                    format!("runtime dependency {dependency} resolves to the package itself"),
+                ));
+            }
+            resolved.insert(provider.clone());
+        }
+        dependencies.insert(package.clone(), resolved);
+    }
+
+    while let Some(ready) = dependencies
+        .iter()
+        .find_map(|(package, required)| required.is_empty().then(|| package.clone()))
+    {
+        dependencies.remove(&ready);
+        for required in dependencies.values_mut() {
+            required.remove(&ready);
+        }
+    }
+    if !dependencies.is_empty() {
+        return Err(ValidationError::new(
+            "runtime.depends",
+            format!(
+                "dependency cycle among {:?}",
+                dependencies.keys().collect::<Vec<_>>()
+            ),
+        ));
+    }
+    Ok(())
 }
 
 fn validate_authority(
@@ -837,6 +907,37 @@ mod tests {
         assert_eq!(
             normalize_repository_url(&parsed["cosmic-example"]),
             "https://example.invalid/cosmic-example"
+        );
+    }
+
+    #[test]
+    fn unresolved_runtime_dependency_is_rejected() {
+        let mut recipe = valid_recipe();
+        recipe.runtime.depends = vec!["missing-capability".into()];
+        let recipes = vec![(PathBuf::from("example.toml"), recipe)];
+        let error = validate_dependency_graph(&recipes).unwrap_err();
+        assert!(
+            error
+                .message
+                .contains("has no package or capability provider")
+        );
+    }
+
+    #[test]
+    fn runtime_dependency_cycle_is_rejected() {
+        let mut first = valid_recipe();
+        first.package.name = "first-package".into();
+        first.runtime.depends = vec!["second-package".into()];
+        let mut second = valid_recipe();
+        second.package.name = "second-package".into();
+        second.runtime.depends = vec!["first-package".into()];
+        let recipes = vec![
+            (PathBuf::from("first.toml"), first),
+            (PathBuf::from("second.toml"), second),
+        ];
+        assert_eq!(
+            validate_dependency_graph(&recipes).unwrap_err().path,
+            "runtime.depends"
         );
     }
 }

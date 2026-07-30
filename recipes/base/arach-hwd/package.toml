@@ -1,0 +1,31 @@
+format = 1
+
+[package]
+name = "arach-hwd"
+version = "0.1.0"
+release = 1
+summary = "Signed hardware detection and provisioning planner for Arach OS"
+license = "MIT"
+scope = "system"
+publish_authority = "arach-native"
+architectures = ["x86-64"]
+
+[[source]]
+kind = "git"
+url = "https://github.com/SisyphusAeolides/Arach-HWD.git"
+revision = "5239a8b246e4494208f250babe9072e8d9be6c70"
+submodules = false
+
+[build]
+system = "cargo"
+commands = ["cargo build --release --locked --features fortran-ranking"]
+outputs = ["target/release/arach-hwd"]
+
+[runtime]
+depends = ["corinth"]
+provides = ["hardware-detection", "hardware-provisioning"]
+
+[policy]
+network = false
+sandbox = true
+reproducible = true

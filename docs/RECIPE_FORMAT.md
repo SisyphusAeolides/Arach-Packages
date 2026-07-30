@@ -23,8 +23,11 @@ remain inside the repository. Network access is forbidden during the build;
 all sources and dependency registries are fetched and measured before entering
 the builder.
 
+Every runtime dependency must resolve to exactly one package name or provided
+capability in this repository. Self-dependencies, duplicate capability
+providers, unresolved dependencies, and dependency cycles fail validation.
+
 The COSMIC lock is separate from package recipes. It records the exact
 upstream integration revision and all 28 gitlink revisions that upstream
 tested together. Individual COSMIC build recipes will consume these revisions
 as the native ABI and compositor ports are completed.
-

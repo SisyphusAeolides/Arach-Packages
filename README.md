@@ -12,9 +12,10 @@ packages. Drivers and firmware additionally require the signed Arach hardware
 repository and a compatible hardware profile.
 
 The current foundation contains locked recipes for the five native boot and
-userspace components plus a complete source lock for the 28 components pinned
-by the upstream COSMIC Epoch integration repository. That lock is a source
-baseline, not yet a claim that every component builds or runs on Arach Kernel.
+userspace components, the signed Arach HWD planner, and a complete source lock
+for the 28 components pinned by the upstream COSMIC Epoch integration
+repository. That lock is a source baseline, not yet a claim that every
+component builds or runs on Arach Kernel.
 
 ## Validation
 
