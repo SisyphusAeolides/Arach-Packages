@@ -3,7 +3,7 @@ format = 1
 [package]
 name = "slope"
 version = "0.1.0"
-release = 1
+release = 2
 summary = "Arach capability-oriented userspace ABI"
 license = "MIT"
 scope = "system"
@@ -13,7 +13,7 @@ architectures = ["x86-64"]
 [[source]]
 kind = "git"
 url = "https://github.com/SisyphusAeolides/Slope.git"
-revision = "e1279f3a9c17638a70c55493b2851b011452a403"
+revision = "9f12c52bc4f59181857b84b27306a1c7ff2e1e4d"
 submodules = false
 
 [build]
@@ -29,4 +29,3 @@ provides = ["arach-userspace-abi"]
 network = false
 sandbox = true
 reproducible = true
-
