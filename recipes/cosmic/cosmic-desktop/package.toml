@@ -1,0 +1,61 @@
+format = 1
+
+[package]
+name = "cosmic-desktop"
+version = "0.1.0"
+release = 1
+summary = "Pinned COSMIC Epoch desktop workspace for Arach OS"
+license = "GPL-3.0-or-later"
+scope = "system"
+publish_authority = "arach-native"
+architectures = ["x86-64"]
+
+[[source]]
+kind = "git"
+url = "https://github.com/pop-os/cosmic-epoch.git"
+revision = "0ce7ec30ac05416e9a85465404be548ced89cba6"
+submodules = true
+
+[build]
+system = "cosmic"
+depends = ["cargo", "just", "make"]
+commands = ["just build", "just install"]
+outputs = ["@install-tree"]
+
+[runtime]
+provides = [
+  "cosmic-desktop",
+  "cosmic-applets",
+  "cosmic-applibrary",
+  "cosmic-bg",
+  "cosmic-comp",
+  "cosmic-edit",
+  "cosmic-files",
+  "cosmic-greeter",
+  "cosmic-icons",
+  "cosmic-idle",
+  "cosmic-initial-setup",
+  "cosmic-launcher",
+  "cosmic-monitor",
+  "cosmic-notifications",
+  "cosmic-osd",
+  "cosmic-panel",
+  "cosmic-player",
+  "cosmic-randr",
+  "cosmic-screenshot",
+  "cosmic-session",
+  "cosmic-settings",
+  "cosmic-settings-daemon",
+  "cosmic-sound-theme",
+  "cosmic-store",
+  "cosmic-term",
+  "cosmic-wallpapers",
+  "cosmic-workspaces-epoch",
+  "pop-launcher",
+  "xdg-desktop-portal-cosmic",
+]
+
+[policy]
+network = false
+sandbox = true
+reproducible = true

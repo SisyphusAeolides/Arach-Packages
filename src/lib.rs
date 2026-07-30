@@ -9,6 +9,7 @@ use std::process::Command;
 
 pub const RECIPE_FORMAT: u32 = 1;
 pub const COSMIC_LOCK_FORMAT: u32 = 1;
+pub const COSMIC_BUNDLE_PACKAGE: &str = "cosmic-desktop";
 
 pub const COSMIC_REQUIRED_COMPONENTS: &[&str] = &[
     "cosmic-applets",
@@ -124,6 +125,7 @@ pub enum BuildSystem {
     Cargo,
     #[serde(rename = "c")]
     C,
+    Cosmic,
     Fortran,
     Idris2,
     Agda,
@@ -273,6 +275,20 @@ pub fn validate_recipe(recipe: &Recipe) -> Result<(), ValidationError> {
     validate_nonempty_strings("build.outputs", &recipe.build.outputs, true)?;
     validate_unique_names("build.depends", &recipe.build.depends)?;
     validate_build_commands(&recipe.build)?;
+    if recipe.build.system == BuildSystem::Cosmic {
+        if recipe.build.commands != ["just build", "just install"] {
+            return Err(ValidationError::new(
+                "build.commands",
+                "COSMIC recipes must use the fixed just build/install adapter",
+            ));
+        }
+        if recipe.build.outputs != ["@install-tree"] {
+            return Err(ValidationError::new(
+                "build.outputs",
+                "COSMIC recipes must publish the bounded install tree",
+            ));
+        }
+    }
     validate_unique_names("runtime.depends", &recipe.runtime.depends)?;
     validate_unique_names("runtime.provides", &recipe.runtime.provides)?;
     validate_unique_names("runtime.conflicts", &recipe.runtime.conflicts)?;
@@ -352,6 +368,45 @@ pub fn validate_cosmic_lock(lock: &CosmicLock) -> Result<(), ValidationError> {
             "component",
             format!("COSMIC component set differs; missing={missing:?}, extra={extra:?}"),
         ));
+    }
+    Ok(())
+}
+
+fn validate_cosmic_bundle(recipe: &Recipe, lock: &CosmicLock) -> Result<(), ValidationError> {
+    if recipe.package.name != COSMIC_BUNDLE_PACKAGE
+        || recipe.package.scope != PackageScope::System
+        || recipe.package.publish_authority != PublishAuthority::ArachNative
+        || recipe.build.system != BuildSystem::Cosmic
+        || recipe.source.len() != 1
+    {
+        return Err(ValidationError::new(
+            "recipes.cosmic-desktop",
+            "the full COSMIC bundle must be one native cosmic workspace recipe",
+        ));
+    }
+    let source = &recipe.source[0];
+    if source.kind != SourceKind::Git
+        || source.url.as_deref() != Some(lock.upstream.repository.as_str())
+        || source.revision.as_deref() != Some(lock.upstream.revision.as_str())
+        || !source.submodules
+    {
+        return Err(ValidationError::new(
+            "recipes.cosmic-desktop.source",
+            "COSMIC bundle source must match the locked upstream workspace and include submodules",
+        ));
+    }
+    for component in COSMIC_REQUIRED_COMPONENTS {
+        if !recipe
+            .runtime
+            .provides
+            .iter()
+            .any(|provided| provided == component)
+        {
+            return Err(ValidationError::new(
+                "recipes.cosmic-desktop.runtime.provides",
+                format!("COSMIC bundle does not provide {component}"),
+            ));
+        }
     }
     Ok(())
 }
@@ -451,6 +506,17 @@ pub fn validate_tree(root: &Path) -> Result<ValidationReport, ValidationError> {
     let cosmic_text = read(&cosmic_path)?;
     let cosmic = parse_cosmic_lock(&cosmic_text).map_err(|error| at_file(&cosmic_path, error))?;
     validate_cosmic_lock(&cosmic).map_err(|error| at_file(&cosmic_path, error))?;
+    let cosmic_bundle = recipes
+        .iter()
+        .find(|(_, recipe)| recipe.package.name == COSMIC_BUNDLE_PACKAGE)
+        .map(|(_, recipe)| recipe)
+        .ok_or_else(|| {
+            ValidationError::new(
+                "recipes.cosmic-desktop",
+                "the pinned COSMIC workspace requires a bundle recipe",
+            )
+        })?;
+    validate_cosmic_bundle(cosmic_bundle, &cosmic)?;
 
     Ok(ValidationReport {
         recipes: package_paths.len(),
@@ -660,6 +726,7 @@ fn validate_build_commands(build: &Build) -> Result<(), ValidationError> {
         let allowed = match build.system {
             BuildSystem::Cargo => matches!(program, "cargo" | "rustc"),
             BuildSystem::C => matches!(program, "cc" | "gcc" | "clang" | "make"),
+            BuildSystem::Cosmic => program == "just",
             BuildSystem::Fortran => matches!(program, "gfortran" | "flang" | "make"),
             BuildSystem::Idris2 => matches!(program, "idris2" | "make"),
             BuildSystem::Agda => matches!(program, "agda" | "make"),

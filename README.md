@@ -11,14 +11,15 @@ build inputs. Only the signed Arach native repository may publish system
 packages. Drivers and firmware additionally require the signed Arach hardware
 repository and a compatible hardware profile.
 
-The current foundation contains locked recipes for the five native boot and
-userspace components, the signed Arach HWD planner, and a complete source lock
-for the 28 components pinned by the upstream COSMIC Epoch integration
-repository. That lock is a source baseline, not yet a claim that every
-component builds or runs on Arach Kernel.
+The current foundation contains locked recipes for the native boot/userspace
+components, the signed Arach HWD planner, and a `cosmic-desktop` workspace
+recipe bound to the complete 28-component COSMIC Epoch lock. The COSMIC recipe
+uses a fixed compatibility adapter and emits a measured install tree; it is a
+build contract, not a claim that every component has already been certified on
+Arach Kernel hardware.
 
-Recipe build systems cover Cargo/Rust, C, Fortran, Idris 2, Agda, Make,
-CMake, Meson, and metadata-only packages. Corinth consumes the same locked
+Recipe build systems cover Cargo/Rust, C, COSMIC workspace, Fortran, Idris 2,
+Agda, Make, CMake, Meson, and metadata-only packages. Corinth consumes the same locked
 source fields and executes only the corresponding allow-listed compiler
 programs; it does not invoke a shell. Build dependencies are recorded
 separately from runtime dependencies so imported recipes can be scheduled
