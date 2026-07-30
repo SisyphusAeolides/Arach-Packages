@@ -13,7 +13,7 @@ architectures = ["x86-64"]
 [[source]]
 kind = "git"
 url = "https://github.com/SisyphusAeolides/Corinth.git"
-revision = "9d0363ad7620d00a2d76bdabceb7469247a4c049"
+revision = "e4614016a0973f2dd0ce56dfd0479269cd1ac1c3"
 submodules = false
 
 [build]
