@@ -17,6 +17,14 @@ for the 28 components pinned by the upstream COSMIC Epoch integration
 repository. That lock is a source baseline, not yet a claim that every
 component builds or runs on Arach Kernel.
 
+Recipe build systems cover Cargo/Rust, C, Fortran, Idris 2, Agda, Make,
+CMake, Meson, and metadata-only packages. Corinth consumes the same locked
+source fields and executes only the corresponding allow-listed compiler
+programs; it does not invoke a shell. Build dependencies are recorded
+separately from runtime dependencies so imported recipes can be scheduled
+without treating a compiler as a runtime requirement. crates.io and archive
+sources must carry SHA-256 checksums, while Git sources use full object IDs.
+
 ## Validation
 
     cargo fmt --all -- --check

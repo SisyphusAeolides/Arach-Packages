@@ -6,7 +6,7 @@ responsibilities:
 1. identify one package, architecture set, license, scope, and publishing
    authority;
 2. lock every source to a full Git object ID or SHA-256 digest;
-3. declare deterministic build commands and output paths;
+3. declare deterministic build commands, build dependencies, and output paths;
 4. define runtime dependencies, capabilities, and conflicts;
 5. require an offline sandboxed reproducible build;
 6. attach hardware matches, ABI bounds, health checks, and rollback behavior

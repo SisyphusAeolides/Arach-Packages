@@ -111,6 +111,8 @@ pub enum SourceKind {
 pub struct Build {
     pub system: BuildSystem,
     #[serde(default)]
+    pub depends: Vec<String>,
+    #[serde(default)]
     pub commands: Vec<String>,
     #[serde(default)]
     pub outputs: Vec<String>,
@@ -120,6 +122,11 @@ pub struct Build {
 #[serde(rename_all = "kebab-case")]
 pub enum BuildSystem {
     Cargo,
+    #[serde(rename = "c")]
+    C,
+    Fortran,
+    Idris2,
+    Agda,
     Make,
     Meson,
     Cmake,
@@ -264,6 +271,8 @@ pub fn validate_recipe(recipe: &Recipe) -> Result<(), ValidationError> {
     }
     validate_nonempty_strings("build.commands", &recipe.build.commands, true)?;
     validate_nonempty_strings("build.outputs", &recipe.build.outputs, true)?;
+    validate_unique_names("build.depends", &recipe.build.depends)?;
+    validate_build_commands(&recipe.build)?;
     validate_unique_names("runtime.depends", &recipe.runtime.depends)?;
     validate_unique_names("runtime.provides", &recipe.runtime.provides)?;
     validate_unique_names("runtime.conflicts", &recipe.runtime.conflicts)?;
@@ -619,6 +628,72 @@ fn validate_source(index: usize, source: &Source) -> Result<(), ValidationError>
     Ok(())
 }
 
+fn validate_build_commands(build: &Build) -> Result<(), ValidationError> {
+    if build.system == BuildSystem::Meta {
+        return Ok(());
+    }
+    for (index, command) in build.commands.iter().enumerate() {
+        let path = format!("build.commands[{index}]");
+        if command.bytes().any(|byte| {
+            matches!(
+                byte,
+                b';' | b'|'
+                    | b'&'
+                    | b'>'
+                    | b'<'
+                    | b'$'
+                    | b'`'
+                    | b'('
+                    | b')'
+                    | b'{'
+                    | b'}'
+                    | b'*'
+                    | b'?'
+                    | b'\\'
+            )
+        }) {
+            return Err(ValidationError::new(path, "shell syntax is forbidden"));
+        }
+        let Some(program) = command.split_ascii_whitespace().next() else {
+            return Err(ValidationError::new(path, "command cannot be empty"));
+        };
+        let allowed = match build.system {
+            BuildSystem::Cargo => matches!(program, "cargo" | "rustc"),
+            BuildSystem::C => matches!(program, "cc" | "gcc" | "clang" | "make"),
+            BuildSystem::Fortran => matches!(program, "gfortran" | "flang" | "make"),
+            BuildSystem::Idris2 => matches!(program, "idris2" | "make"),
+            BuildSystem::Agda => matches!(program, "agda" | "make"),
+            BuildSystem::Make => program == "make",
+            BuildSystem::Meson => matches!(program, "meson" | "ninja"),
+            BuildSystem::Cmake => matches!(program, "cmake" | "make"),
+            BuildSystem::Custom => matches!(
+                program,
+                "cargo"
+                    | "rustc"
+                    | "cc"
+                    | "gcc"
+                    | "clang"
+                    | "gfortran"
+                    | "flang"
+                    | "idris2"
+                    | "agda"
+                    | "make"
+                    | "cmake"
+                    | "meson"
+                    | "ninja"
+            ),
+            BuildSystem::Meta => false,
+        };
+        if !allowed {
+            return Err(ValidationError::new(
+                path,
+                "program is not allowed by build.system",
+            ));
+        }
+    }
+    Ok(())
+}
+
 fn validate_hardware(hardware: &Hardware) -> Result<(), ValidationError> {
     validate_nonempty_strings("hardware.matches", &hardware.matches, false)?;
     require_text("hardware.driver_abi_min", &hardware.driver_abi_min)?;
@@ -841,6 +916,7 @@ mod tests {
             }],
             build: Build {
                 system: BuildSystem::Cargo,
+                depends: Vec::new(),
                 commands: vec!["cargo build --release --locked".into()],
                 outputs: vec!["target/release/example".into()],
             },
