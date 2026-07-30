@@ -1,0 +1,32 @@
+format = 1
+
+[package]
+name = "granite"
+version = "0.1.0"
+release = 1
+summary = "Measured UEFI bootloader for Arach OS"
+license = "MIT"
+scope = "system"
+publish_authority = "arach-native"
+architectures = ["x86-64"]
+
+[[source]]
+kind = "git"
+url = "https://github.com/SisyphusAeolides/Granite.git"
+revision = "c990385d767c49c508e3ca5271bf657d5a5b4836"
+submodules = false
+
+[build]
+system = "cargo"
+commands = ["cargo build --release --locked --target x86_64-unknown-uefi --features uefi-bin"]
+outputs = ["target/x86_64-unknown-uefi/release/granite.efi"]
+
+[runtime]
+depends = ["arach-kernel", "push"]
+provides = ["uefi-bootloader"]
+
+[policy]
+network = false
+sandbox = true
+reproducible = true
+

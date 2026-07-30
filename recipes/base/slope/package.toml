@@ -1,0 +1,32 @@
+format = 1
+
+[package]
+name = "slope"
+version = "0.1.0"
+release = 1
+summary = "Arach capability-oriented userspace ABI"
+license = "MIT"
+scope = "system"
+publish_authority = "arach-native"
+architectures = ["x86-64"]
+
+[[source]]
+kind = "git"
+url = "https://github.com/SisyphusAeolides/Slope.git"
+revision = "e1279f3a9c17638a70c55493b2851b011452a403"
+submodules = false
+
+[build]
+system = "cargo"
+commands = ["cargo build --release --locked"]
+outputs = ["target/release/libslope.rlib"]
+
+[runtime]
+depends = ["arach-kernel"]
+provides = ["arach-userspace-abi"]
+
+[policy]
+network = false
+sandbox = true
+reproducible = true
+

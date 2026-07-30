@@ -1,0 +1,47 @@
+name: Arach Packages validation
+
+on:
+  push:
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  rust:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v7
+      - uses: dtolnay/rust-toolchain@stable
+        with:
+          components: rustfmt,clippy
+      - run: cargo fmt --all -- --check
+      - run: cargo clippy --locked --all-targets -- -D warnings
+      - run: cargo test --locked
+      - run: git diff --check
+
+  recipes:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v7
+      - uses: dtolnay/rust-toolchain@stable
+      - run: cargo run --locked -- --root .
+      - run: scripts/verify-cosmic-upstream.sh
+
+  fortran:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v7
+      - run: sudo apt-get update && sudo apt-get install -y gfortran
+      - run: scripts/check-fortran.sh
+
+  idris-agda:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v7
+      - run: sudo apt-get update && sudo apt-get install -y build-essential chezscheme libgmp-dev xz-utils curl
+      - uses: actions/cache@v6
+        with:
+          path: target/formal/toolchains
+          key: arach-packages-formal-idris2-0.8.0-agda-2.8.0-v1
+      - run: scripts/bootstrap-formal-toolchains.sh

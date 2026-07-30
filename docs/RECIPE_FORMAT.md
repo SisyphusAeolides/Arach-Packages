@@ -1,0 +1,30 @@
+# Recipe format version 1
+
+Each recipe is stored as recipes/CATEGORY/NAME/package.toml and has six
+responsibilities:
+
+1. identify one package, architecture set, license, scope, and publishing
+   authority;
+2. lock every source to a full Git object ID or SHA-256 digest;
+3. declare deterministic build commands and output paths;
+4. define runtime dependencies, capabilities, and conflicts;
+5. require an offline sandboxed reproducible build;
+6. attach hardware matches, ABI bounds, health checks, and rollback behavior
+   to every driver or firmware package.
+
+System and user packages may only be published by arach-native. Driver and
+firmware packages may only be published by arach-hardware. A recipe records
+the intended authority, but the build service must still sign the repository
+metadata and artifact before Corinth admits an installation.
+
+Git branch and tag names are forbidden because they can move. Archive,
+crates.io, and local sources require a full SHA-256 checksum. Local paths must
+remain inside the repository. Network access is forbidden during the build;
+all sources and dependency registries are fetched and measured before entering
+the builder.
+
+The COSMIC lock is separate from package recipes. It records the exact
+upstream integration revision and all 28 gitlink revisions that upstream
+tested together. Individual COSMIC build recipes will consume these revisions
+as the native ABI and compositor ports are completed.
+

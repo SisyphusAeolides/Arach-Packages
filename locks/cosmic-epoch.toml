@@ -1,0 +1,173 @@
+format = 1
+
+[upstream]
+repository = "https://github.com/pop-os/cosmic-epoch.git"
+revision = "0ce7ec30ac05416e9a85465404be548ced89cba6"
+
+[[component]]
+name = "cosmic-applets"
+repository = "https://github.com/pop-os/cosmic-applets.git"
+revision = "ec8ffdc85d1f316b387cf89672609933064e6e88"
+required = true
+
+[[component]]
+name = "cosmic-applibrary"
+repository = "https://github.com/pop-os/cosmic-applibrary.git"
+revision = "172acdae07aeb78a554813a566c0f8b942dcc831"
+required = true
+
+[[component]]
+name = "cosmic-bg"
+repository = "https://github.com/pop-os/cosmic-bg.git"
+revision = "76e89e6aff4224e3a820cbe71c74ee91adb60d03"
+required = true
+
+[[component]]
+name = "cosmic-comp"
+repository = "https://github.com/pop-os/cosmic-comp.git"
+revision = "81cd5fdbaa41c3973369ae85bccf829137836e20"
+required = true
+
+[[component]]
+name = "cosmic-edit"
+repository = "https://github.com/pop-os/cosmic-edit.git"
+revision = "4ac0da3af97207fb3807375928812f23ec04161f"
+required = true
+
+[[component]]
+name = "cosmic-files"
+repository = "https://github.com/pop-os/cosmic-files.git"
+revision = "24e34eaa0f0acf4e24ea1338ad4bbde3a138e1f3"
+required = true
+
+[[component]]
+name = "cosmic-greeter"
+repository = "https://github.com/pop-os/cosmic-greeter.git"
+revision = "d39915ae2381424d406cd511a2310ef928144f4c"
+required = true
+
+[[component]]
+name = "cosmic-icons"
+repository = "https://github.com/pop-os/cosmic-icons.git"
+revision = "b78b059636ed967ad7c6f120709c7d29b2bafac1"
+required = true
+
+[[component]]
+name = "cosmic-idle"
+repository = "https://github.com/pop-os/cosmic-idle.git"
+revision = "c95d066b5b640509a6369634b669ca60dc50e168"
+required = true
+
+[[component]]
+name = "cosmic-initial-setup"
+repository = "https://github.com/pop-os/cosmic-initial-setup.git"
+revision = "b5ac4182bb00bc774ca86febadf0369e362bc031"
+required = true
+
+[[component]]
+name = "cosmic-launcher"
+repository = "https://github.com/pop-os/cosmic-launcher.git"
+revision = "8799503120d28383b3548f19a50880cbe83701c5"
+required = true
+
+[[component]]
+name = "cosmic-monitor"
+repository = "https://github.com/pop-os/cosmic-monitor.git"
+revision = "70e6cff1684310996d350d6dc1a8b438f5ee0217"
+required = true
+
+[[component]]
+name = "cosmic-notifications"
+repository = "https://github.com/pop-os/cosmic-notifications.git"
+revision = "7c723b7705ec77b1ad5396a1baa9ae1c0cb5a0da"
+required = true
+
+[[component]]
+name = "cosmic-osd"
+repository = "https://github.com/pop-os/cosmic-osd.git"
+revision = "20a2055dfc0eed78b417f0ecd38cc15807df3285"
+required = true
+
+[[component]]
+name = "cosmic-panel"
+repository = "https://github.com/pop-os/cosmic-panel.git"
+revision = "d6699ffc423a3830bf4cab7e2c7f08a173e998f0"
+required = true
+
+[[component]]
+name = "cosmic-player"
+repository = "https://github.com/pop-os/cosmic-player.git"
+revision = "23d59445afaf74aa0ac39a16d6d88f5f20d91d1f"
+required = true
+
+[[component]]
+name = "cosmic-randr"
+repository = "https://github.com/pop-os/cosmic-randr.git"
+revision = "6e8e795970fa06d434af22775e415b517f7552d3"
+required = true
+
+[[component]]
+name = "cosmic-screenshot"
+repository = "https://github.com/pop-os/cosmic-screenshot.git"
+revision = "fc778df20fd9b3f2b266b090da89c09ce625e0a4"
+required = true
+
+[[component]]
+name = "cosmic-session"
+repository = "https://github.com/pop-os/cosmic-session.git"
+revision = "b5ef6c0c0d68762b2991e4f5906cc70599e2f1fc"
+required = true
+
+[[component]]
+name = "cosmic-settings"
+repository = "https://github.com/pop-os/cosmic-settings.git"
+revision = "7287257ec9f2ca301642bd4800f391ad9079d3e9"
+required = true
+
+[[component]]
+name = "cosmic-settings-daemon"
+repository = "https://github.com/pop-os/cosmic-settings-daemon.git"
+revision = "21a9692b53fcbffa0f18f7d0a12bf0f9d5bd0590"
+required = true
+
+[[component]]
+name = "cosmic-sound-theme"
+repository = "https://github.com/pop-os/cosmic-sound-theme.git"
+revision = "7aabe449093787163c74c25aa1bd4663fb4c324c"
+required = true
+
+[[component]]
+name = "cosmic-store"
+repository = "https://github.com/pop-os/cosmic-store.git"
+revision = "f56cb48aa10cf058799972b1ab225fe9fcfedcfd"
+required = true
+
+[[component]]
+name = "cosmic-term"
+repository = "https://github.com/pop-os/cosmic-term.git"
+revision = "543cbb0cb818e1ef724d7f917ca562af44340e47"
+required = true
+
+[[component]]
+name = "cosmic-wallpapers"
+repository = "https://github.com/pop-os/cosmic-wallpapers.git"
+revision = "3c59953e7ee5792efecdb232cb4c7211e7785f52"
+required = true
+
+[[component]]
+name = "cosmic-workspaces-epoch"
+repository = "https://github.com/pop-os/cosmic-workspaces-epoch.git"
+revision = "8faab4c2a92f438a704d072e3c5aa9526d2acc88"
+required = true
+
+[[component]]
+name = "pop-launcher"
+repository = "https://github.com/pop-os/launcher.git"
+revision = "a332a3a73316a3595816dd02fe426a1d3543167a"
+required = true
+
+[[component]]
+name = "xdg-desktop-portal-cosmic"
+repository = "https://github.com/pop-os/xdg-desktop-portal-cosmic.git"
+revision = "f211aa37d45e443c9060b08c725d6fa73431565f"
+required = true

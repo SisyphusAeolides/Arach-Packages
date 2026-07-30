@@ -1,0 +1,32 @@
+format = 1
+
+[package]
+name = "push"
+version = "0.1.0"
+release = 1
+summary = "Measured Arach PID 1 and service supervisor"
+license = "MIT"
+scope = "system"
+publish_authority = "arach-native"
+architectures = ["x86-64"]
+
+[[source]]
+kind = "git"
+url = "https://github.com/SisyphusAeolides/Push.git"
+revision = "98b50e957ab06793301d3b1bd351719e92b88534"
+submodules = false
+
+[build]
+system = "cargo"
+commands = ["cargo build --release --locked --features os-bin"]
+outputs = ["target/release/push"]
+
+[runtime]
+depends = ["slope"]
+provides = ["pid-1", "service-supervisor"]
+
+[policy]
+network = false
+sandbox = true
+reproducible = true
+

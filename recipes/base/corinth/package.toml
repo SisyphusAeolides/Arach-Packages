@@ -1,0 +1,31 @@
+format = 1
+
+[package]
+name = "corinth"
+version = "0.1.0"
+release = 1
+summary = "Transactional package manager for Arach OS"
+license = "MIT"
+scope = "system"
+publish_authority = "arach-native"
+architectures = ["x86-64"]
+
+[[source]]
+kind = "git"
+url = "https://github.com/SisyphusAeolides/Corinth.git"
+revision = "5c03a2d58e9df2b62b7b7f5b2d1402add1ae5375"
+submodules = false
+
+[build]
+system = "cargo"
+commands = ["cargo build --release --locked --features os-bin"]
+outputs = ["target/release/corinth"]
+
+[runtime]
+depends = ["slope"]
+provides = ["package-manager"]
+
+[policy]
+network = false
+sandbox = true
+reproducible = true
