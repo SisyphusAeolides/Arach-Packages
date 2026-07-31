@@ -1,0 +1,36 @@
+format = 1
+
+[package]
+name = "wireplumber"
+version = "0.5.9"
+release = 1
+summary = "Policy and session manager for PipeWire audio"
+license = "MIT"
+scope = "system"
+publish_authority = "arach-native"
+architectures = ["x86-64"]
+
+[[source]]
+kind = "git"
+url = "https://gitlab.freedesktop.org/pipewire/wireplumber.git"
+revision = "76b9e509d1a8725a57482505177036d8fe68a472"
+submodules = false
+
+[build]
+system = "meson"
+depends = ["meson", "ninja"]
+commands = [
+  "meson setup build --prefix /usr",
+  "meson compile -C build",
+  "meson install -C build --destdir .corinth-install",
+]
+outputs = ["@install-tree"]
+
+[runtime]
+depends = ["pipewire"]
+provides = ["wireplumber"]
+
+[policy]
+network = false
+sandbox = true
+reproducible = true

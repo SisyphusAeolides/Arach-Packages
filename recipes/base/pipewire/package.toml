@@ -1,0 +1,36 @@
+format = 1
+
+[package]
+name = "pipewire"
+version = "1.4.9"
+release = 1
+summary = "Low-latency audio and video graph for the COSMIC session"
+license = "MIT"
+scope = "system"
+publish_authority = "arach-native"
+architectures = ["x86-64"]
+
+[[source]]
+kind = "git"
+url = "https://gitlab.freedesktop.org/pipewire/pipewire.git"
+revision = "fd60e04525f3a04d90bf50085222e0cc9139b4a4"
+submodules = false
+
+[build]
+system = "meson"
+depends = ["meson", "ninja"]
+commands = [
+  "meson setup build --prefix /usr",
+  "meson compile -C build",
+  "meson install -C build --destdir .corinth-install",
+]
+outputs = ["@install-tree"]
+
+[runtime]
+depends = ["dbus"]
+provides = ["pipewire", "pipewire-pulse"]
+
+[policy]
+network = false
+sandbox = true
+reproducible = true

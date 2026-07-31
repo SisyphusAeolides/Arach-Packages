@@ -13,7 +13,8 @@ repository and a compatible hardware profile.
 
 The current foundation contains locked recipes for the native boot/userspace
 components, the signed Arach HWD planner, libinput-rs, elan-guardian, tuned-rs,
-ccze-rs, the D-Bus broker, a pinned `greetd` display-manager recipe, and a `cosmic-desktop`
+ccze-rs, the D-Bus broker, PipeWire, WirePlumber, seatd/libseat, a pinned
+`greetd` display-manager recipe, and a `cosmic-desktop`
 workspace recipe bound to the complete 28-component COSMIC Epoch lock. The
 COSMIC recipe also carries the upstream `cosmic-greeter.toml` into its measured
 install tree so greetd can launch the greeter without a second display-manager

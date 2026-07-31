@@ -1,0 +1,35 @@
+format = 1
+
+[package]
+name = "seatd"
+version = "0.9.3"
+release = 1
+summary = "Minimal seat broker and libseat provider for COSMIC"
+license = "MIT"
+scope = "system"
+publish_authority = "arach-native"
+architectures = ["x86-64"]
+
+[[source]]
+kind = "git"
+url = "https://git.sr.ht/~kennylevinsen/seatd"
+revision = "daa8196e10b180b8b0caeafa8e5f860eb1bd6706"
+submodules = false
+
+[build]
+system = "meson"
+depends = ["meson", "ninja"]
+commands = [
+  "meson setup build --prefix /usr -Dserver=enabled",
+  "meson compile -C build",
+  "meson install -C build --destdir .corinth-install",
+]
+outputs = ["@install-tree"]
+
+[runtime]
+provides = ["seatd", "libseat"]
+
+[policy]
+network = false
+sandbox = true
+reproducible = true
