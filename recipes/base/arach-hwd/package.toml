@@ -3,7 +3,7 @@ format = 1
 [package]
 name = "arach-hwd"
 version = "0.1.0"
-release = 13
+release = 14
 summary = "Signed hardware detection and provisioning planner for Arach OS"
 license = "MIT"
 scope = "system"
@@ -13,7 +13,7 @@ architectures = ["x86-64"]
 [[source]]
 kind = "git"
 url = "https://github.com/SisyphusAeolides/Arach-HWD.git"
-revision = "9cfee7dd0dc2151bea5810fabf9cb65ec7bf8a56"
+revision = "b05940ce1c3e7e928a647c888862793f82b8ecd9"
 submodules = false
 
 [build]
