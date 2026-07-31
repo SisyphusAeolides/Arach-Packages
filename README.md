@@ -14,9 +14,11 @@ repository and a compatible hardware profile.
 The current foundation contains locked recipes for the native boot/userspace
 components, the signed Arach HWD planner, libinput-rs, elan-guardian, tuned-rs,
 ccze-rs, and a `cosmic-desktop` workspace recipe bound to the complete
-28-component COSMIC Epoch lock. The COSMIC recipe uses a fixed compatibility
-adapter and emits a measured install tree; it is a build contract, not a claim
-that every component has already been certified on Arach Kernel hardware.
+28-component COSMIC Epoch lock. The `arach-os-installer` recipe also emits the
+journaled installer binary and canonical Arach branding used by the live-image
+contract. The COSMIC recipe uses a fixed compatibility adapter and emits a
+measured install tree; these are build contracts, not a claim that every
+component has already been certified on Arach Kernel hardware.
 
 Recipe build systems cover Cargo/Rust, C, COSMIC workspace, Fortran, Idris 2,
 Agda, Make, CMake, Meson, and metadata-only packages. Corinth consumes the same locked
@@ -31,8 +33,7 @@ sources must carry SHA-256 checksums, while Git sources use full object IDs.
     cargo fmt --all -- --check
     cargo test --locked
     cargo run --locked -- --root .
-    scripts/check-fortran.sh
-    scripts/check-formal-models.sh
+    cargo run --locked --bin arach-package-lint -- --root .
 
 Recipe format and trust rules are documented in
 [docs/RECIPE_FORMAT.md](docs/RECIPE_FORMAT.md).
