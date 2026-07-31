@@ -3,7 +3,7 @@ format = 1
 [package]
 name = "arach-os-installer"
 version = "0.1.0"
-release = 18
+release = 19
 summary = "Journaled Arach OS installer transaction and Calamares integration"
 license = "MIT"
 scope = "system"
@@ -13,7 +13,7 @@ architectures = ["x86-64"]
 [[source]]
 kind = "git"
 url = "https://github.com/SisyphusAeolides/Arach-OS.git"
-revision = "7e68231ab738f93a632970fd90dbcfa1bc85e57d"
+revision = "f74ae17e2b25270ca47fcc0e813426a4afda367e"
 submodules = false
 
 [build]
@@ -24,7 +24,7 @@ outputs = [
   "branding/arach-logo.png",
   "installer/calamares/settings.conf",
   "installer/calamares/branding/arach/branding.desc",
-  "installer/calamares/modules/arach-hardware.conf",
+  "installer/calamares/modules/arachhardware.conf",
   "installer/calamares/modules/arach-prepare.conf",
   "installer/calamares/modules/arach-commit.conf",
   "installer/calamares/modules/partition.conf",
