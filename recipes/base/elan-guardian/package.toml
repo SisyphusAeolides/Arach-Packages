@@ -1,0 +1,31 @@
+format = 1
+
+[package]
+name = "elan-guardian"
+version = "0.2.2"
+release = 1
+summary = "Evidence-driven Elantech I2C input recovery"
+license = "GPL-2.0-only"
+scope = "system"
+publish_authority = "arach-native"
+architectures = ["x86-64"]
+
+[[source]]
+kind = "git"
+url = "https://github.com/SisyphusAeolides/elan-guardian.git"
+revision = "1b3403da938ebd8be9b81de4df00680e0c3fc7ed"
+submodules = false
+
+[build]
+system = "cargo"
+commands = ["cargo build --release --locked"]
+outputs = ["target/release/elan-guardian"]
+
+[runtime]
+depends = ["libinput-rs"]
+provides = ["elan-guardian", "elan-i2c-recovery"]
+
+[policy]
+network = false
+sandbox = true
+reproducible = true

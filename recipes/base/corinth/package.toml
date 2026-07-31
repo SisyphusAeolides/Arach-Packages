@@ -3,7 +3,7 @@ format = 1
 [package]
 name = "corinth"
 version = "0.1.0"
-release = 8
+release = 9
 summary = "Transactional package manager for Arach OS"
 license = "MIT"
 scope = "system"

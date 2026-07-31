@@ -1,0 +1,35 @@
+format = 1
+
+[package]
+name = "tuned-rs"
+version = "0.2.6"
+release = 1
+summary = "Rust system tuning daemon and power-profiles service"
+license = "GPL-2.0-or-later"
+scope = "system"
+publish_authority = "arach-native"
+architectures = ["x86-64"]
+
+[[source]]
+kind = "git"
+url = "https://github.com/SisyphusAeolides/tuned-rs.git"
+revision = "28fbe938aa9afb647c1a4fa066417c6db1b2abfe"
+submodules = false
+
+[build]
+system = "cargo"
+commands = ["cargo build --release --locked --all-targets"]
+outputs = [
+  "target/release/tuned-rs",
+  "target/release/tuned-rs-ppd",
+  "target/release/tuned-adm",
+  "target/release/tuned-rs-gui",
+]
+
+[runtime]
+provides = ["tuned", "power-profiles-daemon"]
+
+[policy]
+network = false
+sandbox = true
+reproducible = true

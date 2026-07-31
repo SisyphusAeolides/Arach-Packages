@@ -1,0 +1,37 @@
+format = 1
+
+[package]
+name = "libinput-rs"
+version = "0.3.1"
+release = 1
+summary = "Rust libinput-compatible input stack and hardware tools"
+license = "MIT"
+scope = "system"
+publish_authority = "arach-native"
+architectures = ["x86-64"]
+
+[[source]]
+kind = "git"
+url = "https://github.com/SisyphusAeolides/libinput-rs.git"
+revision = "8c25705118e540a01e478c39abb36a398401371f"
+submodules = false
+
+[build]
+system = "make"
+commands = ["make all"]
+outputs = [
+  "target/release/libinput",
+  "target/release/libinput-rs-chwd",
+  "target/release/libinput-device-group",
+  "target/release/libinput-fuzz-extract",
+  "target/release/libinput-fuzz-to-zero",
+  "target/release/libinput.so",
+]
+
+[runtime]
+provides = ["libinput", "libinput-tools", "input-stack"]
+
+[policy]
+network = false
+sandbox = true
+reproducible = true

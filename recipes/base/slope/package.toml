@@ -3,7 +3,7 @@ format = 1
 [package]
 name = "slope"
 version = "0.1.0"
-release = 3
+release = 4
 summary = "Arach capability-oriented userspace ABI"
 license = "MIT"
 scope = "system"

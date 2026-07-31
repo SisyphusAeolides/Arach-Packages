@@ -1,0 +1,30 @@
+format = 1
+
+[package]
+name = "ccze-rs"
+version = "0.4.0"
+release = 1
+summary = "Streaming log colorizer for Arach OS diagnostics"
+license = "MIT"
+scope = "system"
+publish_authority = "arach-native"
+architectures = ["x86-64"]
+
+[[source]]
+kind = "git"
+url = "https://github.com/SisyphusAeolides/ccze-rs.git"
+revision = "e42cced69ca8a93087c197261e5a9e322c093422"
+submodules = false
+
+[build]
+system = "cargo"
+commands = ["cargo build --release --locked"]
+outputs = ["target/release/ccze"]
+
+[runtime]
+provides = ["ccze"]
+
+[policy]
+network = false
+sandbox = true
+reproducible = true
