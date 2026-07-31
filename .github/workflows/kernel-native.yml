@@ -71,9 +71,18 @@ jobs:
       - name: Prefetch locked Cargo inputs
         working-directory: target/kernel-source
         run: |
-          cargo +nightly-2026-07-20 fetch --locked
-          cargo +nightly-2026-07-20 fetch --locked --manifest-path sources/push/Cargo.toml
-          cargo +nightly-2026-07-20 fetch --locked --manifest-path probes/c0/Cargo.toml
+          target_spec="$PWD/x86_64-arach.json"
+          build_std=(
+            --target "$target_spec"
+            -Z json-target-spec
+            -Z build-std=core,alloc,compiler_builtins
+            -Z build-std-features=compiler-builtins-mem
+          )
+          cargo +nightly-2026-07-20 fetch --locked "${build_std[@]}"
+          cargo +nightly-2026-07-20 fetch --locked \
+            --manifest-path sources/push/Cargo.toml "${build_std[@]}"
+          cargo +nightly-2026-07-20 fetch --locked \
+            --manifest-path probes/c0/Cargo.toml "${build_std[@]}"
       - name: Build fixed offline kernel package
         working-directory: target/kernel-source
         env:
