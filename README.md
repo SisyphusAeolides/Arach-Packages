@@ -46,3 +46,6 @@ sources must carry SHA-256 checksums, while Git sources use full object IDs.
 
 Recipe format and trust rules are documented in
 [docs/RECIPE_FORMAT.md](docs/RECIPE_FORMAT.md).
+
+Hardware profile, binary-index, and source-fallback rules are documented in
+[docs/HARDWARE_REPOSITORY.md](docs/HARDWARE_REPOSITORY.md).
