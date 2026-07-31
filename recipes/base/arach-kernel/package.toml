@@ -3,7 +3,7 @@ format = 1
 [package]
 name = "arach-kernel"
 version = "0.1.0"
-release = 17
+release = 18
 summary = "Arach monolithic kernel"
 license = "MIT"
 scope = "system"
@@ -13,13 +13,19 @@ architectures = ["x86-64"]
 [[source]]
 kind = "git"
 url = "https://github.com/SisyphusAeolides/Arach-Kernel.git"
-revision = "eb212d3a64298fce3a81b0d0dae6c72f1cc22183"
+revision = "2bc49ef73f108e7c615c234ef93e23511bcd736b"
+submodules = false
+
+[[source]]
+kind = "git"
+url = "https://github.com/SisyphusAeolides/Push.git"
+revision = "5bd361b86c048b60b6a8422a8e173ea0ec867bff"
 submodules = false
 
 [build]
-system = "cargo"
-commands = ["cargo build --release --locked --features kernel-bin"]
-outputs = ["target/release/arach"]
+system = "custom"
+commands = ["cargo build-kernel-package"]
+outputs = ["target/package-kernel/x86_64-arach/release/arach"]
 
 [runtime]
 provides = ["arach-kernel", "arach-driver-abi"]
