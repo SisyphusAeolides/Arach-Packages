@@ -13,8 +13,11 @@ repository and a compatible hardware profile.
 
 The current foundation contains locked recipes for the native boot/userspace
 components, the signed Arach HWD planner, libinput-rs, elan-guardian, tuned-rs,
-ccze-rs, and a `cosmic-desktop` workspace recipe bound to the complete
-28-component COSMIC Epoch lock. The `arach-os-installer` recipe also emits the
+ccze-rs, a pinned `greetd` display-manager recipe, and a `cosmic-desktop`
+workspace recipe bound to the complete 28-component COSMIC Epoch lock. The
+COSMIC recipe also carries the upstream `cosmic-greeter.toml` into its measured
+install tree so greetd can launch the greeter without a second display-manager
+stack. The `arach-os-installer` recipe also emits the
 journaled installer binary and canonical Arach branding used by the live-image
 contract. The COSMIC recipe uses a fixed compatibility adapter and emits a
 measured install tree; these are build contracts, not a claim that every
