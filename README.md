@@ -48,9 +48,11 @@ sources must carry SHA-256 checksums, while Git sources use full object IDs.
 Recipe format and trust rules are documented in
 [docs/RECIPE_FORMAT.md](docs/RECIPE_FORMAT.md).
 
-The signed `arach-hardware-catalog` artifact must also ship the four hashed
+The signed `arach-hardware-catalog` artifact must also ship the five hashed
 driver evidence tables under `etc/arach/hwd/driver-sources/`:
-`modules.alias`, `modules.dep`, `modules.builtin`, and `modules.firmware`.
+`modules.alias`, `modules.dep`, `modules.builtin`, `modules.firmware`, and
+`modules.builtin.modinfo`. The last table carries NUL-separated firmware
+metadata for built-in Linux drivers.
 This keeps Calamares hardware discovery target-aware and reproducible while
 leaving profile and package signatures as the only installation authority.
 
