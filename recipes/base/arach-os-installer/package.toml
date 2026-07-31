@@ -3,8 +3,8 @@ format = 1
 [package]
 name = "arach-os-installer"
 version = "0.1.0"
-release = 15
-summary = "Journaled Arach OS installer transaction and canonical branding"
+release = 16
+summary = "Journaled Arach OS installer transaction and Calamares integration"
 license = "MIT"
 scope = "system"
 publish_authority = "arach-native"
@@ -13,7 +13,7 @@ architectures = ["x86-64"]
 [[source]]
 kind = "git"
 url = "https://github.com/SisyphusAeolides/Arach-OS.git"
-revision = "3cb041d1fff78f902ca9eb7de9181b6907b62745"
+revision = "f360d936a6f1a5e4e53db780bcdae5cd62a5216b"
 submodules = false
 
 [build]
@@ -22,11 +22,24 @@ commands = ["cargo build --release --locked --bin arach-install"]
 outputs = [
   "target/release/arach-install",
   "branding/arach-logo.png",
+  "installer/calamares/settings.conf",
+  "installer/calamares/branding/arach/branding.desc",
+  "installer/calamares/modules/arach-hardware.conf",
+  "installer/calamares/modules/arach-prepare.conf",
+  "installer/calamares/modules/arach-commit.conf",
+  "installer/calamares/modules/partition.conf",
+  "installer/calamares/modules/users.conf",
+  "installer/calamares/modules/unpackfs.conf",
+  "installer/calamares/modules/arachhardware/module.desc",
+  "installer/calamares/modules/arachhardware/main.py",
+  "installer/calamares/modules/arachtransaction/module.desc",
+  "installer/calamares/modules/arachtransaction/main.py",
+  "installer/calamares/modules/arachtransaction/protocol.py",
 ]
 
 [runtime]
-depends = ["corinth", "arach-hwd"]
-provides = ["arach-install", "arach-branding"]
+depends = ["corinth", "arach-hwd", "calamares"]
+provides = ["arach-install", "arach-branding", "arach-calamares-integration"]
 
 [policy]
 network = false
