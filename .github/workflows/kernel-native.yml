@@ -20,6 +20,7 @@ jobs:
           components: rust-src
       - name: Validate and fetch exact kernel sources
         run: |
+          mkdir -p target
           python3 - <<'PY' > target/kernel-sources.env
           import pathlib
           import tomllib
