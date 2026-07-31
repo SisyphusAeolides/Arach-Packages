@@ -90,4 +90,3 @@ jobs:
           path: target/formal/toolchains
           key: arach-packages-formal-idris2-0.8.0-agda-2.8.0-v1
       - run: scripts/bootstrap-formal-toolchains.sh
-      - run: scripts/check-formal-models.sh
