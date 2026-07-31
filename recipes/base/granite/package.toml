@@ -18,7 +18,7 @@ submodules = false
 
 [build]
 system = "cargo"
-commands = ["cargo build --release --locked --target x86_64-unknown-uefi --features uefi-bin"]
+commands = ["cargo build --release --locked --target x86_64-unknown-uefi --features uefi-bin,require-artifacts"]
 outputs = ["target/x86_64-unknown-uefi/release/granite.efi"]
 
 [runtime]
