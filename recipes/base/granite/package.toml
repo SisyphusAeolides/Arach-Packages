@@ -13,7 +13,7 @@ architectures = ["x86-64"]
 [[source]]
 kind = "git"
 url = "https://github.com/SisyphusAeolides/Granite.git"
-revision = "c990385d767c49c508e3ca5271bf657d5a5b4836"
+revision = "cc717de31e6946457e2bb43fe5fa188335c5ef51"
 submodules = false
 
 [build]
@@ -29,4 +29,3 @@ provides = ["uefi-bootloader"]
 network = false
 sandbox = true
 reproducible = true
-
