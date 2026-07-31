@@ -3,7 +3,7 @@ format = 1
 [package]
 name = "arach-os-installer"
 version = "0.1.0"
-release = 17
+release = 18
 summary = "Journaled Arach OS installer transaction and Calamares integration"
 license = "MIT"
 scope = "system"
@@ -13,7 +13,7 @@ architectures = ["x86-64"]
 [[source]]
 kind = "git"
 url = "https://github.com/SisyphusAeolides/Arach-OS.git"
-revision = "9d483c753f3c89f47afcc6033769eb169f303ab9"
+revision = "7e68231ab738f93a632970fd90dbcfa1bc85e57d"
 submodules = false
 
 [build]
