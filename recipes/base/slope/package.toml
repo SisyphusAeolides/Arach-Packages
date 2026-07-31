@@ -13,7 +13,7 @@ architectures = ["x86-64"]
 [[source]]
 kind = "git"
 url = "https://github.com/SisyphusAeolides/Slope.git"
-revision = "28ca34ba1a66e9ca94d236ed804152f9ca6425a7"
+revision = "c6acafacd8ce5c4f65dbe50ccfda58712cc3c47d"
 submodules = false
 
 [build]
