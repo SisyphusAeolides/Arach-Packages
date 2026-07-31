@@ -3,7 +3,7 @@ format = 1
 [package]
 name = "push"
 version = "0.1.0"
-release = 6
+release = 7
 summary = "Measured Arach PID 1 and service supervisor"
 license = "MIT"
 scope = "system"
@@ -13,7 +13,7 @@ architectures = ["x86-64"]
 [[source]]
 kind = "git"
 url = "https://github.com/SisyphusAeolides/Push.git"
-revision = "9eae5dbbee7dae90030b45f84950ca2efdf0d634"
+revision = "b4e563547936595def7bc5097fb0bfbe7a1750e7"
 submodules = false
 
 [build]
