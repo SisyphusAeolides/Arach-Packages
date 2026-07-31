@@ -3,8 +3,8 @@ format = 1
 [package]
 name = "corinth"
 version = "0.1.0"
-release = 18
-summary = "Transactional package manager for Arach OS"
+release = 19
+summary = "Transactional package manager and foreign recipe adapters for Arach OS"
 license = "MIT"
 scope = "system"
 publish_authority = "arach-native"
@@ -13,17 +13,24 @@ architectures = ["x86-64"]
 [[source]]
 kind = "git"
 url = "https://github.com/SisyphusAeolides/Corinth.git"
-revision = "d9ccd42cdc5dd85ebe67942071134ca97214e01e"
+revision = "1b3d158617c753921e79909ce8efaf9cd5f22ae0"
 submodules = false
 
 [build]
 system = "cargo"
-commands = ["cargo build --release --locked --features os-bin"]
-outputs = ["target/release/corinth"]
+commands = [
+  "cargo build --release --locked --features os-bin --bin corinth",
+  "cargo build --release --locked --features host-store --bin corinth-import-crux --bin corinth-import-nix",
+]
+outputs = [
+  "target/release/corinth",
+  "target/release/corinth-import-crux",
+  "target/release/corinth-import-nix",
+]
 
 [runtime]
 depends = ["slope"]
-provides = ["package-manager"]
+provides = ["package-manager", "pkgbuild-importer", "crux-importer", "nix-fixed-output-importer"]
 
 [policy]
 network = false
