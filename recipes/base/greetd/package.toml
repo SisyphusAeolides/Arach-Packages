@@ -1,0 +1,30 @@
+format = 1
+
+[package]
+name = "greetd"
+version = "0.10.3"
+release = 1
+summary = "Rust display manager used by the COSMIC greeter"
+license = "GPL-3.0-only"
+scope = "system"
+publish_authority = "arach-native"
+architectures = ["x86-64"]
+
+[[source]]
+kind = "git"
+url = "https://github.com/pop-os/greetd.git"
+revision = "0262c421d9e453fe90a96917a182a7077547e024"
+submodules = false
+
+[build]
+system = "cargo"
+commands = ["cargo build --release --locked --package greetd"]
+outputs = ["target/release/greetd"]
+
+[runtime]
+provides = ["greetd", "display-manager"]
+
+[policy]
+network = false
+sandbox = true
+reproducible = true
