@@ -1,0 +1,112 @@
+name: Arach kernel package
+
+on:
+  push:
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  kernel-native:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v7
+      - run: sudo apt-get update && sudo apt-get install -y build-essential gfortran
+      - uses: dtolnay/rust-toolchain@stable
+      - uses: dtolnay/rust-toolchain@master
+        with:
+          toolchain: nightly-2026-07-20
+          components: rust-src
+      - name: Validate and fetch exact kernel sources
+        run: |
+          python3 - <<'PY' > target/kernel-sources.env
+          import pathlib
+          import tomllib
+
+          path = pathlib.Path("recipes/base/arach-kernel/package.toml")
+          with path.open("rb") as stream:
+              recipe = tomllib.load(stream)
+          sources = recipe.get("source", [])
+          build = recipe.get("build", {})
+          expected_urls = [
+              "https://github.com/SisyphusAeolides/Arach-Kernel.git",
+              "https://github.com/SisyphusAeolides/Push.git",
+          ]
+          if len(sources) != 2 or [source.get("url") for source in sources] != expected_urls:
+              raise SystemExit("kernel recipe must use ordered Arach-Kernel and Push sources")
+          for source in sources:
+              if source.get("kind") != "git" or source.get("submodules") is not False:
+                  raise SystemExit("kernel sources must be non-submodule Git locks")
+              revision = source.get("revision", "")
+              if len(revision) != 40 or any(char not in "0123456789abcdef" for char in revision):
+                  raise SystemExit("kernel source revision is not a lowercase full object ID")
+          if (
+              build.get("system") != "custom"
+              or build.get("commands") != ["cargo build-kernel-package"]
+              or build.get("outputs") != ["target/package-kernel/x86_64-arach/release/arach"]
+              or recipe.get("policy") != {
+                  "network": False,
+                  "sandbox": True,
+                  "reproducible": True,
+              }
+          ):
+              raise SystemExit("kernel recipe differs from the fixed offline adapter contract")
+          print(f"KERNEL_REVISION={sources[0]['revision']}")
+          print(f"PUSH_REVISION={sources[1]['revision']}")
+          PY
+          source target/kernel-sources.env
+          git init --quiet target/kernel-source
+          git -C target/kernel-source fetch --quiet --no-tags --depth=1 \
+            https://github.com/SisyphusAeolides/Arach-Kernel.git "$KERNEL_REVISION"
+          git -C target/kernel-source checkout --quiet --detach FETCH_HEAD
+          test "$(git -C target/kernel-source rev-parse HEAD)" = "$KERNEL_REVISION"
+          mkdir -p target/kernel-source/sources/push
+          git -C target/kernel-source/sources/push init --quiet
+          git -C target/kernel-source/sources/push fetch --quiet --no-tags --depth=1 \
+            https://github.com/SisyphusAeolides/Push.git "$PUSH_REVISION"
+          git -C target/kernel-source/sources/push checkout --quiet --detach FETCH_HEAD
+          test "$(git -C target/kernel-source/sources/push rev-parse HEAD)" = "$PUSH_REVISION"
+      - name: Prefetch locked Cargo inputs
+        working-directory: target/kernel-source
+        run: |
+          cargo +nightly-2026-07-20 fetch --locked
+          cargo +nightly-2026-07-20 fetch --locked --manifest-path sources/push/Cargo.toml
+          cargo +nightly-2026-07-20 fetch --locked --manifest-path probes/c0/Cargo.toml
+      - name: Build fixed offline kernel package
+        working-directory: target/kernel-source
+        env:
+          SOURCE_DATE_EPOCH: "1"
+          CARGO_NET_OFFLINE: "true"
+          GIT_CONFIG_NOSYSTEM: "1"
+        run: |
+          target_spec="$PWD/x86_64-arach.json"
+          push_target="$PWD/target/package-push"
+          probe_target="$PWD/target/package-probe"
+          kernel_target="$PWD/target/package-kernel"
+          CARGO_TARGET_DIR="$push_target" cargo +nightly-2026-07-20 build \
+            --locked --release --manifest-path sources/push/Cargo.toml \
+            --target "$target_spec" -Z json-target-spec \
+            -Z build-std=core,alloc,compiler_builtins \
+            -Z build-std-features=compiler-builtins-mem --features os-bin
+          CARGO_TARGET_DIR="$probe_target" cargo +nightly-2026-07-20 build \
+            --locked --release --manifest-path probes/c0/Cargo.toml \
+            --target "$target_spec" -Z json-target-spec \
+            -Z build-std=core,alloc,compiler_builtins \
+            -Z build-std-features=compiler-builtins-mem
+          push_image="$push_target/x86_64-arach/release/push"
+          probe_image="$probe_target/x86_64-arach/release/arach-c0-probe"
+          test -s "$push_image"
+          test -s "$probe_image"
+          CARGO_TARGET_DIR="$kernel_target" \
+          ARACH_PUSH_IMAGE="$push_image" \
+          ARACH_BOOTSTRAP_IMAGE="$probe_image" \
+          ARACH_BOOTSTRAP_ABI=linux \
+            cargo +nightly-2026-07-20 build --locked --release \
+              -p arach --bin arach --no-default-features \
+              --features kernel-bin,reference-driver,fortran-control \
+              --target "$target_spec" -Z json-target-spec \
+              -Z build-std=core,alloc,compiler_builtins \
+              -Z build-std-features=compiler-builtins-mem
+          test -s target/package-kernel/x86_64-arach/release/arach
+      - run: git diff --check
