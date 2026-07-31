@@ -13,7 +13,7 @@ architectures = ["x86-64"]
 [[source]]
 kind = "git"
 url = "https://github.com/SisyphusAeolides/Push.git"
-revision = "b19d286e15baec0fd418697c5a126bd3b541befc"
+revision = "9eae5dbbee7dae90030b45f84950ca2efdf0d634"
 submodules = false
 
 [build]
