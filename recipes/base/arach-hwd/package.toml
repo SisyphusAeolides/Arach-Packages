@@ -13,7 +13,7 @@ architectures = ["x86-64"]
 [[source]]
 kind = "git"
 url = "https://github.com/SisyphusAeolides/Arach-HWD.git"
-revision = "b05940ce1c3e7e928a647c888862793f82b8ecd9"
+revision = "67c46709dfc534498dc11e1426ebfac3ed492aee"
 submodules = false
 
 [build]
