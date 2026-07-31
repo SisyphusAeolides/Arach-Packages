@@ -28,6 +28,51 @@ jobs:
       - run: cargo run --locked -- --root .
       - run: scripts/verify-cosmic-upstream.sh
 
+  corinth-native:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v7
+      - uses: dtolnay/rust-toolchain@stable
+      - uses: dtolnay/rust-toolchain@master
+        with:
+          toolchain: nightly-2026-07-20
+          components: rust-src
+      - name: Fetch exact Corinth source
+        run: |
+          revision=$(python3 - <<'PY'
+          import pathlib
+          import tomllib
+
+          with pathlib.Path("recipes/base/corinth/package.toml").open("rb") as stream:
+              recipe = tomllib.load(stream)
+          sources = recipe.get("source", [])
+          if len(sources) != 1 or sources[0].get("kind") != "git":
+              raise SystemExit("Corinth recipe must use one Git source")
+          revision = sources[0].get("revision", "")
+          if len(revision) != 40 or any(char not in "0123456789abcdef" for char in revision):
+              raise SystemExit("Corinth recipe revision is not a lowercase full object ID")
+          print(revision)
+          PY
+          )
+          git init --quiet target/corinth-source
+          git -C target/corinth-source fetch --quiet --no-tags --depth=1 \
+            https://github.com/SisyphusAeolides/Corinth.git "$revision"
+          git -C target/corinth-source checkout --quiet --detach FETCH_HEAD
+          test "$(git -C target/corinth-source rev-parse HEAD)" = "$revision"
+      - name: Build declared Corinth outputs
+        working-directory: target/corinth-source
+        run: |
+          cargo +nightly-2026-07-20 build --release --locked --features os-bin --bin corinth \
+            --target targets/x86_64-arach.json \
+            -Z json-target-spec \
+            -Z build-std=core,alloc,compiler_builtins \
+            -Z build-std-features=compiler-builtins-mem
+          cargo +stable build --release --locked --features host-store \
+            --bin corinth-import-crux --bin corinth-import-nix
+          test -s target/x86_64-arach/release/corinth
+          test -s target/release/corinth-import-crux
+          test -s target/release/corinth-import-nix
+
   fortran:
     runs-on: ubuntu-24.04
     steps:
