@@ -13,7 +13,7 @@ architectures = ["x86-64"]
 [[source]]
 kind = "git"
 url = "https://github.com/SisyphusAeolides/Arach-Kernel.git"
-revision = "dc0af47657d3a7221e62db6cc6eb3339b187eeaf"
+revision = "2e6c193a2bfb8a0117386998a37319c047b796ac"
 submodules = false
 
 [[source]]
