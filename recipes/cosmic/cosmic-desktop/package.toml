@@ -23,6 +23,7 @@ commands = ["just build", "just install"]
 outputs = ["@install-tree"]
 
 [runtime]
+depends = ["dbus-broker", "greetd", "libinput-rs", "elan-guardian", "tuned-rs"]
 provides = [
   "cosmic-desktop",
   "cosmic-applets",

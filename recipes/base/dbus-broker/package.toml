@@ -1,0 +1,35 @@
+format = 1
+
+[package]
+name = "dbus-broker"
+version = "37"
+release = 1
+summary = "D-Bus message broker used by the COSMIC session"
+license = "Apache-2.0"
+scope = "system"
+publish_authority = "arach-native"
+architectures = ["x86-64"]
+
+[[source]]
+kind = "git"
+url = "https://github.com/bus1/dbus-broker.git"
+revision = "007f2dc48b670281ae2c6e005ab0ad4e1fce645e"
+submodules = false
+
+[build]
+system = "meson"
+depends = ["meson", "ninja"]
+commands = [
+  "meson setup build --prefix /usr",
+  "meson compile -C build",
+  "meson install -C build --destdir .corinth-install",
+]
+outputs = ["@install-tree"]
+
+[runtime]
+provides = ["dbus-broker", "dbus"]
+
+[policy]
+network = false
+sandbox = true
+reproducible = true
