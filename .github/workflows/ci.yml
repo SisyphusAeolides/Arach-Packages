@@ -73,6 +73,61 @@ jobs:
           test -s target/release/corinth-import-crux
           test -s target/release/corinth-import-nix
 
+  installer-native:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v7
+      - uses: dtolnay/rust-toolchain@stable
+      - name: Fetch exact installer source
+        run: |
+          revision=$(python3 - <<'PY'
+          import pathlib
+          import tomllib
+
+          with pathlib.Path("recipes/base/arach-os-installer/package.toml").open("rb") as stream:
+              recipe = tomllib.load(stream)
+          sources = recipe.get("source", [])
+          if len(sources) != 1 or sources[0].get("kind") != "git":
+              raise SystemExit("installer recipe must use one Git source")
+          revision = sources[0].get("revision", "")
+          if len(revision) != 40 or any(char not in "0123456789abcdef" for char in revision):
+              raise SystemExit("installer recipe revision is not a lowercase full object ID")
+          print(revision)
+          PY
+          )
+          git init --quiet target/installer-source
+          git -C target/installer-source fetch --quiet --no-tags --depth=1 \
+            https://github.com/SisyphusAeolides/Arach-OS.git "$revision"
+          git -C target/installer-source checkout --quiet --detach FETCH_HEAD
+          test "$(git -C target/installer-source rev-parse HEAD)" = "$revision"
+      - name: Build and verify declared installer outputs
+        run: |
+          cargo +stable build --release --locked --bin arach-install \
+            --manifest-path target/installer-source/Cargo.toml
+          python3 - <<'PY'
+          import pathlib
+          import stat
+          import tomllib
+
+          recipe_path = pathlib.Path("recipes/base/arach-os-installer/package.toml")
+          source_root = pathlib.Path("target/installer-source")
+          with recipe_path.open("rb") as stream:
+              recipe = tomllib.load(stream)
+          outputs = recipe.get("build", {}).get("outputs", [])
+          if not outputs:
+              raise SystemExit("installer recipe has no outputs")
+          for relative in outputs:
+              path = source_root / relative
+              try:
+                  metadata = path.lstat()
+              except FileNotFoundError:
+                  raise SystemExit(f"missing installer output: {relative}")
+              if stat.S_ISLNK(metadata.st_mode) or not stat.S_ISREG(metadata.st_mode):
+                  raise SystemExit(f"installer output is not a regular file: {relative}")
+              if metadata.st_size == 0:
+                  raise SystemExit(f"installer output is empty: {relative}")
+          PY
+
   fortran:
     runs-on: ubuntu-24.04
     steps:
