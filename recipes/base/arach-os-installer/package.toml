@@ -3,7 +3,7 @@ format = 1
 [package]
 name = "arach-os-installer"
 version = "0.1.0"
-release = 19
+release = 20
 summary = "Journaled Arach OS installer transaction and Calamares integration"
 license = "MIT"
 scope = "system"
@@ -13,7 +13,7 @@ architectures = ["x86-64"]
 [[source]]
 kind = "git"
 url = "https://github.com/SisyphusAeolides/Arach-OS.git"
-revision = "f74ae17e2b25270ca47fcc0e813426a4afda367e"
+revision = "0710befed79740fe5c87596670e72d284d234a1d"
 submodules = false
 
 [build]
@@ -32,6 +32,7 @@ outputs = [
   "installer/calamares/modules/unpackfs.conf",
   "installer/calamares/modules/arachhardware/module.desc",
   "installer/calamares/modules/arachhardware/main.py",
+  "installer/calamares/modules/arachhardware/repository.py",
   "installer/calamares/modules/arachtransaction/module.desc",
   "installer/calamares/modules/arachtransaction/main.py",
   "installer/calamares/modules/arachtransaction/protocol.py",
