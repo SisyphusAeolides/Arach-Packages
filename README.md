@@ -20,6 +20,12 @@ contract. The COSMIC recipe uses a fixed compatibility adapter and emits a
 measured install tree; these are build contracts, not a claim that every
 component has already been certified on Arach Kernel hardware.
 
+The live-image contract consumes a separately signed `firefox-*` binary
+artifact from Corinth's native package index. This keeps the large upstream
+Firefox runtime out of the source-recipe checkout while still making its
+presence, digest, and `/usr/bin/firefox` path mandatory during live-root
+materialization.
+
 Recipe build systems cover Cargo/Rust, C, COSMIC workspace, Fortran, Idris 2,
 Agda, Make, CMake, Meson, and metadata-only packages. Corinth consumes the same locked
 source fields and executes only the corresponding allow-listed compiler

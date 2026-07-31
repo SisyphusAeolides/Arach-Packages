@@ -13,7 +13,7 @@ architectures = ["x86-64"]
 [[source]]
 kind = "git"
 url = "https://github.com/SisyphusAeolides/Granite.git"
-revision = "cc717de31e6946457e2bb43fe5fa188335c5ef51"
+revision = "2ceca668a0b03b8bfe301c9342e856bfc176e5e8"
 submodules = false
 
 [build]
