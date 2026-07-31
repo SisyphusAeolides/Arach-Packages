@@ -13,7 +13,7 @@ architectures = ["x86-64"]
 [[source]]
 kind = "git"
 url = "https://github.com/SisyphusAeolides/Arach-OS.git"
-revision = "18cee22a326a32fb1dce154b7c89defdb1fa38e4"
+revision = "621d219145a87dadb214e2bbbb726d2dfa26f39c"
 submodules = false
 
 [build]
