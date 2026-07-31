@@ -54,10 +54,9 @@ jobs:
           print(revision)
           PY
           )
-          git init --bare --quiet target/corinth-source.git
-          git -C target/corinth-source.git fetch --quiet --no-tags --depth=1 \
+          git init --quiet target/corinth-source
+          git -C target/corinth-source fetch --quiet --no-tags --depth=1 \
             https://github.com/SisyphusAeolides/Corinth.git "$revision"
-          git clone --quiet target/corinth-source.git target/corinth-source
           git -C target/corinth-source checkout --quiet --detach FETCH_HEAD
           test "$(git -C target/corinth-source rev-parse HEAD)" = "$revision"
       - name: Build declared Corinth outputs
