@@ -3,7 +3,7 @@ format = 1
 [package]
 name = "arach-os-installer"
 version = "0.1.0"
-release = 7
+release = 8
 summary = "Journaled Arach OS installer transaction and canonical branding"
 license = "MIT"
 scope = "system"
@@ -13,7 +13,7 @@ architectures = ["x86-64"]
 [[source]]
 kind = "git"
 url = "https://github.com/SisyphusAeolides/Arach-OS.git"
-revision = "e98f6a24a66e726ac80dd5d3ad27d65daee15648"
+revision = "0b1cd92f13d63c624368d6b6f321b5d7c47d8d0c"
 submodules = false
 
 [build]
