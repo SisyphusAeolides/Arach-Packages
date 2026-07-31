@@ -38,7 +38,7 @@ outputs = [
 ]
 
 [runtime]
-depends = ["corinth", "arach-hwd", "calamares"]
+depends = ["corinth", "arach-hwd"]
 provides = ["arach-install", "arach-branding", "arach-calamares-integration"]
 
 [policy]
