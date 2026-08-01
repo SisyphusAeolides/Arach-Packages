@@ -18,12 +18,12 @@ every integration update; symbolic branches are never package inputs.
 
 Two recipes close the current kernel-to-installer release graph:
 
-- `arach-kernel` release 21 pins Arach Kernel
-  `8f4ea4fa8d558b1e5f0016f57d0be1ec6dd04002` and Push
+- `arach-kernel` release 22 pins Arach Kernel
+  `5aae3585b4f52e3a36e7bb16842bf164f7beaf53` and Push
   `5bd361b86c048b60b6a8422a8e173ea0ec867bff`. The kernel revision contains the
   measured Akashic VFS-backed Linux file bridge, generation-bound
   `set_tid_address` exit clearing, and address-space-bound private futex
-  compare/block/wake path.
+  compare/block/wake path, plus generation-safe x86-64 FS-base TLS.
 - `arach-os-installer` release 24 pins Arach OS
   `b6ef9982d5cb8dd9df0f1203f0759c689a359cd2` and publishes the journaled
   installer binary, canonical branding, Calamares settings, hardware preflight,
