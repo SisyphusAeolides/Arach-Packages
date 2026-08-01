@@ -68,10 +68,46 @@ jobs:
             -Z build-std=core,alloc,compiler_builtins \
             -Z build-std-features=compiler-builtins-mem
           cargo +stable build --release --locked --features host-store \
-            --bin corinth-import-crux --bin corinth-import-nix
+            --bin corinth-import-crux --bin corinth-import-nix --bin corinth-import-foreign
           test -s target/x86_64-arach/release/corinth
           test -s target/release/corinth-import-crux
           test -s target/release/corinth-import-nix
+          test -s target/release/corinth-import-foreign
+
+  hwd-native:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v7
+      - uses: dtolnay/rust-toolchain@stable
+      - run: sudo apt-get update && sudo apt-get install -y gfortran
+      - name: Fetch exact Arach-HWD source
+        run: |
+          revision=$(python3 - <<'PY'
+          import pathlib
+          import tomllib
+
+          with pathlib.Path("recipes/base/arach-hwd/package.toml").open("rb") as stream:
+              recipe = tomllib.load(stream)
+          sources = recipe.get("source", [])
+          if len(sources) != 1 or sources[0].get("kind") != "git":
+              raise SystemExit("Arach-HWD recipe must use one Git source")
+          revision = sources[0].get("revision", "")
+          if len(revision) != 40 or any(char not in "0123456789abcdef" for char in revision):
+              raise SystemExit("Arach-HWD recipe revision is not a lowercase full object ID")
+          print(revision)
+          PY
+          )
+          git init --quiet target/arach-hwd-source
+          git -C target/arach-hwd-source fetch --quiet --no-tags --depth=1 \
+            https://github.com/SisyphusAeolides/Arach-HWD.git "$revision"
+          git -C target/arach-hwd-source checkout --quiet --detach FETCH_HEAD
+          test "$(git -C target/arach-hwd-source rev-parse HEAD)" = "$revision"
+      - name: Build declared Arach-HWD outputs
+        working-directory: target/arach-hwd-source
+        run: |
+          cargo build --release --locked --features fortran-ranking
+          test -s target/release/arach-hwd
+          test -s target/release/arach-hwd-catalog-sync
 
   installer-native:
     runs-on: ubuntu-24.04
