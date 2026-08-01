@@ -3,7 +3,7 @@ format = 1
 [package]
 name = "corinth"
 version = "0.1.0"
-release = 24
+release = 25
 summary = "Transactional package manager and foreign recipe adapters for Arach OS"
 license = "MIT"
 scope = "system"
@@ -13,24 +13,25 @@ architectures = ["x86-64"]
 [[source]]
 kind = "git"
 url = "https://github.com/SisyphusAeolides/Corinth.git"
-revision = "2e0a7cffe973b681a9a3e074bbf923dc2dcb21e8"
+revision = "c2a5bc758c1e26be39e67af1b410eca2d1e8d338"
 submodules = false
 
 [build]
 system = "cargo"
 commands = [
   "cargo +nightly-2026-07-20 build --release --locked --features os-bin --bin corinth --target targets/x86_64-arach.json -Z json-target-spec -Z build-std=core,alloc,compiler_builtins -Z build-std-features=compiler-builtins-mem",
-  "cargo +stable build --release --locked --features host-store --bin corinth-import-crux --bin corinth-import-nix",
+  "cargo +stable build --release --locked --features host-store --bin corinth-import-crux --bin corinth-import-nix --bin corinth-import-foreign",
 ]
 outputs = [
   "target/x86_64-arach/release/corinth",
   "target/release/corinth-import-crux",
   "target/release/corinth-import-nix",
+  "target/release/corinth-import-foreign",
 ]
 
 [runtime]
 depends = ["slope"]
-provides = ["package-manager", "pkgbuild-importer", "crux-importer", "nix-fixed-output-importer"]
+provides = ["package-manager", "pkgbuild-importer", "crux-importer", "nix-fixed-output-importer", "foreign-static-importer"]
 
 [policy]
 network = false
