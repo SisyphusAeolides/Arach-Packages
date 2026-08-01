@@ -2,7 +2,7 @@ format = 1
 
 [package]
 name = "elan-guardian"
-version = "0.2.2"
+version = "0.2.6"
 release = 1
 summary = "Evidence-driven Elantech I2C input recovery"
 license = "GPL-2.0-only"
@@ -13,7 +13,7 @@ architectures = ["x86-64"]
 [[source]]
 kind = "git"
 url = "https://github.com/SisyphusAeolides/elan-guardian.git"
-revision = "1b3403da938ebd8be9b81de4df00680e0c3fc7ed"
+revision = "13552f392ec404c831899989cf0d29450e400469"
 submodules = false
 
 [build]
