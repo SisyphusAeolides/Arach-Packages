@@ -13,16 +13,17 @@ repository and a compatible hardware profile.
 
 ## Current release closure
 
-The Arach OS component lock currently uses package authority
-`ed0873356178e383b0d12a5298ccf0e57b2eb8d9`.
+The Arach OS component lock records the exact package-authority revision beside
+every integration update; symbolic branches are never package inputs.
 
 Two recipes close the current kernel-to-installer release graph:
 
-- `arach-kernel` release 20 pins Arach Kernel
-  `1b60dace685c058ab5dbf10f582b897203c17cc2` and Push
+- `arach-kernel` release 21 pins Arach Kernel
+  `8f4ea4fa8d558b1e5f0016f57d0be1ec6dd04002` and Push
   `5bd361b86c048b60b6a8422a8e173ea0ec867bff`. The kernel revision contains the
-  measured Akashic VFS-backed Linux file bridge and generation-bound
-  `set_tid_address` exit clearing.
+  measured Akashic VFS-backed Linux file bridge, generation-bound
+  `set_tid_address` exit clearing, and address-space-bound private futex
+  compare/block/wake path.
 - `arach-os-installer` release 24 pins Arach OS
   `b6ef9982d5cb8dd9df0f1203f0759c689a359cd2` and publishes the journaled
   installer binary, canonical branding, Calamares settings, hardware preflight,
