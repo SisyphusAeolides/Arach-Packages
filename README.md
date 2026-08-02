@@ -18,8 +18,8 @@ every integration update; symbolic branches are never package inputs.
 
 Three recipes close the current kernel-to-installer release graph:
 
-- `arach-kernel` release 33 pins Arach Kernel
-  `f0c24355c286bb9dc26cf64258ab7fdc7e019842` and Push
+- `arach-kernel` release 34 pins Arach Kernel
+  `314574dd482451d843f5923a5e867a45e89dad0b` and Push
   `5bd361b86c048b60b6a8422a8e173ea0ec867bff`. The kernel revision contains the
   measured Akashic VFS-backed Linux file bridge, generation-bound
   `set_tid_address` exit clearing, address-space-bound private futex
@@ -37,14 +37,18 @@ Three recipes close the current kernel-to-installer release graph:
   eight-object dynamic dependency engine. Its measured four-object diamond
   proves breadth-first closure, duplicate SONAME coalescing, cycle-free
   provider-first relocation, deterministic global symbol scope, nine relative
-  relocations, one static-TLS relocation, seven exact-version eager PLT
-  bindings, final W^X sealing, four dependency-first initializers, and eight
-  reverse-order finalizers. Cross-object execution consumes FS-relative TLS
-  state and makes both initializer and finalizer order observable under
-  QEMU/OVMF. Its C0 and desktop constructors explicitly load Granite's target
-  configuration, compare two isolated UEFI builds, and verify deterministic PE
-  metadata. The C0 image constructor also produces byte-identical invariant
-  FAT boot volumes.
+  relocations, one static `R_X86_64_TPOFF64`, and one general-dynamic
+  `R_X86_64_DTPMOD64`/`R_X86_64_DTPOFF64` pair. The startup loader publishes a
+  bounded dynamic-thread vector at `FS:8`, admits only the exact unversioned
+  compiler-emitted `__tls_get_addr` edge, and validates its module and
+  offset against the owned TLS arena. Seven exact-version eager object PLT
+  bindings plus that resolver, final W^X sealing, four dependency-first
+  initializers, and eight reverse-order finalizers are measured. Cross-object
+  execution consumes both FS-relative and general-dynamic TLS state and makes
+  initializer and finalizer order observable under QEMU/OVMF. Its C0 and
+  desktop constructors explicitly load Granite's target configuration,
+  compare two isolated UEFI builds, and verify deterministic PE metadata. The
+  C0 image constructor also produces byte-identical invariant FAT boot volumes.
 - `granite` release 4 pins Granite
   `1e7110ffee23900cbec480b1cea90abd8c9dc3e8`. Its UEFI target removes the
   varying CodeView signature, fixes the PE timestamp, and requires two
