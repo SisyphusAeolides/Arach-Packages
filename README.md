@@ -16,7 +16,7 @@ repository and a compatible hardware profile.
 The Arach OS component lock records the exact package-authority revision beside
 every integration update; symbolic branches are never package inputs.
 
-Two recipes close the current kernel-to-installer release graph:
+Three recipes close the current kernel-to-installer release graph:
 
 - `arach-kernel` release 32 pins Arach Kernel
   `5a74a3d222d14e61beb32427228c91b2a40411c6` and Push
@@ -42,6 +42,10 @@ Two recipes close the current kernel-to-installer release graph:
   reverse-order finalizers. Cross-object execution consumes FS-relative TLS
   state and makes both initializer and finalizer order observable under
   QEMU/OVMF.
+- `granite` release 3 pins Granite
+  `7698b87fc673cf71c4f9cbd188ce84f75ed22904`. Its UEFI target removes the
+  varying CodeView signature, fixes the PE timestamp, and requires two
+  independent production builds to be byte-identical.
 - `arach-os-installer` release 24 pins Arach OS
   `b6ef9982d5cb8dd9df0f1203f0759c689a359cd2` and publishes the journaled
   installer binary, canonical branding, Calamares settings, hardware preflight,

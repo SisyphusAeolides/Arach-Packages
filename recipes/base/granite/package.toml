@@ -3,7 +3,7 @@ format = 1
 [package]
 name = "granite"
 version = "0.1.0"
-release = 2
+release = 3
 summary = "Measured UEFI bootloader for Arach OS"
 license = "MIT"
 scope = "system"
@@ -13,7 +13,7 @@ architectures = ["x86-64"]
 [[source]]
 kind = "git"
 url = "https://github.com/SisyphusAeolides/Granite.git"
-revision = "c4c36daa40ed79a81751b00dcc4cb6eb4f4d9ac5"
+revision = "7698b87fc673cf71c4f9cbd188ce84f75ed22904"
 submodules = false
 
 [build]
