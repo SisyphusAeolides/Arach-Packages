@@ -68,11 +68,14 @@ jobs:
             -Z build-std=core,alloc,compiler_builtins \
             -Z build-std-features=compiler-builtins-mem
           cargo +stable build --release --locked --features host-store \
-            --bin corinth-import-crux --bin corinth-import-nix --bin corinth-import-foreign
+            --bin corinth-import-crux --bin corinth-import-nix --bin corinth-import-foreign \
+            --bin corinth-discover --bin corinth-ingest
           test -s target/x86_64-arach/release/corinth
           test -s target/release/corinth-import-crux
           test -s target/release/corinth-import-nix
           test -s target/release/corinth-import-foreign
+          test -s target/release/corinth-discover
+          test -s target/release/corinth-ingest
 
   hwd-native:
     runs-on: ubuntu-24.04
