@@ -39,8 +39,9 @@ Two recipes close the current kernel-to-installer release graph:
 The normal package matrix validates recipe policy, Rust, Fortran, Idris 2,
 Agda, exact Corinth outputs, and every declared installer output. A separate
 kernel package gate fetches the exact source revisions, prefetches the locked
-Cargo graph, disables network access, builds the custom Arach target offline,
-and checks that the checkout remains clean.
+Cargo graph, disables network access, builds the custom Arach target and its
+bounded exec, runtime-linker, and shared-object probes offline, and checks that
+the checkout remains clean.
 
 Those gates prove recipe identity, declared output production, and offline
 kernel buildability. They do not by themselves prove persistent storage, a
