@@ -18,8 +18,8 @@ every integration update; symbolic branches are never package inputs.
 
 Three recipes close the current kernel-to-installer release graph:
 
-- `arach-kernel` release 39 pins Arach Kernel
-  `8bceb52add86070b934a5df271a388a175f743b2` and Push
+- `arach-kernel` release 40 pins Arach Kernel
+  `46a8b9ce1b8cbcf6b645456ac46bde7a10156c54` and Push
   `5bd361b86c048b60b6a8422a8e173ea0ec867bff`. The kernel revision contains the
   measured Akashic VFS-backed Linux file bridge, generation-bound
   `set_tid_address` exit clearing, address-space-bound private futex
@@ -38,7 +38,8 @@ Three recipes close the current kernel-to-installer release graph:
   proves breadth-first closure, duplicate SONAME coalescing, cycle-free
   provider-first relocation, deterministic global symbol scope, seven explicit
   relative relocations, two root writes decoded from one immutable canonical
-  `DT_RELR` address/bitmap pair, one static `R_X86_64_TPOFF64`, and one
+  `DT_RELR` address/bitmap pair, one exact-version 24-byte main-executable
+  `R_X86_64_COPY`, one static `R_X86_64_TPOFF64`, and one
   general-dynamic `R_X86_64_DTPMOD64`/`R_X86_64_DTPOFF64` pair. The startup
   loader publishes a bounded dynamic-thread vector at `FS:8` and admits only
   the exact unversioned compiler-emitted `__tls_get_addr` edge. It validates
@@ -50,21 +51,30 @@ Three recipes close the current kernel-to-installer release graph:
   dependencies, record the exact opened paths, and reject relative, duplicate,
   empty, dot-segment, legacy `DT_RPATH`, and over-capacity input. Seven
   exact-version eager PLT bindings, the resolver, one unversioned weak-function
-  binding, and one unresolved weak-function-to-zero slot are measured. Three
+  binding, and one unresolved weak-function-to-zero slot are measured. Four
   eager `R_X86_64_GLOB_DAT` writes bind one exact-version global object,
   select the earlier weak data provider over a later strong definition, and
-  write one unresolved unversioned weak data slot as zero. Four bounded
+  write one unresolved unversioned weak data slot as zero. The observer's
+  fourth binding resolves to the executable copy while the root's
+  `DT_SYMBOLIC` lookup retains its original provider object. Four bounded
   `R_X86_64_64` writes bind a versioned function pointer, a versioned provider
   object at an eight-byte interior addend, the earlier weak data provider, and
   one unresolved weak slot as zero. Normal Linux first-definition scope
   governs function, data, and absolute-symbol lookup. Packed-relative decoding
   bounds expansion, proves monotonically increasing disjoint targets and mapped
-  implicit addends, and writes only after a complete validation pass. Weak TLS,
-  `R_X86_64_COPY`, GNU-unique and IFUNC binding, and unresolved versioned weak
-  symbols remain rejected. Cross-object
+  implicit addends, and writes only after a complete validation pass. The
+  linker reconstructs the bounded immutable main PIE from `AT_PHDR`, accepts
+  only COPY relocations in its dynamic relocation table, proves exact provider
+  versions and extents, pairwise-disjoint writable targets, and non-aliasing
+  readable sources, then prevalidates the complete batch before copying any
+  byte. Executable copies precede ordinary shared objects in process-global
+  data scope without overriding a requesting object's `DT_SYMBOLIC` local
+  priority. Weak TLS, GNU-unique and IFUNC binding, and unresolved versioned
+  weak symbols remain rejected. Cross-object
   execution consumes both FS-relative and general-dynamic TLS state, the
-  selected weak function and data, exact-version global data, the relocated
-  function pointer, and the checked interior object pointer before four
+  selected weak function and data, exact-version global data, the independent
+  executable copy, the relocated function pointer, and the checked interior
+  object pointer before four
   dependency-first initializers and eight reverse-order finalizers complete
   under QEMU/OVMF. Its C0 and desktop constructors explicitly load Granite's
   target configuration, compare two isolated UEFI builds, and verify
@@ -86,8 +96,9 @@ Agda, exact Corinth and Granite outputs, Granite's independent UEFI
 reproducibility gate, and every declared installer output. A separate kernel
 package gate fetches the exact source revisions, prefetches the locked Cargo
 graph, disables network access, builds the custom Arach target and its bounded
-exec, runtime-linker, and shared-object probes offline, and checks that the
-checkout remains clean.
+exec, runtime-linker, and shared-object probes offline, validates the main
+PIE's bounded W^X layout and exact versioned COPY metadata, and checks that
+the checkout remains clean.
 
 Those gates prove recipe identity, declared output production, and offline
 kernel buildability. They do not by themselves prove persistent storage, a
