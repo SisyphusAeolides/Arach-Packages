@@ -18,8 +18,8 @@ every integration update; symbolic branches are never package inputs.
 
 Two recipes close the current kernel-to-installer release graph:
 
-- `arach-kernel` release 28 pins Arach Kernel
-  `51d123b8e0902f06e71e29078eba264463e8ce13` and Push
+- `arach-kernel` release 29 pins Arach Kernel
+  `aeeb6cf74bdc23913d9b449cf383cd2da65ff4dd` and Push
   `5bd361b86c048b60b6a8422a8e173ea0ec867bff`. The kernel revision contains the
   measured Akashic VFS-backed Linux file bridge, generation-bound
   `set_tid_address` exit clearing, address-space-bound private futex
@@ -31,7 +31,9 @@ Two recipes close the current kernel-to-installer release graph:
   anonymous pipes, poll/epoll readiness, last-close watch removal, and
   descriptor-local close-on-exec paths. The same table now carries bounded
   Unix stream socketpairs and named listeners with full-duplex and vector
-  transfer, peer identity, half-close, poll/epoll readiness, and measured
+  transfer, peer identity, half-close, poll/epoll readiness, bounded
+  `SCM_RIGHTS` transfer across process generations, generation-bound memfds,
+  shared physical mappings that outlive descriptor close, and measured
   QEMU/OVMF evidence.
 - `arach-os-installer` release 24 pins Arach OS
   `b6ef9982d5cb8dd9df0f1203f0759c689a359cd2` and publishes the journaled
