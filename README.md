@@ -18,8 +18,8 @@ every integration update; symbolic branches are never package inputs.
 
 Three recipes close the current kernel-to-installer release graph:
 
-- `arach-kernel` release 32 pins Arach Kernel
-  `5a74a3d222d14e61beb32427228c91b2a40411c6` and Push
+- `arach-kernel` release 33 pins Arach Kernel
+  `f0c24355c286bb9dc26cf64258ab7fdc7e019842` and Push
   `5bd361b86c048b60b6a8422a8e173ea0ec867bff`. The kernel revision contains the
   measured Akashic VFS-backed Linux file bridge, generation-bound
   `set_tid_address` exit clearing, address-space-bound private futex
@@ -41,11 +41,15 @@ Three recipes close the current kernel-to-installer release graph:
   bindings, final W^X sealing, four dependency-first initializers, and eight
   reverse-order finalizers. Cross-object execution consumes FS-relative TLS
   state and makes both initializer and finalizer order observable under
-  QEMU/OVMF.
-- `granite` release 3 pins Granite
-  `7698b87fc673cf71c4f9cbd188ce84f75ed22904`. Its UEFI target removes the
+  QEMU/OVMF. Its C0 and desktop constructors explicitly load Granite's target
+  configuration, compare two isolated UEFI builds, and verify deterministic PE
+  metadata. The C0 image constructor also produces byte-identical invariant
+  FAT boot volumes.
+- `granite` release 4 pins Granite
+  `1e7110ffee23900cbec480b1cea90abd8c9dc3e8`. Its UEFI target removes the
   varying CodeView signature, fixes the PE timestamp, and requires two
-  independent production builds to be byte-identical.
+  independent production builds to be byte-identical. A reusable strict PE32+
+  verifier lets downstream release builders enforce the same artifact contract.
 - `arach-os-installer` release 24 pins Arach OS
   `b6ef9982d5cb8dd9df0f1203f0759c689a359cd2` and publishes the journaled
   installer binary, canonical branding, Calamares settings, hardware preflight,
@@ -53,11 +57,12 @@ Three recipes close the current kernel-to-installer release graph:
   helpers declared by the live-image contract.
 
 The normal package matrix validates recipe policy, Rust, Fortran, Idris 2,
-Agda, exact Corinth outputs, and every declared installer output. A separate
-kernel package gate fetches the exact source revisions, prefetches the locked
-Cargo graph, disables network access, builds the custom Arach target and its
-bounded exec, runtime-linker, and shared-object probes offline, and checks that
-the checkout remains clean.
+Agda, exact Corinth and Granite outputs, Granite's independent UEFI
+reproducibility gate, and every declared installer output. A separate kernel
+package gate fetches the exact source revisions, prefetches the locked Cargo
+graph, disables network access, builds the custom Arach target and its bounded
+exec, runtime-linker, and shared-object probes offline, and checks that the
+checkout remains clean.
 
 Those gates prove recipe identity, declared output production, and offline
 kernel buildability. They do not by themselves prove persistent storage, a

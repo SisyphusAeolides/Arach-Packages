@@ -77,6 +77,73 @@ jobs:
           test -s target/release/corinth-discover
           test -s target/release/corinth-ingest
 
+  granite-native:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v7
+      - uses: dtolnay/rust-toolchain@master
+        with:
+          toolchain: nightly-2026-07-20
+          targets: x86_64-unknown-uefi
+      - name: Fetch exact Granite source
+        run: |
+          mkdir -p target
+          python3 - <<'PY' > target/granite-source.env
+          import pathlib
+          import tomllib
+
+          with pathlib.Path("recipes/base/granite/package.toml").open("rb") as stream:
+              recipe = tomllib.load(stream)
+          sources = recipe.get("source", [])
+          build = recipe.get("build", {})
+          if len(sources) != 1 or sources[0] != {
+              "kind": "git",
+              "url": "https://github.com/SisyphusAeolides/Granite.git",
+              "revision": sources[0].get("revision", ""),
+              "submodules": False,
+          }:
+              raise SystemExit("Granite recipe must use one non-submodule Git lock")
+          revision = sources[0]["revision"]
+          if len(revision) != 40 or any(char not in "0123456789abcdef" for char in revision):
+              raise SystemExit("Granite source revision is not a lowercase full object ID")
+          if build != {
+              "system": "cargo",
+              "commands": ["cargo build --release --locked --target x86_64-unknown-uefi --features uefi-bin,require-artifacts"],
+              "outputs": ["target/x86_64-unknown-uefi/release/granite.efi"],
+          } or recipe.get("policy") != {
+              "network": False,
+              "sandbox": True,
+              "reproducible": True,
+          }:
+              raise SystemExit("Granite recipe differs from the fixed UEFI adapter contract")
+          print(f"GRANITE_REVISION={revision}")
+          PY
+          source target/granite-source.env
+          git init --quiet target/granite-source
+          git -C target/granite-source fetch --quiet --no-tags --depth=1 \
+            https://github.com/SisyphusAeolides/Granite.git "$GRANITE_REVISION"
+          git -C target/granite-source checkout --quiet --detach FETCH_HEAD
+          test "$(git -C target/granite-source rev-parse HEAD)" = "$GRANITE_REVISION"
+      - name: Build and verify declared Granite output
+        working-directory: target/granite-source
+        env:
+          RUSTUP_TOOLCHAIN: nightly-2026-07-20
+        run: |
+          mkdir -p target/recipe-artifacts
+          printf '%s' 'bounded-kernel-recipe-input' > target/recipe-artifacts/arach
+          printf '%s' 'bounded-push-recipe-input' > target/recipe-artifacts/push
+          printf '%s' 'bounded-crest-recipe-input' > target/recipe-artifacts/crest
+          ARACH_KERNEL_IMAGE="$PWD/target/recipe-artifacts/arach" \
+          ARACH_PUSH_IMAGE="$PWD/target/recipe-artifacts/push" \
+          ARACH_CREST_IMAGE="$PWD/target/recipe-artifacts/crest" \
+            cargo build --release --locked --target x86_64-unknown-uefi \
+              --features uefi-bin,require-artifacts
+          image=target/x86_64-unknown-uefi/release/granite.efi
+          test -s "$image"
+          scripts/verify-uefi-image.sh "$image"
+          scripts/check-reproducible-uefi.sh
+          git diff --check
+
   hwd-native:
     runs-on: ubuntu-24.04
     steps:
