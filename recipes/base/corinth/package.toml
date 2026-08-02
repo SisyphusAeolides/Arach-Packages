@@ -3,7 +3,7 @@ format = 1
 [package]
 name = "corinth"
 version = "0.1.0"
-release = 32
+release = 33
 summary = "Transactional package manager and foreign recipe adapters for Arach OS"
 license = "MIT"
 scope = "system"
@@ -13,7 +13,7 @@ architectures = ["x86-64"]
 [[source]]
 kind = "git"
 url = "https://github.com/SisyphusAeolides/Corinth.git"
-revision = "d7b58c1e0b14bbc5f3a4e91dca231ecdd09e2f19"
+revision = "6d877ae417ee7aab53632d3b5c04c81cf4e2daad"
 submodules = false
 
 [build]
