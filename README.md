@@ -18,8 +18,8 @@ every integration update; symbolic branches are never package inputs.
 
 Three recipes close the current kernel-to-installer release graph:
 
-- `arach-kernel` release 37 pins Arach Kernel
-  `0f31fe8cae20fb1876592a28eda322d98b430461` and Push
+- `arach-kernel` release 38 pins Arach Kernel
+  `f2cb6ef23d0ec167575bf8807bcd6ba89422e19c` and Push
   `5bd361b86c048b60b6a8422a8e173ea0ec867bff`. The kernel revision contains the
   measured Akashic VFS-backed Linux file bridge, generation-bound
   `set_tid_address` exit clearing, address-space-bound private futex
@@ -51,14 +51,19 @@ Three recipes close the current kernel-to-installer release graph:
   binding, and one unresolved weak-function-to-zero slot are measured. Three
   eager `R_X86_64_GLOB_DAT` writes bind one exact-version global object,
   select the earlier weak data provider over a later strong definition, and
-  write one unresolved unversioned weak data slot as zero. Normal Linux
-  first-definition scope governs both function and data lookup; weak TLS,
-  broader data relocations, and unresolved versioned weak functions or data
-  remain rejected. Cross-object execution consumes both FS-relative and
-  general-dynamic TLS state, the selected weak function and data, exact-version
-  global data, four dependency-first initializers, and eight reverse-order
-  finalizers under QEMU/OVMF. Its C0 and desktop constructors explicitly load
-  Granite's target configuration, compare two isolated UEFI builds, and verify
+  write one unresolved unversioned weak data slot as zero. Four bounded
+  `R_X86_64_64` writes bind a versioned function pointer, a versioned provider
+  object at an eight-byte interior addend, the earlier weak data provider, and
+  one unresolved weak slot as zero. Normal Linux first-definition scope
+  governs function, data, and absolute-symbol lookup; weak TLS,
+  `R_X86_64_COPY`, GNU-unique and IFUNC binding, packed relative relocation,
+  and unresolved versioned weak symbols remain rejected. Cross-object
+  execution consumes both FS-relative and general-dynamic TLS state, the
+  selected weak function and data, exact-version global data, the relocated
+  function pointer, and the checked interior object pointer before four
+  dependency-first initializers and eight reverse-order finalizers complete
+  under QEMU/OVMF. Its C0 and desktop constructors explicitly load Granite's
+  target configuration, compare two isolated UEFI builds, and verify
   deterministic PE metadata. The C0 image constructor also produces
   byte-identical invariant FAT boot volumes.
 - `granite` release 4 pins Granite
