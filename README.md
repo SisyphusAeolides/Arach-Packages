@@ -18,8 +18,8 @@ every integration update; symbolic branches are never package inputs.
 
 Three recipes close the current kernel-to-installer release graph:
 
-- `arach-kernel` release 38 pins Arach Kernel
-  `f2cb6ef23d0ec167575bf8807bcd6ba89422e19c` and Push
+- `arach-kernel` release 39 pins Arach Kernel
+  `8bceb52add86070b934a5df271a388a175f743b2` and Push
   `5bd361b86c048b60b6a8422a8e173ea0ec867bff`. The kernel revision contains the
   measured Akashic VFS-backed Linux file bridge, generation-bound
   `set_tid_address` exit clearing, address-space-bound private futex
@@ -36,12 +36,14 @@ Three recipes close the current kernel-to-installer release graph:
   shared physical mappings that outlive descriptor close, and a bounded
   eight-object dynamic dependency engine. Its measured four-object diamond
   proves breadth-first closure, duplicate SONAME coalescing, cycle-free
-  provider-first relocation, deterministic global symbol scope, nine relative
-  relocations, one static `R_X86_64_TPOFF64`, and one general-dynamic
-  `R_X86_64_DTPMOD64`/`R_X86_64_DTPOFF64` pair. The startup loader publishes a
-  bounded dynamic-thread vector at `FS:8`, admits only the exact unversioned
-  compiler-emitted `__tls_get_addr` edge, and validates its module and
-  offset against the owned TLS arena. The measured Linux directory slice
+  provider-first relocation, deterministic global symbol scope, seven explicit
+  relative relocations, two root writes decoded from one immutable canonical
+  `DT_RELR` address/bitmap pair, one static `R_X86_64_TPOFF64`, and one
+  general-dynamic `R_X86_64_DTPMOD64`/`R_X86_64_DTPOFF64` pair. The startup
+  loader publishes a bounded dynamic-thread vector at `FS:8` and admits only
+  the exact unversioned compiler-emitted `__tls_get_addr` edge. It validates
+  the module and offset against the owned TLS arena. The measured Linux
+  directory slice
   creates `/runpath` through `mkdirat`, proves duplicate `mkdir` rejection, and
   places all three providers below that directory. Canonical bounded
   `DT_RUNPATH` entries on the root and middle objects resolve only their direct
@@ -55,9 +57,11 @@ Three recipes close the current kernel-to-installer release graph:
   `R_X86_64_64` writes bind a versioned function pointer, a versioned provider
   object at an eight-byte interior addend, the earlier weak data provider, and
   one unresolved weak slot as zero. Normal Linux first-definition scope
-  governs function, data, and absolute-symbol lookup; weak TLS,
-  `R_X86_64_COPY`, GNU-unique and IFUNC binding, packed relative relocation,
-  and unresolved versioned weak symbols remain rejected. Cross-object
+  governs function, data, and absolute-symbol lookup. Packed-relative decoding
+  bounds expansion, proves monotonically increasing disjoint targets and mapped
+  implicit addends, and writes only after a complete validation pass. Weak TLS,
+  `R_X86_64_COPY`, GNU-unique and IFUNC binding, and unresolved versioned weak
+  symbols remain rejected. Cross-object
   execution consumes both FS-relative and general-dynamic TLS state, the
   selected weak function and data, exact-version global data, the relocated
   function pointer, and the checked interior object pointer before four
