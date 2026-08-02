@@ -99,14 +99,18 @@ jobs:
           kernel_target="$PWD/target/package-kernel"
           shared_object_image="$PWD/target/package-shared-object/libarach-probe.so"
           shared_provider_image="$PWD/target/package-shared-object/libarach-provider.so"
+          shared_observer_image="$PWD/target/package-shared-object/libarach-observer.so"
+          shared_core_image="$PWD/target/package-shared-object/libarach-core.so"
           runtime_linker_image="$PWD/target/package-runtime-linker/arach-ld.so"
+          scripts/test-runtime-linker-graph.sh
           CARGO_TARGET_DIR="$push_target" cargo +nightly-2026-07-20 build \
             --locked --release --manifest-path sources/push/Cargo.toml \
             --target "$target_spec" -Z json-target-spec \
             -Z build-std=core,alloc,compiler_builtins \
             -Z build-std-features=compiler-builtins-mem --features os-bin
           scripts/build-shared-object-probe.sh \
-            "$shared_object_image" "$shared_provider_image"
+            "$shared_object_image" "$shared_provider_image" \
+            "$shared_observer_image" "$shared_core_image"
           scripts/build-runtime-linker-probe.sh "$runtime_linker_image"
           CARGO_TARGET_DIR="$exec_target" cargo +nightly-2026-07-20 build \
             --locked --release --manifest-path probes/exec-target/Cargo.toml \
@@ -120,6 +124,8 @@ jobs:
           ARACH_RUNTIME_LINKER_IMAGE="$runtime_linker_image" \
           ARACH_SHARED_OBJECT_IMAGE="$shared_object_image" \
           ARACH_SHARED_PROVIDER_IMAGE="$shared_provider_image" \
+          ARACH_SHARED_OBSERVER_IMAGE="$shared_observer_image" \
+          ARACH_SHARED_CORE_IMAGE="$shared_core_image" \
           CARGO_TARGET_DIR="$probe_target" \
             cargo +nightly-2026-07-20 build \
             --locked --release --manifest-path probes/c0/Cargo.toml \
