@@ -3,7 +3,7 @@ format = 1
 [package]
 name = "arach-kernel"
 version = "0.1.0"
-release = 34
+release = 35
 summary = "Arach monolithic kernel"
 license = "MIT"
 scope = "system"
@@ -13,7 +13,7 @@ architectures = ["x86-64"]
 [[source]]
 kind = "git"
 url = "https://github.com/SisyphusAeolides/Arach-Kernel.git"
-revision = "314574dd482451d843f5923a5e867a45e89dad0b"
+revision = "c619b64b39d758bde934eca2bf332a8542836b34"
 submodules = false
 
 [[source]]
