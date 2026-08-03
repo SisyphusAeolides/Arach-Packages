@@ -28,48 +28,22 @@ jobs:
           path = Path("scripts/inventory_gentoo_ebuild_shard.py")
           text = path.read_text(encoding="utf-8")
 
-          old = '''    if FUNCTION_RE.search(text):
-        dynamic.append("phase-functions")
-    return assignments, sorted(set(dynamic))
-'''
-          if text.count(old) != 1:
-              raise SystemExit("phase-function marker differs")
-          text = text.replace(old, '''    return assignments, sorted(set(dynamic))
-''')
+          phase = '    if FUNCTION_RE.search(text):\n        dynamic.append("phase-functions")\n'
+          if text.count(phase) != 1:
+              raise SystemExit("phase-function block differs")
+          text = text.replace(phase, "")
 
-          old = '''        if len(fields) < 6 or len(fields) % 2 != 0:
-            raise GentooError(f"invalid DIST entry at line {line_number}")
-'''
-          if text.count(old) != 1:
-              raise SystemExit("Manifest pair marker differs")
-          text = text.replace(old, '''        if len(fields) < 5 or (len(fields) - 3) % 2 != 0:
-            raise GentooError(f"invalid DIST entry at line {line_number}")
-''')
+          manifest = '        if len(fields) < 6 or len(fields) % 2 != 0:\n'
+          if text.count(manifest) != 1:
+              raise SystemExit("Manifest pair condition differs")
+          text = text.replace(
+              manifest,
+              '        if len(fields) < 5 or (len(fields) - 3) % 2 != 0:\n',
+          )
 
-          old = '''def static_sources(value: str) -> list[dict[str, Any]]:
-    words = split_shell_words(value)
-    sources: list[dict[str, Any]] = []
-    redirect = False
-    for word in words:
-        if redirect:
-            redirect = False
-            continue
-        if word == "->":
-            if not sources:
-                raise GentooError("SRC_URI redirect has no source")
-            redirect = True
-            continue
-        if not word.startswith("https://") or any(character.isspace() for character in word):
-            raise GentooError("SRC_URI contains a non-HTTPS or dynamic source")
-        filename = word.rsplit("/", 1)[-1]
-        if not filename:
-            raise GentooError("SRC_URI source has no filename")
-        sources.append({"url": word, "filename": filename})
-    if redirect:
-        raise GentooError("SRC_URI redirect has no target")
-    return sources
-'''
-          new = '''def static_sources(value: str) -> list[dict[str, Any]]:
+          start = text.index("def static_sources(value: str) -> list[dict[str, Any]]:\n")
+          end = text.index("\ndef normalize_dependencies(", start)
+          replacement = '''def static_sources(value: str) -> list[dict[str, Any]]:
     words = split_shell_words(value)
     sources: list[dict[str, Any]] = []
     redirect_target = False
@@ -95,9 +69,8 @@ jobs:
         raise GentooError("SRC_URI redirect has no target")
     return sources
 '''
-          if text.count(old) != 1:
-              raise SystemExit("SRC_URI redirect marker differs")
-          path.write_text(text.replace(old, new), encoding="utf-8")
+          text = text[:start] + replacement + text[end:]
+          path.write_text(text, encoding="utf-8")
           PY
       - name: Validate Gentoo repair
         run: |
