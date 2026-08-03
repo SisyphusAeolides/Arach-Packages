@@ -3,7 +3,7 @@ format = 1
 [package]
 name = "corinth"
 version = "0.1.0"
-release = 35
+release = 36
 summary = "Transactional package manager and foreign recipe adapters for Arach OS"
 license = "MIT"
 scope = "system"
@@ -13,7 +13,7 @@ architectures = ["x86-64"]
 [[source]]
 kind = "git"
 url = "https://github.com/SisyphusAeolides/Corinth.git"
-revision = "585623e998ef8a07db69199fbbb61d07daa6dc07"
+revision = "015c734ecfed3c78760545a5e598f672807349b1"
 submodules = false
 
 [build]
@@ -33,7 +33,7 @@ outputs = [
 
 [runtime]
 depends = ["slope"]
-provides = ["package-manager", "pkgbuild-importer", "crux-importer", "nix-fixed-output-importer", "foreign-static-importer", "universal-package-discovery", "signed-package-ingress"]
+provides = ["package-manager", "pkgbuild-importer", "crux-importer", "nix-fixed-output-importer", "foreign-static-importer", "universal-package-discovery", "signed-package-ingress", "deterministic-compatibility-workers", "canonical-upstream-indexes", "typed-package-semantics", "application-route-selection"]
 
 [policy]
 network = false
