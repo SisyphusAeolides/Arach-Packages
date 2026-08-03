@@ -1,0 +1,44 @@
+{
+  "format": 1,
+  "distribution": "Arach OS",
+  "target_count": 39191,
+  "shard_count": 256,
+  "architecture": "x86-64",
+  "corpus_schema": "corinth-recipe-corpus-v1",
+  "signature_scope": "package-index",
+  "upstreams": [
+    "arch",
+    "aur",
+    "fedora",
+    "debian",
+    "alpine",
+    "gentoo",
+    "crux",
+    "nix",
+    "cargo",
+    "github"
+  ],
+  "paths": {
+    "manifest": "generated/recipe-corpus.json",
+    "manifest_signature": "generated/recipe-corpus.json.sig",
+    "corpus_root": "generated/corpus",
+    "recipe_root": "generated/corpus/recipes",
+    "receipt_root": "generated/corpus/receipts",
+    "worker_root": "generated/corpus/workers",
+    "shard_report_root": "generated/corpus/shard-reports",
+    "build_receipt": "generated/recipe-corpus-receipt.json"
+  },
+  "policy": {
+    "require_signed_manifest": true,
+    "require_signed_entry_inputs": true,
+    "require_immutable_sources": true,
+    "static_import_first": true,
+    "deterministic_worker_fallback": true,
+    "native_shell_execution": false,
+    "minimum_worker_reproducibility_runs": 2,
+    "require_all_recipes_for_completion": true,
+    "require_zero_blocked_for_completion": true,
+    "require_merkle_root_for_completion": true
+  },
+  "status": "building"
+}
