@@ -1,0 +1,107 @@
+name: Large upstream inventory
+
+on:
+  push:
+    paths:
+      - production/discovery-snapshots.json
+      - scripts/inventory_git_tree.py
+      - tests/test_inventory_git_tree.py
+      - .github/workflows/large-upstream-inventory.yml
+  pull_request:
+    paths:
+      - production/discovery-snapshots.json
+      - scripts/inventory_git_tree.py
+      - tests/test_inventory_git_tree.py
+      - .github/workflows/large-upstream-inventory.yml
+  workflow_dispatch:
+  schedule:
+    - cron: "41 3 * * 3"
+
+permissions:
+  contents: read
+
+jobs:
+  inventory:
+    if: github.event_name != 'pull_request'
+    runs-on: ubuntu-24.04
+    timeout-minutes: 90
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - upstream: gentoo
+            repository: https://github.com/gentoo/gentoo.git
+            revision: d82830702cb09bf71a312b4a12d292ad967f7133
+          - upstream: nix
+            repository: https://github.com/NixOS/nixpkgs.git
+            revision: fe4c90a624b0d2df0956990da8d9f557ca249693
+          - upstream: cargo
+            repository: https://github.com/rust-lang/crates.io-index.git
+            revision: 881ad4d069045382e738f8a676bd77b1d4997db1
+    steps:
+      - uses: actions/checkout@v7
+      - name: Fetch exact tree without blob checkout
+        env:
+          UPSTREAM_REPOSITORY: ${{ matrix.repository }}
+          UPSTREAM_REVISION: ${{ matrix.revision }}
+        run: |
+          git init --bare --quiet target/upstream
+          git -C target/upstream \
+            -c protocol.version=2 \
+            fetch --quiet --no-tags --depth=1 --filter=blob:none \
+            "$UPSTREAM_REPOSITORY" "$UPSTREAM_REVISION"
+          test "$(git -C target/upstream rev-parse FETCH_HEAD)" = "$UPSTREAM_REVISION"
+      - name: Inventory complete Git tree
+        run: |
+          python3 scripts/inventory_git_tree.py \
+            --repository target/upstream \
+            --revision "${{ matrix.revision }}" \
+            --upstream "${{ matrix.upstream }}" \
+            --output "target/${{ matrix.upstream }}-tree.json"
+          python3 scripts/inventory_git_tree.py \
+            --revision "${{ matrix.revision }}" \
+            --upstream "${{ matrix.upstream }}" \
+            --output "target/${{ matrix.upstream }}-tree.json" \
+            --verify-only
+      - name: Write inventory summary
+        run: |
+          python3 - <<'PY'
+          import json
+          import pathlib
+
+          upstream = "${{ matrix.upstream }}"
+          source = pathlib.Path(f"target/{upstream}-tree.json")
+          document = json.loads(source.read_text())
+          summary = {
+              "format": 1,
+              "distribution": "ArachOS",
+              "upstream": upstream,
+              "revision": document["revision"],
+              "production_authority": False,
+              "summary": document["summary"],
+          }
+          pathlib.Path(f"target/{upstream}-summary.json").write_text(
+              json.dumps(summary, indent=2, sort_keys=True) + "\n"
+          )
+          PY
+      - name: Compress deterministic inventory
+        run: |
+          gzip -n -9 -c "target/${{ matrix.upstream }}-tree.json" \
+            > "target/${{ matrix.upstream }}-tree.json.gz"
+      - name: Retain immutable inventory
+        uses: actions/upload-artifact@v4
+        with:
+          name: upstream-${{ matrix.upstream }}-${{ matrix.revision }}
+          path: |
+            target/${{ matrix.upstream }}-summary.json
+            target/${{ matrix.upstream }}-tree.json.gz
+          if-no-files-found: error
+          retention-days: 30
+
+  tests:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v7
+      - run: python3 -m unittest tests/test_inventory_git_tree.py
+      - run: python3 -m py_compile scripts/inventory_git_tree.py tests/test_inventory_git_tree.py
+      - run: git diff --check
