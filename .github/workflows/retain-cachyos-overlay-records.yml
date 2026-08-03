@@ -1,0 +1,77 @@
+name: Retain CachyOS overlay records
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - .github/workflows/retain-cachyos-overlay-records.yml
+
+permissions:
+  contents: write
+
+concurrency:
+  group: retain-cachyos-overlay-records
+  cancel-in-progress: false
+
+jobs:
+  retain:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 45
+    steps:
+      - uses: actions/checkout@v7
+        with:
+          fetch-depth: 0
+      - name: Build immutable overlay record set
+        run: |
+          python3 - <<'PY' > target-policy.env
+          import pathlib
+          import tomllib
+
+          with pathlib.Path('ingress/cachyos/policy.toml').open('rb') as stream:
+              policy = tomllib.load(stream)
+          print(f"CACHYOS_REPOSITORY={policy['upstream_repository']}")
+          print(f"CACHYOS_REVISION={policy['mirror_revision']}")
+          PY
+          source target-policy.env
+          git init --quiet target/cachyos-pkgbuilds
+          git -C target/cachyos-pkgbuilds fetch --quiet --no-tags --depth=1 \
+            "$CACHYOS_REPOSITORY" "$CACHYOS_REVISION"
+          git -C target/cachyos-pkgbuilds checkout --quiet --detach FETCH_HEAD
+          test "$(git -C target/cachyos-pkgbuilds rev-parse HEAD)" = "$CACHYOS_REVISION"
+          python3 scripts/inventory_cachyos.py \
+            --mirror target/cachyos-pkgbuilds \
+            --policy ingress/cachyos/policy.toml \
+            --output target/cachyos-ingress.json
+          python3 - <<'PY'
+          import json
+          import pathlib
+          import tomllib
+
+          with pathlib.Path('ingress/cachyos/policy.toml').open('rb') as stream:
+              policy = tomllib.load(stream)
+          inventory = json.loads(pathlib.Path('target/cachyos-ingress.json').read_text())
+          document = {
+              'format': 1,
+              'repository': policy['upstream_repository'],
+              'revision': policy['mirror_revision'],
+              'pkgbuild_count': inventory['pkgbuild_count'],
+              'resolved_package_outputs': inventory['resolved_package_outputs'],
+              'unresolved_pkgbuilds': inventory['unresolved_pkgbuilds'],
+              'duplicate_packages': inventory['duplicate_packages'],
+              'records': inventory['records'],
+          }
+          destination = pathlib.Path('ingress/cachyos/snapshots') / f"{policy['mirror_revision']}.records.json"
+          destination.parent.mkdir(parents=True, exist_ok=True)
+          destination.write_text(json.dumps(document, indent=2, sort_keys=True) + '\n')
+          pathlib.Path('.github/workflows/retain-cachyos-overlay-records.yml').unlink()
+          PY
+          git diff --check
+      - name: Commit overlay records
+        run: |
+          git config user.name 'SisyphusAeolides'
+          git config user.email '37166405+SisyphusAeolides@users.noreply.github.com'
+          git add -A
+          git commit -m 'data: retain pinned CachyOS overlay records'
+          git pull --rebase origin main
+          git push origin HEAD:main
