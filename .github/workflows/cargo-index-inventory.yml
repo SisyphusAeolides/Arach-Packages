@@ -1,0 +1,141 @@
+name: Cargo index inventory
+
+on:
+  push:
+    paths:
+      - production/discovery-snapshots.json
+      - scripts/inventory_git_tree.py
+      - scripts/inventory_cargo_index_shard.py
+      - tests/test_inventory_cargo_index_shard.py
+      - .github/workflows/cargo-index-inventory.yml
+  pull_request:
+    paths:
+      - scripts/inventory_git_tree.py
+      - scripts/inventory_cargo_index_shard.py
+      - tests/test_inventory_cargo_index_shard.py
+      - .github/workflows/cargo-index-inventory.yml
+  workflow_dispatch:
+  schedule:
+    - cron: "23 2 * * 5"
+
+permissions:
+  contents: read
+
+jobs:
+  test:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v7
+      - run: python3 -m unittest tests/test_inventory_cargo_index_shard.py
+      - run: >-
+          python3 -m py_compile
+          scripts/inventory_git_tree.py
+          scripts/inventory_cargo_index_shard.py
+          tests/test_inventory_cargo_index_shard.py
+      - run: git diff --check
+
+  shard:
+    if: github.event_name != 'pull_request'
+    runs-on: ubuntu-24.04
+    timeout-minutes: 120
+    strategy:
+      fail-fast: false
+      max-parallel: 8
+      matrix:
+        shard:
+          - 0
+          - 1
+          - 2
+          - 3
+          - 4
+          - 5
+          - 6
+          - 7
+          - 8
+          - 9
+          - 10
+          - 11
+          - 12
+          - 13
+          - 14
+          - 15
+          - 16
+          - 17
+          - 18
+          - 19
+          - 20
+          - 21
+          - 22
+          - 23
+          - 24
+          - 25
+          - 26
+          - 27
+          - 28
+          - 29
+          - 30
+          - 31
+    env:
+      CARGO_INDEX_REPOSITORY: https://github.com/rust-lang/crates.io-index.git
+      CARGO_INDEX_REVISION: 881ad4d069045382e738f8a676bd77b1d4997db1
+      CARGO_SHARD_COUNT: 32
+    steps:
+      - uses: actions/checkout@v7
+      - name: Fetch exact registry tree
+        run: |
+          git init --bare --quiet target/crates-index
+          git -C target/crates-index \
+            -c protocol.version=2 \
+            fetch --quiet --no-tags --depth=1 --filter=blob:none \
+            "$CARGO_INDEX_REPOSITORY" "$CARGO_INDEX_REVISION"
+          test "$(git -C target/crates-index rev-parse FETCH_HEAD)" = "$CARGO_INDEX_REVISION"
+      - name: Resolve latest active releases
+        run: |
+          python3 scripts/inventory_cargo_index_shard.py \
+            --repository target/crates-index \
+            --revision "$CARGO_INDEX_REVISION" \
+            --shard "${{ matrix.shard }}" \
+            --shard-count "$CARGO_SHARD_COUNT" \
+            --output "target/cargo-shard-${{ matrix.shard }}.json"
+          python3 scripts/inventory_cargo_index_shard.py \
+            --revision "$CARGO_INDEX_REVISION" \
+            --shard "${{ matrix.shard }}" \
+            --shard-count "$CARGO_SHARD_COUNT" \
+            --output "target/cargo-shard-${{ matrix.shard }}.json" \
+            --verify-only
+      - name: Retain compact summary
+        run: |
+          python3 - <<'PY'
+          import json
+          import pathlib
+
+          shard = int("${{ matrix.shard }}")
+          source = pathlib.Path(f"target/cargo-shard-{shard}.json")
+          document = json.loads(source.read_text())
+          summary = {
+              "format": 1,
+              "distribution": "ArachOS",
+              "production_authority": False,
+              "revision": document["revision"],
+              "shard": shard,
+              "shard_count": document["shard_count"],
+              "record_count": document["record_count"],
+              "candidate_count": document["candidate_count"],
+              "quarantined_count": document["quarantined_count"],
+          }
+          pathlib.Path(f"target/cargo-shard-{shard}-summary.json").write_text(
+              json.dumps(summary, indent=2, sort_keys=True) + "\n"
+          )
+          PY
+      - name: Compress deterministic shard
+        run: |
+          gzip -n -9 -c "target/cargo-shard-${{ matrix.shard }}.json" \
+            > "target/cargo-shard-${{ matrix.shard }}.json.gz"
+      - uses: actions/upload-artifact@v4
+        with:
+          name: cargo-index-${{ env.CARGO_INDEX_REVISION }}-${{ matrix.shard }}
+          path: |
+            target/cargo-shard-${{ matrix.shard }}-summary.json
+            target/cargo-shard-${{ matrix.shard }}.json.gz
+          if-no-files-found: error
+          retention-days: 30
