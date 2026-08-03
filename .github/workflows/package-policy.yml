@@ -1,0 +1,75 @@
+name: Package policy validation
+
+on:
+  push:
+    paths:
+      - production/**
+      - ingress/**
+      - scripts/**
+      - tests/**
+      - native/**
+      - formal/**
+      - .github/workflows/package-policy.yml
+  pull_request:
+    paths:
+      - production/**
+      - ingress/**
+      - scripts/**
+      - tests/**
+      - native/**
+      - formal/**
+      - .github/workflows/package-policy.yml
+
+permissions:
+  contents: read
+
+jobs:
+  policy:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v7
+      - name: Validate declared coverage
+        run: |
+          python3 scripts/validate_upstream_coverage.py \
+            --coverage production/upstream-coverage.json
+          python3 scripts/verify_cachyos_ingress.py \
+            --policy ingress/cachyos/policy.toml
+          python3 scripts/validate_cachyos_variants.py \
+            --variants ingress/cachyos/variants.toml \
+            --records ingress/cachyos/snapshots/8753877a6ed4af2bf510b8b3f5bda88b793f28ec.records.json \
+            --policy ingress/cachyos/policy.toml
+      - name: Run Python policy tests
+        run: |
+          python3 -m unittest discover -s tests -p 'test_*.py'
+          python3 -m unittest \
+            scripts/test_cachyos_ingress.py \
+            scripts/test_cachyos_candidates.py \
+            scripts/test_cachyos_variants.py \
+            scripts/test_prepare_cachyos_overlay.py
+      - name: Check Python syntax
+        run: |
+          python3 -m py_compile \
+            scripts/audit_package_coverage.py \
+            scripts/build_recipe_corpus_shard.py \
+            scripts/emit_cachyos_candidates.py \
+            scripts/generate_source_sbom.py \
+            scripts/inventory_cachyos.py \
+            scripts/merge_recipe_inventories.py \
+            scripts/prepare_cachyos_overlay.py \
+            scripts/validate_cachyos_variants.py \
+            scripts/validate_recipe_corpus.py \
+            scripts/validate_upstream_coverage.py \
+            scripts/verify_cachyos_candidates.py \
+            scripts/verify_cachyos_ingress.py
+      - name: Check C metadata preflight
+        run: scripts/check-c.sh
+      - name: Check repository whitespace
+        run: git diff --check
+
+  fortran:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v7
+      - run: sudo apt-get update && sudo apt-get install -y gfortran
+      - run: scripts/check-fortran.sh
+      - run: git diff --check
