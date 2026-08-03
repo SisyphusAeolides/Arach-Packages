@@ -1,0 +1,27 @@
+format = 1
+
+[package]
+name = "zfs-meta"
+version = "1.0"
+release = 1
+summary = "Meta package for ZFS"
+license = "LicenseRef-Unspecified"
+scope = "system"
+publish_authority = "arach-native"
+architectures = ["x86-64"]
+
+[build]
+system = "meta"
+depends = []
+commands = []
+outputs = []
+
+[runtime]
+depends = ["zfs-module", "zfs-utils"]
+provides = ["zfs"]
+conflicts = []
+
+[policy]
+network = false
+sandbox = true
+reproducible = true
