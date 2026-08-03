@@ -3,7 +3,7 @@ format = 1
 [package]
 name = "arach-hwd"
 version = "0.1.0"
-release = 24
+release = 25
 summary = "Signed hardware detection, qualification, and provisioning for Arach OS"
 license = "MIT"
 scope = "system"
@@ -18,11 +18,12 @@ submodules = false
 
 [build]
 system = "cargo"
-commands = ["cargo build --release --locked --features fortran-ranking"]
+commands = ["cargo build --release --locked --features fortran-ranking --bins"]
 outputs = [
   "target/release/arach-hwd",
   "target/release/arach-hwd-catalog-sync",
   "target/release/arach-hwd-qualify",
+  "target/release/arach-hwd-record",
 ]
 
 [runtime]
@@ -32,6 +33,7 @@ provides = [
   "hardware-provisioning",
   "signed-hardware-catalog-sync",
   "hardware-qualification",
+  "hardware-evidence-recording",
 ]
 
 [policy]
