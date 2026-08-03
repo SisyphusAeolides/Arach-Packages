@@ -1,0 +1,115 @@
+{
+  "format": 1,
+  "distribution": "ArachOS",
+  "target_package_identities": 39191,
+  "status": "building",
+  "policy": {
+    "signed_snapshot_required": true,
+    "immutable_source_required": true,
+    "static_import_first": true,
+    "deterministic_worker_fallback": true,
+    "native_shell_execution": false,
+    "quarantine_is_non_publishable": true
+  },
+  "upstreams": [
+    {
+      "name": "arch",
+      "metadata_format": "pkgbuild",
+      "static_importer": "arch-pkgbuild",
+      "worker_fallback": true,
+      "inventory_state": "planned",
+      "known_package_identities": null,
+      "snapshot_revision": null
+    },
+    {
+      "name": "aur",
+      "metadata_format": "pkgbuild",
+      "static_importer": "arch-pkgbuild",
+      "worker_fallback": true,
+      "inventory_state": "planned",
+      "known_package_identities": null,
+      "snapshot_revision": null
+    },
+    {
+      "name": "cachyos",
+      "metadata_format": "pkgbuild-monorepo",
+      "static_importer": "arch-pkgbuild",
+      "worker_fallback": true,
+      "inventory_state": "pinned",
+      "known_package_identities": 326,
+      "snapshot_revision": "8753877a6ed4af2bf510b8b3f5bda88b793f28ec"
+    },
+    {
+      "name": "fedora",
+      "metadata_format": "spec-with-source-lock",
+      "static_importer": "fedora-spec",
+      "worker_fallback": true,
+      "inventory_state": "planned",
+      "known_package_identities": null,
+      "snapshot_revision": null
+    },
+    {
+      "name": "debian",
+      "metadata_format": "debian-control-with-source-lock",
+      "static_importer": "debian-control",
+      "worker_fallback": true,
+      "inventory_state": "planned",
+      "known_package_identities": null,
+      "snapshot_revision": null
+    },
+    {
+      "name": "alpine",
+      "metadata_format": "apkbuild-with-source-lock",
+      "static_importer": "alpine-apkbuild",
+      "worker_fallback": true,
+      "inventory_state": "planned",
+      "known_package_identities": null,
+      "snapshot_revision": null
+    },
+    {
+      "name": "gentoo",
+      "metadata_format": "ebuild-with-source-lock",
+      "static_importer": "gentoo-ebuild",
+      "worker_fallback": true,
+      "inventory_state": "planned",
+      "known_package_identities": null,
+      "snapshot_revision": null
+    },
+    {
+      "name": "crux",
+      "metadata_format": "pkgfile-with-source-lock",
+      "static_importer": "crux-pkgfile",
+      "worker_fallback": true,
+      "inventory_state": "planned",
+      "known_package_identities": null,
+      "snapshot_revision": null
+    },
+    {
+      "name": "nix",
+      "metadata_format": "fixed-output-export",
+      "static_importer": "nix-fixed-output",
+      "worker_fallback": true,
+      "inventory_state": "planned",
+      "known_package_identities": null,
+      "snapshot_revision": null
+    },
+    {
+      "name": "cargo",
+      "metadata_format": "cargo-lock",
+      "static_importer": "cargo-lock",
+      "worker_fallback": true,
+      "inventory_state": "planned",
+      "known_package_identities": null,
+      "snapshot_revision": null
+    },
+    {
+      "name": "github",
+      "metadata_format": "repository-release",
+      "static_importer": null,
+      "worker_fallback": true,
+      "inventory_state": "planned",
+      "known_package_identities": null,
+      "snapshot_revision": null
+    }
+  ]
+}
