@@ -1,0 +1,82 @@
+name: CachyOS snapshot census
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - .github/workflows/cachyos-snapshot-census.yml
+
+permissions:
+  contents: write
+
+concurrency:
+  group: cachyos-snapshot-census
+  cancel-in-progress: false
+
+jobs:
+  census:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 45
+    steps:
+      - uses: actions/checkout@v7
+        with:
+          fetch-depth: 0
+      - name: Fetch pinned overlay and build census
+        run: |
+          python3 - <<'PY' > target-policy.env
+          import pathlib
+          import tomllib
+
+          with pathlib.Path('ingress/cachyos/policy.toml').open('rb') as stream:
+              policy = tomllib.load(stream)
+          print(f"CACHYOS_REPOSITORY={policy['upstream_repository']}")
+          print(f"CACHYOS_REVISION={policy['mirror_revision']}")
+          PY
+          source target-policy.env
+          git init --quiet target/cachyos-pkgbuilds
+          git -C target/cachyos-pkgbuilds fetch --quiet --no-tags --depth=1 \
+            "$CACHYOS_REPOSITORY" "$CACHYOS_REVISION"
+          git -C target/cachyos-pkgbuilds checkout --quiet --detach FETCH_HEAD
+          test "$(git -C target/cachyos-pkgbuilds rev-parse HEAD)" = "$CACHYOS_REVISION"
+          python3 scripts/inventory_cachyos.py \
+            --mirror target/cachyos-pkgbuilds \
+            --policy ingress/cachyos/policy.toml \
+            --output target/cachyos-ingress.json
+          python3 - <<'PY'
+          import json
+          import pathlib
+          import tomllib
+
+          policy_path = pathlib.Path('ingress/cachyos/policy.toml')
+          with policy_path.open('rb') as stream:
+              policy = tomllib.load(stream)
+          inventory = json.loads(pathlib.Path('target/cachyos-ingress.json').read_text())
+          revision = policy['mirror_revision']
+          summary = {
+              'format': 1,
+              'repository': policy['upstream_repository'],
+              'revision': revision,
+              'declared_universe_target': policy['target_package_outputs'],
+              'pkgbuild_count': inventory['pkgbuild_count'],
+              'resolved_package_outputs': inventory['resolved_package_outputs'],
+              'unresolved_pkgbuilds': inventory['unresolved_pkgbuilds'],
+              'duplicate_package_outputs': len(inventory['duplicate_packages']),
+              'overlay_complete': inventory['unresolved_pkgbuilds'] == 0 and not inventory['duplicate_packages'],
+              'universe_target_met_by_overlay': inventory['complete'],
+              'summary': inventory['summary'],
+          }
+          destination = pathlib.Path('ingress/cachyos/snapshots') / f'{revision}.summary.json'
+          destination.parent.mkdir(parents=True, exist_ok=True)
+          destination.write_text(json.dumps(summary, indent=2, sort_keys=True) + '\n')
+          pathlib.Path('.github/workflows/cachyos-snapshot-census.yml').unlink()
+          PY
+          git diff --check
+      - name: Commit pinned census
+        run: |
+          git config user.name 'SisyphusAeolides'
+          git config user.email '37166405+SisyphusAeolides@users.noreply.github.com'
+          git add -A
+          git commit -m 'data: record pinned CachyOS overlay census'
+          git pull --rebase origin main
+          git push origin HEAD:main
