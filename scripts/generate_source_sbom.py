@@ -12,6 +12,7 @@ import tomllib
 from datetime import datetime, timezone
 from pathlib import Path
 from typing import Any
+from urllib.parse import quote
 
 
 DIGEST_RE = re.compile(r"^[0-9a-f]{64}$")
@@ -36,25 +37,55 @@ def load_recipe(path: Path) -> dict[str, Any]:
     for field in ("name", "version", "summary", "license"):
         if not isinstance(package.get(field), str) or not package[field].strip():
             raise SbomError(f"recipe package.{field} is invalid: {path}")
-    if not sources:
-        raise SbomError(f"recipe has no source records: {path}")
     return document
+
+
+def require_digest(source: dict[str, Any], path: Path) -> str:
+    digest = source.get("checksum")
+    if not isinstance(digest, str) or not DIGEST_RE.fullmatch(digest):
+        raise SbomError(f"non-git source lacks a lowercase SHA-256 checksum: {path}")
+    return digest
 
 
 def source_locator(source: dict[str, Any], path: Path) -> str:
     kind = source.get("kind")
-    url = source.get("url")
-    if not isinstance(kind, str) or not isinstance(url, str) or not url:
+    if not isinstance(kind, str):
         raise SbomError(f"invalid source identity: {path}")
     if kind == "git":
+        url = source.get("url")
         revision = source.get("revision")
+        if not isinstance(url, str) or not url.startswith("https://"):
+            raise SbomError(f"git source lacks an HTTPS URL: {path}")
         if not isinstance(revision, str) or not REVISION_RE.fullmatch(revision):
             raise SbomError(f"git source is not pinned to a full object ID: {path}")
         return f"git+{url}@{revision}"
-    digest = source.get("sha256")
-    if not isinstance(digest, str) or not DIGEST_RE.fullmatch(digest):
-        raise SbomError(f"non-git source lacks a lowercase SHA-256 digest: {path}")
-    return f"{kind}+{url}#sha256={digest}"
+    if kind == "archive":
+        url = source.get("url")
+        if not isinstance(url, str) or not url.startswith("https://"):
+            raise SbomError(f"archive source lacks an HTTPS URL: {path}")
+        return f"archive+{url}#sha256={require_digest(source, path)}"
+    if kind == "crates-io":
+        package = source.get("package")
+        version = source.get("version")
+        if not isinstance(package, str) or not package:
+            raise SbomError(f"crates.io source lacks a package name: {path}")
+        if not isinstance(version, str) or not version:
+            raise SbomError(f"crates.io source lacks an exact version: {path}")
+        return (
+            f"pkg:cargo/{quote(package, safe='')}@{quote(version, safe='')}"
+            f"#sha256={require_digest(source, path)}"
+        )
+    if kind == "local":
+        local_path = source.get("url")
+        if (
+            not isinstance(local_path, str)
+            or not local_path
+            or Path(local_path).is_absolute()
+            or ".." in Path(local_path).parts
+        ):
+            raise SbomError(f"local source lacks a safe repository-relative path: {path}")
+        return f"file:{quote(local_path, safe='/')}#sha256={require_digest(source, path)}"
+    raise SbomError(f"unsupported source kind {kind!r}: {path}")
 
 
 def spdx_id(name: str) -> str:
@@ -72,7 +103,7 @@ def collect(root: Path) -> list[dict[str, Any]]:
         if name in names:
             raise SbomError(f"duplicate package name: {name}")
         names.add(name)
-        locators = [source_locator(source, path) for source in document["source"]]
+        locators = [source_locator(source, path) for source in document.get("source", [])]
         records.append(
             {
                 "name": name,
