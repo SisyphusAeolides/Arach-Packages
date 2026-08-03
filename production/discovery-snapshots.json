@@ -1,0 +1,68 @@
+{
+  "format": 1,
+  "distribution": "ArachOS",
+  "kind": "unsigned-discovery-snapshots",
+  "production_authority": false,
+  "snapshots": [
+    {
+      "upstream": "cachyos",
+      "repository": "https://github.com/CachyOS/CachyOS-PKGBUILDS.git",
+      "object_id": "8753877a6ed4af2bf510b8b3f5bda88b793f28ec",
+      "default_branch": "master",
+      "metadata_family": "pkgbuild-monorepo",
+      "inventory_state": "retained",
+      "known_package_identities": 326,
+      "promotion_requirements": [
+        "signed-snapshot",
+        "complete-inventory",
+        "immutable-inputs",
+        "target-policy-or-worker-route"
+      ]
+    },
+    {
+      "upstream": "gentoo",
+      "repository": "https://github.com/gentoo/gentoo.git",
+      "object_id": "d82830702cb09bf71a312b4a12d292ad967f7133",
+      "default_branch": "master",
+      "metadata_family": "ebuild-tree",
+      "inventory_state": "snapshot-pinned",
+      "known_package_identities": null,
+      "promotion_requirements": [
+        "signed-snapshot",
+        "complete-inventory",
+        "immutable-source-locks",
+        "target-policy-or-worker-route"
+      ]
+    },
+    {
+      "upstream": "nix",
+      "repository": "https://github.com/NixOS/nixpkgs.git",
+      "object_id": "fe4c90a624b0d2df0956990da8d9f557ca249693",
+      "default_branch": "master",
+      "metadata_family": "nixpkgs-tree",
+      "inventory_state": "snapshot-pinned",
+      "known_package_identities": null,
+      "promotion_requirements": [
+        "signed-snapshot",
+        "evaluated-fixed-output-inventory",
+        "nar-hashes",
+        "target-policy-or-worker-route"
+      ]
+    },
+    {
+      "upstream": "cargo",
+      "repository": "https://github.com/rust-lang/crates.io-index.git",
+      "object_id": "881ad4d069045382e738f8a676bd77b1d4997db1",
+      "default_branch": "master",
+      "metadata_family": "cargo-registry-index",
+      "inventory_state": "snapshot-pinned",
+      "known_package_identities": null,
+      "promotion_requirements": [
+        "signed-snapshot",
+        "complete-index-inventory",
+        "crate-checksums",
+        "complete-cargo-lock-closure"
+      ]
+    }
+  ]
+}
