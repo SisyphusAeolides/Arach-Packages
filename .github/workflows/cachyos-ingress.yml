@@ -1,0 +1,84 @@
+name: CachyOS package ingress
+
+on:
+  push:
+    paths:
+      - ingress/cachyos/**
+      - docs/PKGBUILD_INGRESS.md
+      - scripts/inventory_cachyos.py
+      - scripts/verify_cachyos_ingress.py
+      - scripts/test_cachyos_ingress.py
+      - .github/workflows/cachyos-ingress.yml
+  pull_request:
+    paths:
+      - ingress/cachyos/**
+      - docs/PKGBUILD_INGRESS.md
+      - scripts/inventory_cachyos.py
+      - scripts/verify_cachyos_ingress.py
+      - scripts/test_cachyos_ingress.py
+      - .github/workflows/cachyos-ingress.yml
+  workflow_dispatch:
+  schedule:
+    - cron: "17 4 * * 1"
+
+permissions:
+  contents: read
+
+jobs:
+  policy:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v7
+      - name: Validate ingress policy
+        run: python3 scripts/verify_cachyos_ingress.py --policy ingress/cachyos/policy.toml
+      - name: Test inventory and completeness invariants
+        run: python3 -m unittest scripts/test_cachyos_ingress.py
+      - name: Check Python syntax
+        run: python3 -m py_compile scripts/inventory_cachyos.py scripts/verify_cachyos_ingress.py scripts/test_cachyos_ingress.py
+      - name: Check repository whitespace
+        run: git diff --check
+
+  full-tree:
+    if: github.event_name == 'workflow_dispatch' || github.event_name == 'schedule'
+    runs-on: ubuntu-24.04
+    timeout-minutes: 45
+    steps:
+      - uses: actions/checkout@v7
+      - name: Read immutable mirror policy
+        run: |
+          python3 - <<'PY' > target-policy.env
+          import pathlib
+          import tomllib
+
+          with pathlib.Path("ingress/cachyos/policy.toml").open("rb") as stream:
+              policy = tomllib.load(stream)
+          print(f"CACHYOS_REPOSITORY={policy['upstream_repository']}")
+          print(f"CACHYOS_REVISION={policy['mirror_revision']}")
+          PY
+      - name: Fetch exact CachyOS mirror object
+        run: |
+          source target-policy.env
+          git init --quiet target/cachyos-pkgbuilds
+          git -C target/cachyos-pkgbuilds fetch --quiet --no-tags --depth=1 \
+            "$CACHYOS_REPOSITORY" "$CACHYOS_REVISION"
+          git -C target/cachyos-pkgbuilds checkout --quiet --detach FETCH_HEAD
+          test "$(git -C target/cachyos-pkgbuilds rev-parse HEAD)" = "$CACHYOS_REVISION"
+      - name: Inventory all package outputs
+        run: |
+          python3 scripts/inventory_cachyos.py \
+            --mirror target/cachyos-pkgbuilds \
+            --policy ingress/cachyos/policy.toml \
+            --output target/cachyos-ingress.json
+      - name: Enforce 39,191 unique dispositions
+        run: |
+          python3 scripts/verify_cachyos_ingress.py \
+            --policy ingress/cachyos/policy.toml \
+            --manifest target/cachyos-ingress.json \
+            --require-complete
+      - name: Retain ingress inventory
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: cachyos-ingress-${{ github.sha }}
+          path: target/cachyos-ingress.json
+          if-no-files-found: error
