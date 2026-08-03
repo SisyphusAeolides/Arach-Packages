@@ -40,6 +40,9 @@ jobs:
             --variants ingress/cachyos/variants.toml \
             --records ingress/cachyos/snapshots/8753877a6ed4af2bf510b8b3f5bda88b793f28ec.records.json \
             --policy ingress/cachyos/policy.toml
+          python3 scripts/validate_promoted_cachyos.py \
+            --closure ingress/cachyos/promoted/closure.json \
+            --root ingress/cachyos/promoted
       - name: Run Python policy tests
         run: |
           python3 -m unittest discover -s tests -p 'test_*.py'
@@ -60,6 +63,7 @@ jobs:
             scripts/prepare_cachyos_overlay.py \
             scripts/validate_cachyos_variants.py \
             scripts/validate_discovery_snapshots.py \
+            scripts/validate_promoted_cachyos.py \
             scripts/validate_recipe_corpus.py \
             scripts/validate_upstream_coverage.py \
             scripts/verify_cachyos_candidates.py \
