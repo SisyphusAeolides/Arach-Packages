@@ -1,0 +1,5213 @@
+{
+  "duplicate_packages": [
+    {
+      "first": "openblas/openblas-v3/PKGBUILD",
+      "package": "blas-openblas",
+      "second": "openblas/openblas-v4/PKGBUILD"
+    },
+    {
+      "first": "openblas/openblas-v3/PKGBUILD",
+      "package": "blas64-openblas",
+      "second": "openblas/openblas-v4/PKGBUILD"
+    },
+    {
+      "first": "openblas/openblas-v3/PKGBUILD",
+      "package": "openblas",
+      "second": "openblas/openblas-v4/PKGBUILD"
+    },
+    {
+      "first": "openblas/openblas-v3/PKGBUILD",
+      "package": "openblas64",
+      "second": "openblas/openblas-v4/PKGBUILD"
+    },
+    {
+      "first": "zstd/zstd-pgo/PKGBUILD",
+      "package": "zstd",
+      "second": "zstd/zstd/PKGBUILD"
+    }
+  ],
+  "format": 1,
+  "pkgbuild_count": 175,
+  "records": [
+    {
+      "admission_class": "sealed-script",
+      "line_count": 32,
+      "packages": [
+        "adaptivemm"
+      ],
+      "path": "adaptivemm/PKGBUILD",
+      "pkgbuild_sha256": "eaae6ad5ca75aa2b54476a03904cf58f066ce53acb445271996406cb7f9f14b6",
+      "reason_codes": [],
+      "signals": {
+        "floating_vcs": false,
+        "functions": [
+          "build",
+          "package"
+        ],
+        "has_sources": false,
+        "install_hook": false,
+        "missing_checksum": false,
+        "pacman_hook": false,
+        "pkgver_function": false,
+        "shell_substitution": false,
+        "split_package": false,
+        "vcs_source_count": 0
+      },
+      "srcinfo_sha256": "449e63cedd6f3806afe49fa8b4837e8ba87cf62589b5041ebd906e034ea23ed4"
+    },
+    {
+      "admission_class": "sealed-script",
+      "line_count": 19,
+      "packages": [
+        "adiosctl"
+      ],
+      "path": "adiosctl/PKGBUILD",
+      "pkgbuild_sha256": "208f91a578a1807f148f5e670204cb7c7592c845d61165b292d0f18762fe39ae",
+      "reason_codes": [],
+      "signals": {
+        "floating_vcs": false,
+        "functions": [
+          "package"
+        ],
+        "has_sources": true,
+        "install_hook": false,
+        "missing_checksum": false,
+        "pacman_hook": false,
+        "pkgver_function": false,
+        "shell_substitution": false,
+        "split_package": false,
+        "vcs_source_count": 0
+      },
+      "srcinfo_sha256": "6fd270f375de112a68598325db8bcaac6eedb87a28f3cdf1fda590cdcbdaf481"
+    },
+    {
+      "admission_class": "rejected",
+      "line_count": 53,
+      "packages": [
+        "archlinux-keyring",
+        "voa-verifiers-arch"
+      ],
+      "path": "archlinux-keyring/PKGBUILD",
+      "pkgbuild_sha256": "492109f9dd07ce5f1e06e328141d1ec70dc95ee3472e6a2d083d790830619ed6",
+      "reason_codes": [
+        "INSTALL_HOOK",
+        "SPLIT_PACKAGE"
+      ],
+      "signals": {
+        "floating_vcs": false,
+        "functions": [
+          "build",
+          "check"
+        ],
+        "has_sources": false,
+        "install_hook": true,
+        "missing_checksum": false,
+        "pacman_hook": false,
+        "pkgver_function": false,
+        "shell_substitution": false,
+        "split_package": true,
+        "vcs_source_count": 0
+      },
+      "srcinfo_sha256": "56623f921744f348b49ee2c5e47e0af0f011d6eeed88ab34df0f0658060f3cac"
+    },
+    {
+      "admission_class": "sealed-script",
+      "line_count": 57,
+      "packages": [
+        "aura"
+      ],
+      "path": "aura/PKGBUILD",
+      "pkgbuild_sha256": "2f9b5b19970a32a3dbff0b79efb9e875a2f835cd745ba5201f4b40177d45d777",
+      "reason_codes": [
+        "SHELL_SUBSTITUTION"
+      ],
+      "signals": {
+        "floating_vcs": false,
+        "functions": [
+          "build",
+          "package",
+          "prepare"
+        ],
+        "has_sources": false,
+        "install_hook": false,
+        "missing_checksum": false,
+        "pacman_hook": false,
+        "pkgver_function": false,
+        "shell_substitution": true,
+        "split_package": false,
+        "vcs_source_count": 0
+      },
+      "srcinfo_sha256": "c6d67bc0de1743c787d06391e683d3c30dc74856e0e6d7f73712c78cf46795f8"
+    },
+    {
+      "admission_class": "sealed-script",
+      "line_count": 19,
+      "packages": [
+        "autofdo-bin"
+      ],
+      "path": "autofdo-bin/PKGBUILD",
+      "pkgbuild_sha256": "fe33e4c346608e833cc30bb3a21d3d818aff9be41dbf390d42785ef63cf5d347",
+      "reason_codes": [],
+      "signals": {
+        "floating_vcs": false,
+        "functions": [
+          "package"
+        ],
+        "has_sources": false,
+        "install_hook": false,
+        "missing_checksum": false,
+        "pacman_hook": false,
+        "pkgver_function": false,
+        "shell_substitution": false,
+        "split_package": false,
+        "vcs_source_count": 0
+      },
+      "srcinfo_sha256": "753c981511f894e7452d81f34877515d1e0774a5192e3b84bda28459a50e1db5"
+    },
+    {
+      "admission_class": "rejected",
+      "line_count": 151,
+      "packages": [
+        "bash"
+      ],
+      "path": "bash/PKGBUILD",
+      "pkgbuild_sha256": "d7a39939079797ee6d88b28706705765febbb0f13945bbd9a3ea575c784517f7",
+      "reason_codes": [
+        "INSTALL_HOOK",
+        "SHELL_SUBSTITUTION"
+      ],
+      "signals": {
+        "floating_vcs": false,
+        "functions": [
+          "build",
+          "check",
+          "package",
+          "prepare"
+        ],
+        "has_sources": false,
+        "install_hook": true,
+        "missing_checksum": false,
+        "pacman_hook": false,
+        "pkgver_function": false,
+        "shell_substitution": true,
+        "split_package": false,
+        "vcs_source_count": 0
+      },
+      "srcinfo_sha256": "213e4420d2ae4d25afb8fb4f547d3be4cb57b601ce077774e5e72f0d4c991430"
+    },
+    {
+      "admission_class": "sealed-script",
+      "line_count": 59,
+      "packages": [
+        "blocky"
+      ],
+      "path": "blocky/PKGBUILD",
+      "pkgbuild_sha256": "6412c68e929f0a1f4f156d854212ddbf8c149fb846c7245aa7c93d6a38e0d322",
+      "reason_codes": [],
+      "signals": {
+        "floating_vcs": false,
+        "functions": [
+          "build",
+          "check",
+          "package",
+          "prepare"
+        ],
+        "has_sources": false,
+        "install_hook": false,
+        "missing_checksum": false,
+        "pacman_hook": false,
+        "pkgver_function": false,
+        "shell_substitution": false,
+        "split_package": false,
+        "vcs_source_count": 0
+      },
+      "srcinfo_sha256": "16e1c60ca211c22a0831b6bc11d888222dca184c19a5a13890701abbe71886ea"
+    },
+    {
+      "admission_class": "rejected",
+      "line_count": 43,
+      "packages": [
+        "bpftune-git"
+      ],
+      "path": "bpftune-git/PKGBUILD",
+      "pkgbuild_sha256": "7c8d851304bc835e06744a68c55459a1a3b30872086541552de9ab2ca8710fb2",
+      "reason_codes": [
+        "DYNAMIC_PKGVER",
+        "FLOATING_VCS",
+        "MISSING_CHECKSUM",
+        "SHELL_SUBSTITUTION"
+      ],
+      "signals": {
+        "floating_vcs": true,
+        "functions": [
+          "build",
+          "package",
+          "pkgver",
+          "prepare"
+        ],
+        "has_sources": true,
+        "install_hook": false,
+        "missing_checksum": true,
+        "pacman_hook": false,
+        "pkgver_function": true,
+        "shell_substitution": true,
+        "split_package": false,
+        "vcs_source_count": 1
+      },
+      "srcinfo_sha256": "870deb88d9a4e47fbeadd493b97ba6657bb6b93633d53d56a3639fe54c703922"
+    },
+    {
+      "admission_class": "rejected",
+      "line_count": 95,
+      "packages": [
+        "broadcom-wl-dkms"
+      ],
+      "path": "broadcom-wl-dkms/PKGBUILD",
+      "pkgbuild_sha256": "10998af4f426714e387138ba558dc739d63c6cbb8b278a479a465f49850e6b0b",
+      "reason_codes": [
+        "INSTALL_HOOK",
+        "SHELL_SUBSTITUTION"
+      ],
+      "signals": {
+        "floating_vcs": false,
+        "functions": [
+          "package",
+          "prepare"
+        ],
+        "has_sources": false,
+        "install_hook": true,
+        "missing_checksum": false,
+        "pacman_hook": false,
+        "pkgver_function": false,
+        "shell_substitution": true,
+        "split_package": false,
+        "vcs_source_count": 0
+      },
+      "srcinfo_sha256": "eeb99f00f9f37a954835aa342b9e262e72b77c5d11ec3df544a22fa0e6c86978"
+    },
+    {
+      "admission_class": "sealed-script",
+      "line_count": 46,
+      "packages": [
+        "cachy-chroot"
+      ],
+      "path": "cachy-chroot/PKGBUILD",
+      "pkgbuild_sha256": "2bdcf4b9956520d9b199a488d3005f51777daf7b14f1e3c3773281aa8b07e664",
+      "reason_codes": [],
+      "signals": {
+        "floating_vcs": false,
+        "functions": [
+          "build",
+          "package",
+          "prepare"
+        ],
+        "has_sources": false,
+        "install_hook": false,
+        "missing_checksum": false,
+        "pacman_hook": false,
+        "pkgver_function": false,
+        "shell_substitution": false,
+        "split_package": false,
+        "vcs_source_count": 0
+      },
+      "srcinfo_sha256": "3eae0a32f5058e5a8a35767c5f459c207138f962bca51510d4ae1366bac521a6"
+    },
+    {
+      "admission_class": "sealed-script",
+      "line_count": 50,
+      "packages": [
+        "cachy-update"
+      ],
+      "path": "cachy-update/PKGBUILD",
+      "pkgbuild_sha256": "748595091fe97728ecaf61753eb656da6fd19803a11af4eae8d88b4e2ab8240d",
+      "reason_codes": [],
+      "signals": {
+        "floating_vcs": false,
+        "functions": [
+          "build",
+          "check",
+          "package",
+          "prepare"
+        ],
+        "has_sources": true,
+        "install_hook": false,
+        "missing_checksum": false,
+        "pacman_hook": false,
+        "pkgver_function": false,
+        "shell_substitution": false,
+        "split_package": false,
+        "vcs_source_count": 1
+      },
+      "srcinfo_sha256": "546695334bbdd73135c63895b8e3b24af2a4b4f584c2e3e4e4fa3e716aa22bc2"
+    },
+    {
+      "admission_class": "sealed-script",
+      "line_count": 17,
+      "packages": [
+        "cachyos-alacritty-config"
+      ],
+      "path": "cachyos-alacritty-config/PKGBUILD",
+      "pkgbuild_sha256": "8b4f17b860b46746d187c9ee3921e89ad7757cd422241526aaab3adf668163a0",
+      "reason_codes": [],
+      "signals": {
+        "floating_vcs": false,
+        "functions": [
+          "package"
+        ],
+        "has_sources": false,
+        "install_hook": false,
+        "missing_checksum": false,
+        "pacman_hook": false,
+        "pkgver_function": false,
+        "shell_substitution": false,
+        "split_package": false,
+        "vcs_source_count": 0
+      },
+      "srcinfo_sha256": "177acaa0e6afa974361c5c887afbef2ed901801e9371195ba490d9091eeb5f94"
+    },
+    {
+      "admission_class": "sealed-script",
+      "line_count": 34,
+      "packages": [
+        "cachyos-ananicy-rules"
+      ],
+      "path": "cachyos-ananicy-rules/PKGBUILD",
+      "pkgbuild_sha256": "e2686460ae0d178216ba15868c718060e44f61bca722e0743df52654bafba5ac",
+      "reason_codes": [],
+      "signals": {
+        "floating_vcs": false,
+        "functions": [
+          "package",
+          "prepare"
+        ],
+        "has_sources": false,
+        "install_hook": false,
+        "missing_checksum": false,
+        "pacman_hook": false,
+        "pkgver_function": false,
+        "shell_substitution": false,
+        "split_package": false,
+        "vcs_source_count": 0
+      },
+      "srcinfo_sha256": "65c2f6e39a843d9249d1d7a27d147e3f369794c2008e53260c2a22fe0cb001fc"
+    },
+    {
+      "admission_class": "sealed-script",
+      "line_count": 47,
+      "packages": [
+        "cachyos-benchmarker"
+      ],
+      "path": "cachyos-benchmarker/PKGBUILD",
+      "pkgbuild_sha256": "0c7d71bb2fb2cf969defe2834c90a7e94d6942c42711cdc3ba056fc89a404d6e",
+      "reason_codes": [],
+      "signals": {
+        "floating_vcs": false,
+        "functions": [
+          "package"
+        ],
+        "has_sources": false,
+        "install_hook": false,
+        "missing_checksum": false,
+        "pacman_hook": false,
+        "pkgver_function": false,
+        "shell_substitution": false,
+        "split_package": false,
+        "vcs_source_count": 0
+      },
+      "srcinfo_sha256": "8a74e685df9d6273bc44943877ce95702c527f28163f4c3a42538910e0f31c49"
+    },
+    {
+      "admission_class": "sealed-script",
+      "line_count": 113,
+      "packages": [
+        "cachyos-calamares-next"
+      ],
+      "path": "cachyos-calamares/PKGBUILD",
+      "pkgbuild_sha256": "f3a91f3187ad5f7eefe9d648b8bf1bdaf12ddc704b8b68e82437a0e987a10599",
+      "reason_codes": [
+        "SHELL_SUBSTITUTION"
+      ],
+      "signals": {
+        "floating_vcs": false,
+        "functions": [
+          "build",
+          "package",
+          "prepare"
+        ],
+        "has_sources": false,
+        "install_hook": false,
+        "missing_checksum": false,
+        "pacman_hook": false,
+        "pkgver_function": false,
+        "shell_substitution": true,
+        "split_package": false,
+        "vcs_source_count": 0
+      },
+      "srcinfo_sha256": "8171a1c37a6520ce28fc2c396baf6cc0336261778c062830f2b0269f3e6d455a"
+    },
+    {
+      "admission_class": "sealed-script",
+      "line_count": 114,
+      "packages": [
+        "cachyos-calamares-deckify"
+      ],
+      "path": "cachyos-calamares/deckify/PKGBUILD",
+      "pkgbuild_sha256": "4fa2b30dc09d72e922fbcf5f1c72bb90c6a2715c6f6308aa8ed57652635ed94a",
+      "reason_codes": [
+        "SHELL_SUBSTITUTION"
+      ],
+      "signals": {
+        "floating_vcs": false,
+        "functions": [
+          "build",
+          "package",
+          "prepare"
+        ],
+        "has_sources": false,
+        "install_hook": false,
+        "missing_checksum": false,
+        "pacman_hook": false,
+        "pkgver_function": false,
+        "shell_substitution": true,
+        "split_package": false,
+        "vcs_source_count": 0
+      },
+      "srcinfo_sha256": "5a2bc36f3c000c5b33182b54e027ecd98cd2d57912e84f92ee06190f40ead7e6"
+    },
+    {
+      "admission_class": "sealed-script",
+      "line_count": 59,
+      "packages": [
+        "cachyos-cli-installer-new-git"
+      ],
+      "path": "cachyos-cli-installer-new-git/PKGBUILD",
+      "pkgbuild_sha256": "465ea2aea0093bd4d8e07c6624378906da3f5712765cb90684b291d746968527",
+      "reason_codes": [
+        "DYNAMIC_PKGVER"
+      ],
+      "signals": {
+        "floating_vcs": false,
+        "functions": [
+          "build",
+          "package",
+          "pkgver"
+        ],
+        "has_sources": false,
+        "install_hook": false,
+        "missing_checksum": false,
+        "pacman_hook": false,
+        "pkgver_function": true,
+        "shell_substitution": false,
+        "split_package": false,
+        "vcs_source_count": 0
+      },
+      "srcinfo_sha256": "67bc69aaacc39db459e12fb7bc4d7f6712659bd6f201721def42ed3c500f0651"
+    },
+    {
+      "admission_class": "sealed-script",
+      "line_count": 49,
+      "packages": [
+        "cachyos-cli-installer-new"
+      ],
+      "path": "cachyos-cli-installer-new/PKGBUILD",
+      "pkgbuild_sha256": "f5e577c6a4898a72086bdd3afcdd53c3bba5db68306efdaa686d3d21a7e8d8ba",
+      "reason_codes": [],
+      "signals": {
+        "floating_vcs": false,
+        "functions": [
+          "build",
+          "package"
+        ],
+        "has_sources": false,
+        "install_hook": false,
+        "missing_checksum": false,
+        "pacman_hook": false,
+        "pkgver_function": false,
+        "shell_substitution": false,
+        "split_package": false,
+        "vcs_source_count": 0
+      },
+      "srcinfo_sha256": "640e4efc64d8defaa779e35cfb14d130ea40a2e5c3e7179238aeaa9f1aea2751"
+    },
+    {
+      "admission_class": "sealed-script",
+      "line_count": 28,
+      "packages": [
+        "cachyos-firefox-settings"
+      ],
+      "path": "cachyos-firefox-settings/PKGBUILD",
+      "pkgbuild_sha256": "a9a4c573bb65684e50926f2955c3221580522c9178ee455403b066799ac4dc0c",
+      "reason_codes": [
+        "DYNAMIC_PKGVER"
+      ],
+      "signals": {
+        "floating_vcs": false,
+        "functions": [
+          "package",
+          "pkgver"
+        ],
+        "has_sources": true,
+        "install_hook": false,
+        "missing_checksum": false,
+        "pacman_hook": false,
+        "pkgver_function": true,
+        "shell_substitution": false,
+        "split_package": false,
+        "vcs_source_count": 0
+      },
+      "srcinfo_sha256": "6dd343385b535b088a91f318f73d1c6064c0c08f1b65bf9cda04ab778fd8ea0e"
+    },
+    {
+      "admission_class": "sealed-script",
+      "line_count": 42,
+      "packages": [
+        "cachyos-fish-config"
+      ],
+      "path": "cachyos-fish-config/PKGBUILD",
+      "pkgbuild_sha256": "4984713c826641fe8cd1afe141d3ff0c74e2a7e7e080091f98933b5da4c74092",
+      "reason_codes": [],
+      "signals": {
+        "floating_vcs": false,
+        "functions": [
+          "package"
+        ],
+        "has_sources": false,
+        "install_hook": false,
+        "missing_checksum": false,
+        "pacman_hook": false,
+        "pkgver_function": false,
+        "shell_substitution": false,
+        "split_package": false,
+        "vcs_source_count": 0
+      },
+      "srcinfo_sha256": "a25f37edc664526d1af4f3cc975427a799ec21b29f4a71eb00d93f8fdb7cc784"
+    },
+    {
+      "admission_class": "meta",
+      "line_count": 20,
+      "packages": [
+        "cachyos-gaming-applications"
+      ],
+      "path": "cachyos-gaming-applications/PKGBUILD",
+      "pkgbuild_sha256": "16428264da83018137fa66613bce298e6088c3713cff792f24f87383bbe9a99c",
+      "reason_codes": [],
+      "signals": {
+        "floating_vcs": false,
+        "functions": [],
+        "has_sources": false,
+        "install_hook": false,
+        "missing_checksum": false,
+        "pacman_hook": false,
+        "pkgver_function": false,
+        "shell_substitution": false,
+        "split_package": false,
+        "vcs_source_count": 0
+      },
+      "srcinfo_sha256": "15d02174e2eb87d47c35b5cdaee629228d9b4aff5dc62cbf3009eec843c59654"
+    },
+    {
+      "admission_class": "sealed-script",
+      "line_count": 44,
+      "packages": [
+        "cachyos-gaming-meta"
+      ],
+      "path": "cachyos-gaming-meta/PKGBUILD",
+      "pkgbuild_sha256": "20e1474b357101925a2f207358aa84b1af62a5e782525c16dbb7f702502f11ad",
+      "reason_codes": [],
+      "signals": {
+        "floating_vcs": false,
+        "functions": [
+          "package"
+        ],
+        "has_sources": true,
+        "install_hook": false,
+        "missing_checksum": false,
+        "pacman_hook": false,
+        "pkgver_function": false,
+        "shell_substitution": false,
+        "split_package": false,
+        "vcs_source_count": 0
+      },
+      "srcinfo_sha256": "492cc294834a39d344df042a630c22371ddb5671f5f0c711396036b0609486de"
+    },
+    {
+      "admission_class": "rejected",
+      "line_count": 28,
+      "packages": [
+        "cachyos-gnome-settings"
+      ],
+      "path": "cachyos-gnome-settings/PKGBUILD",
+      "pkgbuild_sha256": "c1230389337e800cfa583f77c5c1a2f2034dd2f548e3333854898bb6d21df38c",
+      "reason_codes": [
+        "INSTALL_HOOK"
+      ],
+      "signals": {
+        "floating_vcs": false,
+        "functions": [
+          "package"
+        ],
+        "has_sources": false,
+        "install_hook": true,
+        "missing_checksum": false,
+        "pacman_hook": false,
+        "pkgver_function": false,
+        "shell_substitution": false,
+        "split_package": false,
+        "vcs_source_count": 0
+      },
+      "srcinfo_sha256": "2a267fd20c259c3f46fae49537aeaac86d84c0dd1ed62fb6eb66f3918ff416e9"
+    },
+    {
+      "admission_class": "sealed-script",
+      "line_count": 22,
+      "packages": [
+        "cachyos-grub-theme"
+      ],
+      "path": "cachyos-grub-theme/PKGBUILD",
+      "pkgbuild_sha256": "3e69ac44f41b5a92794684ca698b2190c3e2cc18d33de279d7058a5bb9aa6dbc",
+      "reason_codes": [],
+      "signals": {
+        "floating_vcs": false,
+        "functions": [
+          "package"
+        ],
+        "has_sources": false,
+        "install_hook": false,
+        "missing_checksum": false,
+        "pacman_hook": false,
+        "pkgver_function": false,
+        "shell_substitution": false,
+        "split_package": false,
+        "vcs_source_count": 0
+      },
+      "srcinfo_sha256": "aff68ea94ad64d89e7544c76ac5cf1617d125ec7c03d1c8faa69712880e76d64"
+    },
+    {
+      "admission_class": "sealed-script",
+      "line_count": 71,
+      "packages": [
+        "cachyos-hello-git"
+      ],
+      "path": "cachyos-hello-git/PKGBUILD",
+      "pkgbuild_sha256": "2d8dbf8e19d8e728416ab6047dcbcb19c886ab74d7e59a5101df3ca2228c499d",
+      "reason_codes": [
+        "DYNAMIC_PKGVER",
+        "SHELL_SUBSTITUTION"
+      ],
+      "signals": {
+        "floating_vcs": false,
+        "functions": [
+          "build",
+          "check",
+          "package",
+          "pkgver"
+        ],
+        "has_sources": false,
+        "install_hook": false,
+        "missing_checksum": false,
+        "pacman_hook": false,
+        "pkgver_function": true,
+        "shell_substitution": true,
+        "split_package": false,
+        "vcs_source_count": 0
+      },
+      "srcinfo_sha256": "60a76af0cdf77914b675c4e77d3ecbff28b787fccca22d5bb4463ab66228a5f1"
+    },
+    {
+      "admission_class": "sealed-script",
+      "line_count": 77,
+      "packages": [
+        "cachyos-hello"
+      ],
+      "path": "cachyos-hello/PKGBUILD",
+      "pkgbuild_sha256": "0c86bc30d7333e3bf7100619ea885cf54423476c503dd09b7dcb5e0d5ac2f23b",
+      "reason_codes": [],
+      "signals": {
+        "floating_vcs": false,
+        "functions": [
+          "build",
+          "package"
+        ],
+        "has_sources": false,
+        "install_hook": false,
+        "missing_checksum": false,
+        "pacman_hook": false,
+        "pkgver_function": false,
+        "shell_substitution": false,
+        "split_package": false,
+        "vcs_source_count": 0
+      },
+      "srcinfo_sha256": "524f0d0e9c9bc94e0a319dac0caeba3fe26a4ab8a73c48b58802a9f73d2d0724"
+    },
+    {
+      "admission_class": "rejected",
+      "line_count": 30,
+      "packages": [
+        "cachyos-hooks"
+      ],
+      "path": "cachyos-hooks/PKGBUILD",
+      "pkgbuild_sha256": "242d97b4d77930ab92d44b7222f3e1597567b3fdb4b7c1259692f8d30dca95e3",
+      "reason_codes": [
+        "PACMAN_HOOK"
+      ],
+      "signals": {
+        "floating_vcs": false,
+        "functions": [
+          "package"
+        ],
+        "has_sources": false,
+        "install_hook": false,
+        "missing_checksum": false,
+        "pacman_hook": true,
+        "pkgver_function": false,
+        "shell_substitution": false,
+        "split_package": false,
+        "vcs_source_count": 0
+      },
+      "srcinfo_sha256": "097015543dbd0cbf5a6bde612f8dd9b32362e8ee99285f8950d8b54a5704de20"
+    },
+    {
+      "admission_class": "rejected",
+      "line_count": 50,
+      "packages": [
+        "cachyos-hypr-noctalia"
+      ],
+      "path": "cachyos-hypr-noctalia/PKGBUILD",
+      "pkgbuild_sha256": "a76f9d8053c35aaf4aba173960638c6dd1ca233cf405c7d586c6aa975a25db85",
+      "reason_codes": [
+        "INSTALL_HOOK"
+      ],
+      "signals": {
+        "floating_vcs": false,
+        "functions": [
+          "package"
+        ],
+        "has_sources": false,
+        "install_hook": true,
+        "missing_checksum": false,
+        "pacman_hook": false,
+        "pkgver_function": false,
+        "shell_substitution": false,
+        "split_package": false,
+        "vcs_source_count": 0
+      },
+      "srcinfo_sha256": "a355a195e75b255aa3a7c053caaaa28930d0b66b8b04c0c3ed457bca7333acf3"
+    },
+    {
+      "admission_class": "sealed-script",
+      "line_count": 58,
+      "packages": [
+        "cachyos-hyprland-settings"
+      ],
+      "path": "cachyos-hyprland-settings/PKGBUILD",
+      "pkgbuild_sha256": "efb477c4f2ba94d8681e9555ee0507ce2fe60e156ac85b437dcf90dfe3ab4bff",
+      "reason_codes": [],
+      "signals": {
+        "floating_vcs": false,
+        "functions": [
+          "package"
+        ],
+        "has_sources": false,
+        "install_hook": false,
+        "missing_checksum": false,
+        "pacman_hook": false,
+        "pkgver_function": false,
+        "shell_substitution": false,
+        "split_package": false,
+        "vcs_source_count": 0
+      },
+      "srcinfo_sha256": "119e6949dc988e0dedda1a60e07e93b4ff6226c0d2f75d41c8c48ceedd50a314"
+    },
+    {
+      "admission_class": "rejected",
+      "line_count": 40,
+      "packages": [
+        "cachyos-i3wm-settings"
+      ],
+      "path": "cachyos-i3wm-settings/PKGBUILD",
+      "pkgbuild_sha256": "dc2054382d8c7c127d2ce33c61c059ab3c4b88c3e01dabfcf6d29228a17ec717",
+      "reason_codes": [
+        "INSTALL_HOOK"
+      ],
+      "signals": {
+        "floating_vcs": false,
+        "functions": [
+          "package"
+        ],
+        "has_sources": false,
+        "install_hook": true,
+        "missing_checksum": false,
+        "pacman_hook": false,
+        "pkgver_function": false,
+        "shell_substitution": false,
+        "split_package": false,
+        "vcs_source_count": 0
+      },
+      "srcinfo_sha256": "da292e1fe9225f1d79d74a9fb3ac183a452b1d080c10a7a57a8b0587083f6974"
+    },
+    {
+      "admission_class": "rejected",
+      "line_count": 36,
+      "packages": [
+        "cachyos-jay-noctalia"
+      ],
+      "path": "cachyos-jay-noctalia/PKGBUILD",
+      "pkgbuild_sha256": "74bcbd09237403661ef6a6fbf6ebc3b32b16026c7dea67b86abd8865f5e285e1",
+      "reason_codes": [
+        "FLOATING_VCS"
+      ],
+      "signals": {
+        "floating_vcs": true,
+        "functions": [
+          "package"
+        ],
+        "has_sources": true,
+        "install_hook": false,
+        "missing_checksum": false,
+        "pacman_hook": false,
+        "pkgver_function": false,
+        "shell_substitution": false,
+        "split_package": false,
+        "vcs_source_count": 1
+      },
+      "srcinfo_sha256": "b7ef43ecf81645c2eb9d99d4672d4b9ebf296ba7c3c2c0c4f85a1f9fe6b0e3cb"
+    },
+    {
+      "admission_class": "rejected",
+      "line_count": 29,
+      "packages": [
+        "cachyos-kde-settings"
+      ],
+      "path": "cachyos-kde-settings/PKGBUILD",
+      "pkgbuild_sha256": "44a95e50a163fdc02f4b718b91b31a5edc1226ae970fa3ec0be1c1d7c0788e75",
+      "reason_codes": [
+        "INSTALL_HOOK"
+      ],
+      "signals": {
+        "floating_vcs": false,
+        "functions": [
+          "package"
+        ],
+        "has_sources": false,
+        "install_hook": true,
+        "missing_checksum": false,
+        "pacman_hook": false,
+        "pkgver_function": false,
+        "shell_substitution": false,
+        "split_package": false,
+        "vcs_source_count": 0
+      },
+      "srcinfo_sha256": "d1dbc21f035ce451b3649fac70a6bde47ffcd7acfb5e1a3895285b4bbfc430ec"
+    },
+    {
+      "admission_class": "rejected",
+      "line_count": 29,
+      "packages": [
+        "cachyos-kdump-tools"
+      ],
+      "path": "cachyos-kdump-tools/PKGBUILD",
+      "pkgbuild_sha256": "9a0b6eae82f84a575c24419d1441a85ea9d0175249c2635ea46b3f8b1898922a",
+      "reason_codes": [
+        "INSTALL_HOOK"
+      ],
+      "signals": {
+        "floating_vcs": false,
+        "functions": [
+          "package"
+        ],
+        "has_sources": false,
+        "install_hook": true,
+        "missing_checksum": false,
+        "pacman_hook": false,
+        "pkgver_function": false,
+        "shell_substitution": false,
+        "split_package": false,
+        "vcs_source_count": 0
+      },
+      "srcinfo_sha256": "15eac21a9722faace2695eee6a71d13d82435d7d7b8e6a0c6fdbdbaa1264a2e6"
+    },
+    {
+      "admission_class": "sealed-script",
+      "line_count": 68,
+      "packages": [
+        "cachyos-kernel-manager-git"
+      ],
+      "path": "cachyos-kernel-manager-git/PKGBUILD",
+      "pkgbuild_sha256": "4edb7a283b29ca75e033aa160b07fa732a7ca4fec3b6e0386899db1a4b748a0e",
+      "reason_codes": [
+        "DYNAMIC_PKGVER"
+      ],
+      "signals": {
+        "floating_vcs": false,
+        "functions": [
+          "build",
+          "package",
+          "pkgver",
+          "prepare"
+        ],
+        "has_sources": false,
+        "install_hook": false,
+        "missing_checksum": false,
+        "pacman_hook": false,
+        "pkgver_function": true,
+        "shell_substitution": false,
+        "split_package": false,
+        "vcs_source_count": 0
+      },
+      "srcinfo_sha256": "82d40d9c03d42c058e92ad26fea79ea8b5ea3d2e4c80d88ea25f0771e873e829"
+    },
+    {
+      "admission_class": "sealed-script",
+      "line_count": 63,
+      "packages": [
+        "cachyos-kernel-manager"
+      ],
+      "path": "cachyos-kernel-manager/PKGBUILD",
+      "pkgbuild_sha256": "8b050515a9b6f253cee4c8e35a4e7001f616c96e1179a29fc2c3b475fb89c265",
+      "reason_codes": [],
+      "signals": {
+        "floating_vcs": false,
+        "functions": [
+          "build",
+          "package",
+          "prepare"
+        ],
+        "has_sources": false,
+        "install_hook": false,
+        "missing_checksum": false,
+        "pacman_hook": false,
+        "pkgver_function": false,
+        "shell_substitution": false,
+        "split_package": false,
+        "vcs_source_count": 0
+      },
+      "srcinfo_sha256": "4e4c6ff9332d7275c987d5c39cc1d92f65f0199e0927ec88f5947e7d5db1d3f7"
+    },
+    {
+      "admission_class": "rejected",
+      "line_count": 24,
+      "packages": [
+        "cachyos-keyring"
+      ],
+      "path": "cachyos-keyring/PKGBUILD",
+      "pkgbuild_sha256": "0d3c2ecf1ec8179f79ed585ed220b1ed98007fd75f7648e3f6f9d836229593e9",
+      "reason_codes": [
+        "INSTALL_HOOK"
+      ],
+      "signals": {
+        "floating_vcs": false,
+        "functions": [
+          "package"
+        ],
+        "has_sources": false,
+        "install_hook": true,
+        "missing_checksum": false,
+        "pacman_hook": false,
+        "pkgver_function": false,
+        "shell_substitution": false,
+        "split_package": false,
+        "vcs_source_count": 0
+      },
+      "srcinfo_sha256": "fecbe51faf133dd0e8f14a717d8619543931ae753f65e294d198a86b68668b68"
+    },
+    {
+      "admission_class": "sealed-script",
+      "line_count": 43,
+      "packages": [
+        "cachyos-ksm-settings"
+      ],
+      "path": "cachyos-ksm-settings/PKGBUILD",
+      "pkgbuild_sha256": "91ab898f252aedb3d76d065a1480835158d6916d6285b0217a07a79b463414be",
+      "reason_codes": [],
+      "signals": {
+        "floating_vcs": false,
+        "functions": [
+          "package"
+        ],
+        "has_sources": true,
+        "install_hook": false,
+        "missing_checksum": false,
+        "pacman_hook": false,
+        "pkgver_function": false,
+        "shell_substitution": false,
+        "split_package": false,
+        "vcs_source_count": 0
+      },
+      "srcinfo_sha256": "17e29808900df8099a161299bd0e500462c92a769ff7134a1b652770e1931cc8"
+    },
+    {
+      "admission_class": "rejected",
+      "line_count": 37,
+      "packages": [
+        "cachyos-mango-noctalia"
+      ],
+      "path": "cachyos-mango-noctalia/PKGBUILD",
+      "pkgbuild_sha256": "b3a77aaa1b3421bea4d7669d204d64003d6d03f2125892c7995ed170e2e142af",
+      "reason_codes": [
+        "FLOATING_VCS"
+      ],
+      "signals": {
+        "floating_vcs": true,
+        "functions": [
+          "package"
+        ],
+        "has_sources": true,
+        "install_hook": false,
+        "missing_checksum": false,
+        "pacman_hook": false,
+        "pkgver_function": false,
+        "shell_substitution": false,
+        "split_package": false,
+        "vcs_source_count": 1
+      },
+      "srcinfo_sha256": "0fc063af7afb6dbc19131593cc20c8e285307dd217d3493830d5c4012db1c211"
+    },
+    {
+      "admission_class": "sealed-script",
+      "line_count": 49,
+      "packages": [
+        "cachyos-mangowc-dms"
+      ],
+      "path": "cachyos-mangowc-dms/PKGBUILD",
+      "pkgbuild_sha256": "18a7a605bd3dbc6454dbaa77ccc657663bf7a9bb3a7ae6c590295aa3e1db5360",
+      "reason_codes": [],
+      "signals": {
+        "floating_vcs": false,
+        "functions": [
+          "package",
+          "prepare"
+        ],
+        "has_sources": false,
+        "install_hook": false,
+        "missing_checksum": false,
+        "pacman_hook": false,
+        "pkgver_function": false,
+        "shell_substitution": false,
+        "split_package": false,
+        "vcs_source_count": 0
+      },
+      "srcinfo_sha256": "55e88bee2f9ed574cd7f1edb380ad5cbdcabbccfa0c0352b89494c2e15655e1a"
+    },
+    {
+      "admission_class": "sealed-script",
+      "line_count": 18,
+      "packages": [
+        "cachyos-micro-settings"
+      ],
+      "path": "cachyos-micro-settings/PKGBUILD",
+      "pkgbuild_sha256": "44955ca22c5023da709452443b638fc75effb8021ce87287f8c8388630e727d6",
+      "reason_codes": [],
+      "signals": {
+        "floating_vcs": false,
+        "functions": [
+          "package"
+        ],
+        "has_sources": false,
+        "install_hook": false,
+        "missing_checksum": false,
+        "pacman_hook": false,
+        "pkgver_function": false,
+        "shell_substitution": false,
+        "split_package": false,
+        "vcs_source_count": 0
+      },
+      "srcinfo_sha256": "29e047dd427af5c404892b0f6b6037aadbe5cfdd3d2420d9729b0655a82b248b"
+    },
+    {
+      "admission_class": "sealed-script",
+      "line_count": 31,
+      "packages": [
+        "cachyos-mirrorlist",
+        "cachyos-v3-mirrorlist",
+        "cachyos-v4-mirrorlist"
+      ],
+      "path": "cachyos-mirrorlist/PKGBUILD",
+      "pkgbuild_sha256": "b53f9f54cc223ecfd176c26ed21084b978507b597962f44cc5500e5c98afaee2",
+      "reason_codes": [
+        "SPLIT_PACKAGE"
+      ],
+      "signals": {
+        "floating_vcs": false,
+        "functions": [],
+        "has_sources": true,
+        "install_hook": false,
+        "missing_checksum": false,
+        "pacman_hook": false,
+        "pkgver_function": false,
+        "shell_substitution": false,
+        "split_package": true,
+        "vcs_source_count": 0
+      },
+      "srcinfo_sha256": "74783304df9cc3fcc87d7c8b2825467d7380a00f3502c46a885a3b94cd447573"
+    },
+    {
+      "admission_class": "sealed-script",
+      "line_count": 33,
+      "packages": [
+        "cachyos-niri-noctalia"
+      ],
+      "path": "cachyos-niri-noctalia/PKGBUILD",
+      "pkgbuild_sha256": "086fe5b1ae0b83afd12b38a134d2868f8904c47e018ec484f4ce0d11ccafb2ae",
+      "reason_codes": [],
+      "signals": {
+        "floating_vcs": false,
+        "functions": [
+          "package"
+        ],
+        "has_sources": false,
+        "install_hook": false,
+        "missing_checksum": false,
+        "pacman_hook": false,
+        "pkgver_function": false,
+        "shell_substitution": false,
+        "split_package": false,
+        "vcs_source_count": 0
+      },
+      "srcinfo_sha256": "399322c9219745c733b77490fe892c14037e8a9d3b12f839b39ad8b10f499a7e"
+    },
+    {
+      "admission_class": "sealed-script",
+      "line_count": 57,
+      "packages": [
+        "cachyos-niri-settings"
+      ],
+      "path": "cachyos-niri-settings/PKGBUILD",
+      "pkgbuild_sha256": "77e1809eff86493165cdfad921649823d6b2eb992d4dfe09de0239895e36cb6a",
+      "reason_codes": [],
+      "signals": {
+        "floating_vcs": false,
+        "functions": [
+          "package"
+        ],
+        "has_sources": false,
+        "install_hook": false,
+        "missing_checksum": false,
+        "pacman_hook": false,
+        "pkgver_function": false,
+        "shell_substitution": false,
+        "split_package": false,
+        "vcs_source_count": 0
+      },
+      "srcinfo_sha256": "98dc65e1e5ef34dd7bb09c4a071d1213037fda6d9c5d9e99f6e26276f65d2fcb"
+    },
+    {
+      "admission_class": "sealed-script",
+      "line_count": 25,
+      "packages": [
+        "cachyos-nord-gtk-theme-git"
+      ],
+      "path": "cachyos-nord-gtk/PKGBUILD",
+      "pkgbuild_sha256": "d43841e5275c9fc8ef409c12331d8a552015f94c285b4f561a689854e7b96580",
+      "reason_codes": [
+        "DYNAMIC_PKGVER",
+        "SHELL_SUBSTITUTION"
+      ],
+      "signals": {
+        "floating_vcs": false,
+        "functions": [
+          "package",
+          "pkgver"
+        ],
+        "has_sources": false,
+        "install_hook": false,
+        "missing_checksum": false,
+        "pacman_hook": false,
+        "pkgver_function": true,
+        "shell_substitution": true,
+        "split_package": false,
+        "vcs_source_count": 0
+      },
+      "srcinfo_sha256": "1fcaa364c5d5bfbc81dfe75355dde0074c363d467474f54b885749db4084b6a1"
+    },
+    {
+      "admission_class": "sealed-script",
+      "line_count": 57,
+      "packages": [
+        "cachyos-nord-kde-theme-git"
+      ],
+      "path": "cachyos-nord-kde/PKGBUILD",
+      "pkgbuild_sha256": "4eda6cbaa3eabc67814f95fc393aae92eecd70b13c4f3d753c4d00de0086fd26",
+      "reason_codes": [
+        "DYNAMIC_PKGVER",
+        "SHELL_SUBSTITUTION"
+      ],
+      "signals": {
+        "floating_vcs": false,
+        "functions": [
+          "package",
+          "pkgver"
+        ],
+        "has_sources": false,
+        "install_hook": false,
+        "missing_checksum": false,
+        "pacman_hook": false,
+        "pkgver_function": true,
+        "shell_substitution": true,
+        "split_package": false,
+        "vcs_source_count": 0
+      },
+      "srcinfo_sha256": "9ed69a8c38654845fb0d5ff4ac570a91a2022a4fe0a8316bea6d41f879257cfd"
+    },
+    {
+      "admission_class": "rejected",
+      "line_count": 39,
+      "packages": [
+        "cachyos-openbox-settings"
+      ],
+      "path": "cachyos-openbox-settings/PKGBUILD",
+      "pkgbuild_sha256": "aba9537b9693913e8f2d23f5a7598a9c640d9df424060c96e16726f4681a348d",
+      "reason_codes": [
+        "INSTALL_HOOK"
+      ],
+      "signals": {
+        "floating_vcs": false,
+        "functions": [
+          "package"
+        ],
+        "has_sources": false,
+        "install_hook": true,
+        "missing_checksum": false,
+        "pacman_hook": false,
+        "pkgver_function": false,
+        "shell_substitution": false,
+        "split_package": false,
+        "vcs_source_count": 0
+      },
+      "srcinfo_sha256": "c71a9f854386bbef549fa66fe672db08502f3830b499161cc30acaeec3065764"
+    },
+    {
+      "admission_class": "sealed-script",
+      "line_count": 54,
+      "packages": [
+        "cachyos-packageinstaller"
+      ],
+      "path": "cachyos-packageinstaller/PKGBUILD",
+      "pkgbuild_sha256": "5647eb651080cfc8f3ea87a99dd7f29da4ea36b469a4d10fd399db2025c47424",
+      "reason_codes": [],
+      "signals": {
+        "floating_vcs": false,
+        "functions": [
+          "build",
+          "package"
+        ],
+        "has_sources": false,
+        "install_hook": false,
+        "missing_checksum": false,
+        "pacman_hook": false,
+        "pkgver_function": false,
+        "shell_substitution": false,
+        "split_package": false,
+        "vcs_source_count": 0
+      },
+      "srcinfo_sha256": "5328b7ad795453f1cfca6b397dd97d596fd93e9c872aff614411f7220c00b8ad"
+    },
+    {
+      "admission_class": "rejected",
+      "line_count": 23,
+      "packages": [
+        "cachyos-plymouth-bootanimation"
+      ],
+      "path": "cachyos-plymouth-bootanimation/PKGBUILD",
+      "pkgbuild_sha256": "1418750409bf854d3364d18ee0c78e7712d732cf02352520082c1f6707807ba3",
+      "reason_codes": [
+        "FLOATING_VCS",
+        "MISSING_CHECKSUM"
+      ],
+      "signals": {
+        "floating_vcs": true,
+        "functions": [
+          "package"
+        ],
+        "has_sources": true,
+        "install_hook": false,
+        "missing_checksum": true,
+        "pacman_hook": false,
+        "pkgver_function": false,
+        "shell_substitution": false,
+        "split_package": false,
+        "vcs_source_count": 1
+      },
+      "srcinfo_sha256": "fbba4f3428876be9712a6693503003c47e8398664e076c0f4aa32d0b8a60382d"
+    },
+    {
+      "admission_class": "sealed-script",
+      "line_count": 36,
+      "packages": [
+        "cachyos-plymouth-spinner"
+      ],
+      "path": "cachyos-plymouth-spinner/PKGBUILD",
+      "pkgbuild_sha256": "f32b2ebdb0dd8084530abe6dae65d2466472cdd2cfae64861bfc292768e95514",
+      "reason_codes": [],
+      "signals": {
+        "floating_vcs": false,
+        "functions": [
+          "package",
+          "prepare"
+        ],
+        "has_sources": false,
+        "install_hook": false,
+        "missing_checksum": false,
+        "pacman_hook": false,
+        "pkgver_function": false,
+        "shell_substitution": false,
+        "split_package": false,
+        "vcs_source_count": 0
+      },
+      "srcinfo_sha256": "890f1ce5f4f42175f22925af32bcece7a2b2bfe43f87994a16929c784856cb52"
+    },
+    {
+      "admission_class": "sealed-script",
+      "line_count": 21,
+      "packages": [
+        "cachyos-plymouth-theme"
+      ],
+      "path": "cachyos-plymouth-theme/PKGBUILD",
+      "pkgbuild_sha256": "b5846e1271cec9082722e7f4adad38bd138fa1fccbb5d33fc454b5962e0fe3fa",
+      "reason_codes": [],
+      "signals": {
+        "floating_vcs": false,
+        "functions": [
+          "package"
+        ],
+        "has_sources": false,
+        "install_hook": false,
+        "missing_checksum": false,
+        "pacman_hook": false,
+        "pkgver_function": false,
+        "shell_substitution": false,
+        "split_package": false,
+        "vcs_source_count": 0
+      },
+      "srcinfo_sha256": "d67fbd515451bd54a824715413a1337f705400ec290e353ba732ce594a24cec3"
+    },
+    {
+      "admission_class": "rejected",
+      "line_count": 55,
+      "packages": [
+        "cachyos-qtile-settings"
+      ],
+      "path": "cachyos-qtile-settings/PKGBUILD",
+      "pkgbuild_sha256": "a920cf0f3a3e59cf740d88adc9ad849728dd7a0e96106af26fbe9a32e2743df3",
+      "reason_codes": [
+        "INSTALL_HOOK"
+      ],
+      "signals": {
+        "floating_vcs": false,
+        "functions": [
+          "package"
+        ],
+        "has_sources": false,
+        "install_hook": true,
+        "missing_checksum": false,
+        "pacman_hook": false,
+        "pkgver_function": false,
+        "shell_substitution": false,
+        "split_package": false,
+        "vcs_source_count": 0
+      },
+      "srcinfo_sha256": "fcaa86cc510a7681258eaddb688899fa1f462c17c1fb2322ca3e5485d30177c7"
+    },
+    {
+      "admission_class": "rejected",
+      "line_count": 30,
+      "packages": [
+        "cachyos-rate-mirrors"
+      ],
+      "path": "cachyos-rate-mirrors/PKGBUILD",
+      "pkgbuild_sha256": "14fe770b2b85f39c4e4d0379fcf854880f0315618d480309635664048f17b17d",
+      "reason_codes": [
+        "INSTALL_HOOK",
+        "PACMAN_HOOK"
+      ],
+      "signals": {
+        "floating_vcs": false,
+        "functions": [
+          "package"
+        ],
+        "has_sources": true,
+        "install_hook": true,
+        "missing_checksum": false,
+        "pacman_hook": true,
+        "pkgver_function": false,
+        "shell_substitution": false,
+        "split_package": false,
+        "vcs_source_count": 0
+      },
+      "srcinfo_sha256": "8c4b9c4505f01598c80a0722ee2019065e95cf8cc84d10a2411c0f923b889772"
+    },
+    {
+      "admission_class": "rejected",
+      "line_count": 26,
+      "packages": [
+        "cachyos-samba-settings"
+      ],
+      "path": "cachyos-samba-settings/PKGBUILD",
+      "pkgbuild_sha256": "bc705e92447fd2a4bdcd1eb8ce9ca3204ea14d18c95591b889f50b883b039937",
+      "reason_codes": [
+        "DYNAMIC_PKGVER",
+        "INSTALL_HOOK"
+      ],
+      "signals": {
+        "floating_vcs": false,
+        "functions": [
+          "package",
+          "pkgver"
+        ],
+        "has_sources": true,
+        "install_hook": true,
+        "missing_checksum": false,
+        "pacman_hook": false,
+        "pkgver_function": true,
+        "shell_substitution": false,
+        "split_package": false,
+        "vcs_source_count": 0
+      },
+      "srcinfo_sha256": null
+    },
+    {
+      "admission_class": "rejected",
+      "line_count": 42,
+      "packages": [
+        "cachyos-settings"
+      ],
+      "path": "cachyos-settings/PKGBUILD",
+      "pkgbuild_sha256": "1811e1fa8a531d78bb982a094e34dffb129d95414b86b4b622d36d94474dbced",
+      "reason_codes": [
+        "INSTALL_HOOK"
+      ],
+      "signals": {
+        "floating_vcs": false,
+        "functions": [
+          "package",
+          "prepare"
+        ],
+        "has_sources": false,
+        "install_hook": true,
+        "missing_checksum": false,
+        "pacman_hook": false,
+        "pkgver_function": false,
+        "shell_substitution": false,
+        "split_package": false,
+        "vcs_source_count": 0
+      },
+      "srcinfo_sha256": "e1a17a2ce51fef6841935e558ecedbc50b34bf4dab47618e92beee4613d89fe4"
+    },
+    {
+      "admission_class": "rejected",
+      "line_count": 19,
+      "packages": [
+        "cachyos-snapper-support"
+      ],
+      "path": "cachyos-snapper-support/PKGBUILD",
+      "pkgbuild_sha256": "a4147a40ce6ebfce9f6984f0789d77d4421930a3f6755d9a1b6e90d007e0a02c",
+      "reason_codes": [
+        "INSTALL_HOOK"
+      ],
+      "signals": {
+        "floating_vcs": false,
+        "functions": [
+          "package"
+        ],
+        "has_sources": true,
+        "install_hook": true,
+        "missing_checksum": false,
+        "pacman_hook": false,
+        "pkgver_function": false,
+        "shell_substitution": false,
+        "split_package": false,
+        "vcs_source_count": 0
+      },
+      "srcinfo_sha256": "0ae64693e1edc978947022ce3311f28520a329da4edec445dbebfd09b940d69a"
+    },
+    {
+      "admission_class": "sealed-script",
+      "line_count": 47,
+      "packages": [
+        "cachyos-sysctl-manager-git"
+      ],
+      "path": "cachyos-sysctl-manager-git/PKGBUILD",
+      "pkgbuild_sha256": "b1baa6d2ea1f2dc59ea08d1459e7fde1b892b7b742939013f8d02d2b463a5112",
+      "reason_codes": [
+        "DYNAMIC_PKGVER",
+        "SHELL_SUBSTITUTION"
+      ],
+      "signals": {
+        "floating_vcs": false,
+        "functions": [
+          "build",
+          "package",
+          "pkgver"
+        ],
+        "has_sources": false,
+        "install_hook": false,
+        "missing_checksum": false,
+        "pacman_hook": false,
+        "pkgver_function": true,
+        "shell_substitution": true,
+        "split_package": false,
+        "vcs_source_count": 0
+      },
+      "srcinfo_sha256": "40a50d41d15430a5b0c280beef8317f9f6d396b499e2b7a8e50bdc784492b071"
+    },
+    {
+      "admission_class": "sealed-script",
+      "line_count": 35,
+      "packages": [
+        "cachyos-sysctl-manager"
+      ],
+      "path": "cachyos-sysctl-manager/PKGBUILD",
+      "pkgbuild_sha256": "c954c1fb30a1eb0ead2035f5397d36299812c7a83afc14222de7376a63ea9b99",
+      "reason_codes": [],
+      "signals": {
+        "floating_vcs": false,
+        "functions": [
+          "build",
+          "package"
+        ],
+        "has_sources": false,
+        "install_hook": false,
+        "missing_checksum": false,
+        "pacman_hook": false,
+        "pkgver_function": false,
+        "shell_substitution": false,
+        "split_package": false,
+        "vcs_source_count": 0
+      },
+      "srcinfo_sha256": "a399853282678b53a22f391dfb50fec4f9b219844ee8f9107069c5c12f591511"
+    },
+    {
+      "admission_class": "rejected",
+      "line_count": 22,
+      "packages": [
+        "cachyos-themes-sddm"
+      ],
+      "path": "cachyos-themes-sddm/PKGBUILD",
+      "pkgbuild_sha256": "7c4b1e579a4de4cd8b9a273d6900dbff92b46d912e7b65a4bb0cf20ebf61ca12",
+      "reason_codes": [
+        "INSTALL_HOOK"
+      ],
+      "signals": {
+        "floating_vcs": false,
+        "functions": [
+          "package"
+        ],
+        "has_sources": false,
+        "install_hook": true,
+        "missing_checksum": false,
+        "pacman_hook": false,
+        "pkgver_function": false,
+        "shell_substitution": false,
+        "split_package": false,
+        "vcs_source_count": 0
+      },
+      "srcinfo_sha256": "3cb5db0369a73f3e677c14ef8f2e2704c7548dfaa126bd50276dd8054ceed88b"
+    },
+    {
+      "admission_class": "sealed-script",
+      "line_count": 22,
+      "packages": [
+        "cachyos-wallpapers"
+      ],
+      "path": "cachyos-wallpapers/PKGBUILD",
+      "pkgbuild_sha256": "000663f5293c0cf185a597b2e7b788de97e6bd20321e4d677f63cd03e665eff8",
+      "reason_codes": [
+        "DYNAMIC_PKGVER",
+        "SHELL_SUBSTITUTION"
+      ],
+      "signals": {
+        "floating_vcs": false,
+        "functions": [
+          "package",
+          "pkgver"
+        ],
+        "has_sources": false,
+        "install_hook": false,
+        "missing_checksum": false,
+        "pacman_hook": false,
+        "pkgver_function": true,
+        "shell_substitution": true,
+        "split_package": false,
+        "vcs_source_count": 0
+      },
+      "srcinfo_sha256": "9c43b6bd8986e436c5f79be8d8c814a2451d06f909d3c227450f93b765f04af4"
+    },
+    {
+      "admission_class": "rejected",
+      "line_count": 39,
+      "packages": [
+        "cachyos-wayfire-settings"
+      ],
+      "path": "cachyos-wayfire-settings/PKGBUILD",
+      "pkgbuild_sha256": "4f3523038a3a0d87186a1114b85f68ecf32bcc3796d829417ca5226672c9403f",
+      "reason_codes": [
+        "INSTALL_HOOK"
+      ],
+      "signals": {
+        "floating_vcs": false,
+        "functions": [
+          "package"
+        ],
+        "has_sources": false,
+        "install_hook": true,
+        "missing_checksum": false,
+        "pacman_hook": false,
+        "pkgver_function": false,
+        "shell_substitution": false,
+        "split_package": false,
+        "vcs_source_count": 0
+      },
+      "srcinfo_sha256": "f53314e0775e8141ba3327bfeda8991b0a99de081b1d4778f83957cd092ed31c"
+    },
+    {
+      "admission_class": "rejected",
+      "line_count": 38,
+      "packages": [
+        "cachyos-xfce-settings"
+      ],
+      "path": "cachyos-xfce-settings/PKGBUILD",
+      "pkgbuild_sha256": "fd0cf80043a19de52cbebab38496de836db378c9032a7d9c5f9913cdd574b1f1",
+      "reason_codes": [
+        "INSTALL_HOOK"
+      ],
+      "signals": {
+        "floating_vcs": false,
+        "functions": [
+          "package"
+        ],
+        "has_sources": false,
+        "install_hook": true,
+        "missing_checksum": false,
+        "pacman_hook": false,
+        "pkgver_function": false,
+        "shell_substitution": false,
+        "split_package": false,
+        "vcs_source_count": 0
+      },
+      "srcinfo_sha256": "5552ab76fd4cf7b5eabce8e7a72379751754dc23d16beb9be8e01bf1b7fc3097"
+    },
+    {
+      "admission_class": "sealed-script",
+      "line_count": 36,
+      "packages": [
+        "cachyos-zsh-config"
+      ],
+      "path": "cachyos-zsh-config/PKGBUILD",
+      "pkgbuild_sha256": "efe905376be14054231cc4d05c87deef51cd94451a37af1e25db8c4812c4fb1a",
+      "reason_codes": [],
+      "signals": {
+        "floating_vcs": false,
+        "functions": [
+          "package"
+        ],
+        "has_sources": false,
+        "install_hook": false,
+        "missing_checksum": false,
+        "pacman_hook": false,
+        "pkgver_function": false,
+        "shell_substitution": false,
+        "split_package": false,
+        "vcs_source_count": 0
+      },
+      "srcinfo_sha256": "7d8591f4addf73ab144d06baa5edbfe0c5a4a7977c94ad9d2491852fd4d641ea"
+    },
+    {
+      "admission_class": "rejected",
+      "line_count": 21,
+      "packages": [
+        "char-white"
+      ],
+      "path": "char-white/PKGBUILD",
+      "pkgbuild_sha256": "26fb48435ad6b5080f97a7f4ef54db9283a57361facd30d9fe15d5d8a6c5bf40",
+      "reason_codes": [
+        "DYNAMIC_PKGVER",
+        "FLOATING_VCS",
+        "MISSING_CHECKSUM",
+        "SHELL_SUBSTITUTION"
+      ],
+      "signals": {
+        "floating_vcs": true,
+        "functions": [
+          "package",
+          "pkgver"
+        ],
+        "has_sources": true,
+        "install_hook": false,
+        "missing_checksum": true,
+        "pacman_hook": false,
+        "pkgver_function": true,
+        "shell_substitution": true,
+        "split_package": false,
+        "vcs_source_count": 1
+      },
+      "srcinfo_sha256": "1e9be10daaf4b0c190b1c2cbbfe93ca4c126eedeea59f23014e22792f859a477"
+    },
+    {
+      "admission_class": "sealed-script",
+      "line_count": 75,
+      "packages": [
+        "chwd"
+      ],
+      "path": "chwd/PKGBUILD",
+      "pkgbuild_sha256": "259759dd6f0e6d5db81ca552ac8f981b014cec1e2e14605cffb145ac30c88d42",
+      "reason_codes": [],
+      "signals": {
+        "floating_vcs": false,
+        "functions": [
+          "build",
+          "package",
+          "prepare"
+        ],
+        "has_sources": false,
+        "install_hook": false,
+        "missing_checksum": false,
+        "pacman_hook": false,
+        "pkgver_function": false,
+        "shell_substitution": false,
+        "split_package": false,
+        "vcs_source_count": 0
+      },
+      "srcinfo_sha256": "337d37bd978b0bd957f3743a81273912711d0be72c29213212c54a2d98bcabb8"
+    },
+    {
+      "admission_class": "sealed-script",
+      "line_count": 191,
+      "packages": [
+        "clang"
+      ],
+      "path": "clang/PKGBUILD",
+      "pkgbuild_sha256": "7ecf6369901d7f6354d6209dcce5a5230fd2ce31a16111fbf7355319c920555a",
+      "reason_codes": [
+        "SHELL_SUBSTITUTION",
+        "UNPARSED_FUNCTION"
+      ],
+      "signals": {
+        "floating_vcs": false,
+        "functions": [
+          "_get_distribution_components",
+          "_python_optimize",
+          "build",
+          "check",
+          "package",
+          "prepare"
+        ],
+        "has_sources": false,
+        "install_hook": false,
+        "missing_checksum": false,
+        "pacman_hook": false,
+        "pkgver_function": false,
+        "shell_substitution": true,
+        "split_package": false,
+        "vcs_source_count": 0
+      },
+      "srcinfo_sha256": "7ad50a2d3a5ec4fd647dc768afd2cabca5281bc08cb18fe1eca5d6c5265762d2"
+    },
+    {
+      "admission_class": "rejected",
+      "line_count": 234,
+      "packages": [
+        "davinci-resolve"
+      ],
+      "path": "davinci-resolve/PKGBUILD",
+      "pkgbuild_sha256": "0ebb3cc9fda2ef54e19720ebfa4204ee18fb2b5ad7e272d7c2731d1c0e204296",
+      "reason_codes": [
+        "INSTALL_HOOK",
+        "SHELL_SUBSTITUTION"
+      ],
+      "signals": {
+        "floating_vcs": false,
+        "functions": [
+          "package",
+          "prepare"
+        ],
+        "has_sources": false,
+        "install_hook": true,
+        "missing_checksum": false,
+        "pacman_hook": false,
+        "pkgver_function": false,
+        "shell_substitution": true,
+        "split_package": false,
+        "vcs_source_count": 0
+      },
+      "srcinfo_sha256": "fedfb7328c6391f0019bd5f5247e394dd68ade4093e22e54a3d0bd3cee94ab32"
+    },
+    {
+      "admission_class": "sealed-script",
+      "line_count": 87,
+      "packages": [
+        "devtools"
+      ],
+      "path": "devtools/PKGBUILD",
+      "pkgbuild_sha256": "57237da6d6a948782eb29771a8837b7d30aa710b4d46a66b91735f3a240e95c4",
+      "reason_codes": [],
+      "signals": {
+        "floating_vcs": false,
+        "functions": [
+          "build",
+          "check",
+          "package",
+          "prepare"
+        ],
+        "has_sources": false,
+        "install_hook": false,
+        "missing_checksum": false,
+        "pacman_hook": false,
+        "pkgver_function": false,
+        "shell_substitution": false,
+        "split_package": false,
+        "vcs_source_count": 0
+      },
+      "srcinfo_sha256": "1d165ffe867bae117c9046cf13ebd85bba035322191dbf252d14a90c93019bce"
+    },
+    {
+      "admission_class": "rejected",
+      "line_count": 69,
+      "packages": [
+        "dkms"
+      ],
+      "path": "dkms/PKGBUILD",
+      "pkgbuild_sha256": "6c074663500b4301b8a099f40b746c7572f66536edd8315b2c92d08e515a7d6f",
+      "reason_codes": [
+        "INSTALL_HOOK",
+        "PACMAN_HOOK"
+      ],
+      "signals": {
+        "floating_vcs": false,
+        "functions": [
+          "package"
+        ],
+        "has_sources": false,
+        "install_hook": true,
+        "missing_checksum": false,
+        "pacman_hook": true,
+        "pkgver_function": false,
+        "shell_substitution": false,
+        "split_package": false,
+        "vcs_source_count": 0
+      },
+      "srcinfo_sha256": "6157fc7b83ca863da6fd6d25e47ba299f20ee4926428bab3cb443422acbe3307"
+    },
+    {
+      "admission_class": "rejected",
+      "line_count": 40,
+      "packages": [
+        "dmemcg-booster"
+      ],
+      "path": "dmemcg-cgroup/dmemcg-booster/PKGBUILD",
+      "pkgbuild_sha256": "101dbd39844f9f13d6923cd7a1743ea5e761d2b6351c33af901dd594d7d89fd4",
+      "reason_codes": [
+        "INSTALL_HOOK",
+        "SHELL_SUBSTITUTION"
+      ],
+      "signals": {
+        "floating_vcs": false,
+        "functions": [
+          "build",
+          "package",
+          "prepare"
+        ],
+        "has_sources": false,
+        "install_hook": true,
+        "missing_checksum": false,
+        "pacman_hook": false,
+        "pkgver_function": false,
+        "shell_substitution": true,
+        "split_package": false,
+        "vcs_source_count": 0
+      },
+      "srcinfo_sha256": "be8ec6fe258fd10ea805bdd33564a0bf30de1866295e04b04054cfbfe4289b2f"
+    },
+    {
+      "admission_class": "sealed-script",
+      "line_count": 57,
+      "packages": [
+        "kcgroups",
+        "plasma-foreground-booster"
+      ],
+      "path": "dmemcg-cgroup/kcgroups/PKGBUILD",
+      "pkgbuild_sha256": "83c109d04a689a837c8cdfce6de359162025565d32090ca94b48d2a77d12fc9f",
+      "reason_codes": [
+        "SPLIT_PACKAGE"
+      ],
+      "signals": {
+        "floating_vcs": false,
+        "functions": [
+          "build",
+          "package_kcgroups",
+          "prepare"
+        ],
+        "has_sources": false,
+        "install_hook": false,
+        "missing_checksum": false,
+        "pacman_hook": false,
+        "pkgver_function": false,
+        "shell_substitution": false,
+        "split_package": true,
+        "vcs_source_count": 0
+      },
+      "srcinfo_sha256": "0cad621e180ac5581b06f812e5700e0b149dd1a2a44d9055e1b61fefcfceed5a"
+    },
+    {
+      "admission_class": "sealed-script",
+      "line_count": 68,
+      "packages": [
+        "dms-shell"
+      ],
+      "path": "dms-shell/PKGBUILD",
+      "pkgbuild_sha256": "7e17119990c5b061497e863ab9cff534d593962e2f84e833460830750dd20ecb",
+      "reason_codes": [
+        "UNPARSED_FUNCTION"
+      ],
+      "signals": {
+        "floating_vcs": false,
+        "functions": [
+          "_completion",
+          "build",
+          "package"
+        ],
+        "has_sources": false,
+        "install_hook": false,
+        "missing_checksum": false,
+        "pacman_hook": false,
+        "pkgver_function": false,
+        "shell_substitution": false,
+        "split_package": false,
+        "vcs_source_count": 0
+      },
+      "srcinfo_sha256": "d363206df7569a41ab02e4371f5a837b20b3f14628185b3c1fcbbfcfb06d38fd"
+    },
+    {
+      "admission_class": "rejected",
+      "line_count": 166,
+      "packages": [
+        "dracut-cachyos"
+      ],
+      "path": "dracut-cachyos/PKGBUILD",
+      "pkgbuild_sha256": "eb7297d9e4ad25f5c9163f539d97a3f7bdbc3a763b5e9e99dfa3391ca9bc01e5",
+      "reason_codes": [
+        "PACMAN_HOOK"
+      ],
+      "signals": {
+        "floating_vcs": false,
+        "functions": [
+          "build",
+          "package",
+          "prepare"
+        ],
+        "has_sources": false,
+        "install_hook": false,
+        "missing_checksum": false,
+        "pacman_hook": true,
+        "pkgver_function": false,
+        "shell_substitution": false,
+        "split_package": false,
+        "vcs_source_count": 0
+      },
+      "srcinfo_sha256": "e5515e5bb433a0caf6df88d55a8a92db59ab70ed13cb6dfe667e9471cd9b189f"
+    },
+    {
+      "admission_class": "sealed-script",
+      "line_count": 76,
+      "packages": [
+        "geocode-glib",
+        "geocode-glib-docs"
+      ],
+      "path": "geocode-glib/PKGBUILD",
+      "pkgbuild_sha256": "62eb5579c3165a638490929666f30208eab2b4421ab9bb10dfcbceea44e821e6",
+      "reason_codes": [
+        "SPLIT_PACKAGE"
+      ],
+      "signals": {
+        "floating_vcs": false,
+        "functions": [
+          "build",
+          "check",
+          "prepare"
+        ],
+        "has_sources": false,
+        "install_hook": false,
+        "missing_checksum": false,
+        "pacman_hook": false,
+        "pkgver_function": false,
+        "shell_substitution": false,
+        "split_package": true,
+        "vcs_source_count": 0
+      },
+      "srcinfo_sha256": "942f5e5dbb17101b29399aa2852d26cbbabf65a5a6410075deddf789cf6e97e5"
+    },
+    {
+      "admission_class": "sealed-script",
+      "line_count": 120,
+      "packages": [
+        "go"
+      ],
+      "path": "go/PKGBUILD",
+      "pkgbuild_sha256": "6e6724c838fea2eba32ebab0fb304ad621c166cef6a33eaae99b78be7b4ed6cf",
+      "reason_codes": [
+        "SHELL_SUBSTITUTION"
+      ],
+      "signals": {
+        "floating_vcs": false,
+        "functions": [
+          "build",
+          "check",
+          "package",
+          "prepare"
+        ],
+        "has_sources": false,
+        "install_hook": false,
+        "missing_checksum": false,
+        "pacman_hook": false,
+        "pkgver_function": false,
+        "shell_substitution": true,
+        "split_package": false,
+        "vcs_source_count": 0
+      },
+      "srcinfo_sha256": "6866d5390c855da9079aa1046b6363671d5b2b3edfe5f6fed7f1eba8e375a011"
+    },
+    {
+      "admission_class": "rejected",
+      "line_count": 24,
+      "packages": [
+        "grub-btrfs-support"
+      ],
+      "path": "grub-btrfs-support/PKGBUILD",
+      "pkgbuild_sha256": "1a896a2635e249daeae64a2da94573c699d484b21fc0c430e76e6b2ce03dd22d",
+      "reason_codes": [
+        "INSTALL_HOOK"
+      ],
+      "signals": {
+        "floating_vcs": false,
+        "functions": [
+          "package"
+        ],
+        "has_sources": true,
+        "install_hook": true,
+        "missing_checksum": false,
+        "pacman_hook": false,
+        "pkgver_function": false,
+        "shell_substitution": false,
+        "split_package": false,
+        "vcs_source_count": 0
+      },
+      "srcinfo_sha256": "e11af8b500f8d8ee349bec833fdcbdcc99597afe2d91b926457fdb826dc96926"
+    },
+    {
+      "admission_class": "rejected",
+      "line_count": 44,
+      "packages": [
+        "cachyos-handheld"
+      ],
+      "path": "handheld/cachyos-handheld/PKGBUILD",
+      "pkgbuild_sha256": "698e1672979a90a9f2fddfcd1e95fb5faf2bbf7e58256fcbc735f0b416f21354",
+      "reason_codes": [
+        "INSTALL_HOOK"
+      ],
+      "signals": {
+        "floating_vcs": false,
+        "functions": [
+          "package"
+        ],
+        "has_sources": false,
+        "install_hook": true,
+        "missing_checksum": false,
+        "pacman_hook": false,
+        "pkgver_function": false,
+        "shell_substitution": false,
+        "split_package": false,
+        "vcs_source_count": 0
+      },
+      "srcinfo_sha256": "727f30554667ea676f1803ecc9bdb20ee71f8367b5a132f77df7498699d67cd0"
+    },
+    {
+      "admission_class": "rejected",
+      "line_count": 17,
+      "packages": [
+        "cachyos-vapor"
+      ],
+      "path": "handheld/cachyos-vapor/PKGBUILD",
+      "pkgbuild_sha256": "36883f9caedb73073475e53a95b7528b73b3b38d5b0450eba50e465f26f98b0a",
+      "reason_codes": [
+        "FLOATING_VCS",
+        "MISSING_CHECKSUM"
+      ],
+      "signals": {
+        "floating_vcs": true,
+        "functions": [
+          "package"
+        ],
+        "has_sources": true,
+        "install_hook": false,
+        "missing_checksum": true,
+        "pacman_hook": false,
+        "pkgver_function": false,
+        "shell_substitution": false,
+        "split_package": false,
+        "vcs_source_count": 1
+      },
+      "srcinfo_sha256": "318266a8f386f5f3694bf67af9b24c0712131971eb2280401932dfe82dd2e1d5"
+    },
+    {
+      "admission_class": "sealed-script",
+      "line_count": 31,
+      "packages": [
+        "galileo-mura"
+      ],
+      "path": "handheld/galileo-mura/PKGBUILD",
+      "pkgbuild_sha256": "f1bc112e057a49b3f71e0883a51d01f61353d1ccc6a804682fa66be4a977ebee",
+      "reason_codes": [],
+      "signals": {
+        "floating_vcs": false,
+        "functions": [
+          "build",
+          "package"
+        ],
+        "has_sources": false,
+        "install_hook": false,
+        "missing_checksum": false,
+        "pacman_hook": false,
+        "pkgver_function": false,
+        "shell_substitution": false,
+        "split_package": false,
+        "vcs_source_count": 0
+      },
+      "srcinfo_sha256": "6102ee2b6cb7eb8f259b37cbc028b9257f8f5272082437b0fdb72127fe6d895e"
+    },
+    {
+      "admission_class": "sealed-script",
+      "line_count": 40,
+      "packages": [
+        "gamescope-session-cachyos"
+      ],
+      "path": "handheld/gamescope-session-cachyos/PKGBUILD",
+      "pkgbuild_sha256": "efa6cfd89b37763ffd4c51688a2996b90d78d233095eb4ad67f2dc5d1cf18821",
+      "reason_codes": [],
+      "signals": {
+        "floating_vcs": false,
+        "functions": [
+          "package",
+          "prepare"
+        ],
+        "has_sources": false,
+        "install_hook": false,
+        "missing_checksum": false,
+        "pacman_hook": false,
+        "pkgver_function": false,
+        "shell_substitution": false,
+        "split_package": false,
+        "vcs_source_count": 0
+      },
+      "srcinfo_sha256": "5eaec5acbdb7e9fb526807c15257f858c8f270dc2484dfe5af44e72978d7f93c"
+    },
+    {
+      "admission_class": "rejected",
+      "line_count": 110,
+      "packages": [
+        "gamescope"
+      ],
+      "path": "handheld/gamescope/PKGBUILD",
+      "pkgbuild_sha256": "7c8e80d6f0bfed69bcebbaa14fc6232082803f2dfed3b6d7630f8f2052efa212",
+      "reason_codes": [
+        "FLOATING_VCS",
+        "MISSING_CHECKSUM"
+      ],
+      "signals": {
+        "floating_vcs": true,
+        "functions": [
+          "build",
+          "package",
+          "prepare"
+        ],
+        "has_sources": true,
+        "install_hook": false,
+        "missing_checksum": true,
+        "pacman_hook": false,
+        "pkgver_function": false,
+        "shell_substitution": false,
+        "split_package": false,
+        "vcs_source_count": 8
+      },
+      "srcinfo_sha256": "e3b31f1daac448e234cc6c73cb89de3149b1bd03bc85b99d10addbba8569a4d9"
+    },
+    {
+      "admission_class": "sealed-script",
+      "line_count": 27,
+      "packages": [
+        "jupiter-fan-control"
+      ],
+      "path": "handheld/jupiter-fan-control/PKGBUILD",
+      "pkgbuild_sha256": "96351b013ea7e2bd427a36a5feb4aae4d25768c8ce171dd8f4052dd0a2e0c416",
+      "reason_codes": [],
+      "signals": {
+        "floating_vcs": false,
+        "functions": [
+          "package",
+          "prepare"
+        ],
+        "has_sources": false,
+        "install_hook": false,
+        "missing_checksum": false,
+        "pacman_hook": false,
+        "pkgver_function": false,
+        "shell_substitution": false,
+        "split_package": false,
+        "vcs_source_count": 0
+      },
+      "srcinfo_sha256": "2f2f75153b713c2086e48c3af0ffe708dd63919de1472a497c84232db3d2a548"
+    },
+    {
+      "admission_class": "sealed-script",
+      "line_count": 61,
+      "packages": [
+        "jupiter-hw-support"
+      ],
+      "path": "handheld/jupiter-hw-support/PKGBUILD",
+      "pkgbuild_sha256": "2bb741f05e95ab1b6442647e8b6eaf6e6d0d0b0a376dd21a69494bf54c3a4c3e",
+      "reason_codes": [],
+      "signals": {
+        "floating_vcs": false,
+        "functions": [
+          "package",
+          "prepare"
+        ],
+        "has_sources": false,
+        "install_hook": false,
+        "missing_checksum": false,
+        "pacman_hook": false,
+        "pkgver_function": false,
+        "shell_substitution": false,
+        "split_package": false,
+        "vcs_source_count": 0
+      },
+      "srcinfo_sha256": "ebe24cf5e276a0a46646ae1abc6bb4afe0ed287377d98bacb2018a667e29324f"
+    },
+    {
+      "admission_class": "sealed-script",
+      "line_count": 58,
+      "packages": [
+        "lib32-gamescope"
+      ],
+      "path": "handheld/lib32-gamescope/PKGBUILD",
+      "pkgbuild_sha256": "caf6420f096dd23bbf087cb6142872de5e7aab8b650b6261517696739ded1e4a",
+      "reason_codes": [],
+      "signals": {
+        "floating_vcs": false,
+        "functions": [
+          "build",
+          "package",
+          "prepare"
+        ],
+        "has_sources": false,
+        "install_hook": false,
+        "missing_checksum": false,
+        "pacman_hook": false,
+        "pkgver_function": false,
+        "shell_substitution": false,
+        "split_package": false,
+        "vcs_source_count": 0
+      },
+      "srcinfo_sha256": "3743f6c46d0197515e41ee8436cdd3f99bc3d2e473e376989cddc2822d7d0696"
+    },
+    {
+      "admission_class": "sealed-script",
+      "line_count": 132,
+      "packages": [
+        "steam-jupiter-stable"
+      ],
+      "path": "handheld/steam-jupiter-stable/PKGBUILD",
+      "pkgbuild_sha256": "07e7c0a72a86bad080130d94d3d5b6bdce7978a4a02d90231cd5151eb3441f57",
+      "reason_codes": [],
+      "signals": {
+        "floating_vcs": false,
+        "functions": [
+          "package"
+        ],
+        "has_sources": false,
+        "install_hook": false,
+        "missing_checksum": false,
+        "pacman_hook": false,
+        "pkgver_function": false,
+        "shell_substitution": false,
+        "split_package": false,
+        "vcs_source_count": 0
+      },
+      "srcinfo_sha256": null
+    },
+    {
+      "admission_class": "sealed-script",
+      "line_count": 23,
+      "packages": [
+        "steamdeck-dsp"
+      ],
+      "path": "handheld/steamdeck-dsp/PKGBUILD",
+      "pkgbuild_sha256": "f2f4a7a7708474a48030014d947c995177ac448da68bf40cbfde745aadf51757",
+      "reason_codes": [],
+      "signals": {
+        "floating_vcs": false,
+        "functions": [
+          "build",
+          "package"
+        ],
+        "has_sources": false,
+        "install_hook": false,
+        "missing_checksum": false,
+        "pacman_hook": false,
+        "pkgver_function": false,
+        "shell_substitution": false,
+        "split_package": false,
+        "vcs_source_count": 0
+      },
+      "srcinfo_sha256": "8931a718d1fa54c5e8150762ad35f6be1d0ee568a62487faeefa1790ca317081"
+    },
+    {
+      "admission_class": "rejected",
+      "line_count": 50,
+      "packages": [
+        "steamos-manager"
+      ],
+      "path": "handheld/steamos-manager/PKGBUILD",
+      "pkgbuild_sha256": "2d2292c763be8102242711a438786408f394a52e98f84480122680f6e20d31ea",
+      "reason_codes": [
+        "INSTALL_HOOK"
+      ],
+      "signals": {
+        "floating_vcs": false,
+        "functions": [
+          "build",
+          "package",
+          "prepare"
+        ],
+        "has_sources": false,
+        "install_hook": true,
+        "missing_checksum": false,
+        "pacman_hook": false,
+        "pkgver_function": false,
+        "shell_substitution": false,
+        "split_package": false,
+        "vcs_source_count": 0
+      },
+      "srcinfo_sha256": "96cda6fa26e17d440925118b1835fb2a994d10f24a0c5b2198af530517c1984a"
+    },
+    {
+      "admission_class": "sealed-script",
+      "line_count": 34,
+      "packages": [
+        "steamos-networking-tools"
+      ],
+      "path": "handheld/steamos-networking-tools/PKGBUILD",
+      "pkgbuild_sha256": "c61bf8c6e257ef4cec770b70601110c781859bfdc8544236f71ebcb65a2b6035",
+      "reason_codes": [],
+      "signals": {
+        "floating_vcs": false,
+        "functions": [
+          "package"
+        ],
+        "has_sources": true,
+        "install_hook": false,
+        "missing_checksum": false,
+        "pacman_hook": false,
+        "pkgver_function": false,
+        "shell_substitution": false,
+        "split_package": false,
+        "vcs_source_count": 0
+      },
+      "srcinfo_sha256": "7a3ec54ba86ac3b3a766d568d786a263208a8da194b8a9d217e61e61998f172c"
+    },
+    {
+      "admission_class": "sealed-script",
+      "line_count": 25,
+      "packages": [
+        "steamos-powerbuttond"
+      ],
+      "path": "handheld/steamos-powerbuttond/PKGBUILD",
+      "pkgbuild_sha256": "11292bb27139d6ba86467d714375a18262929a84f972293dd789bcb493061a8e",
+      "reason_codes": [],
+      "signals": {
+        "floating_vcs": false,
+        "functions": [
+          "build",
+          "package"
+        ],
+        "has_sources": false,
+        "install_hook": false,
+        "missing_checksum": false,
+        "pacman_hook": false,
+        "pkgver_function": false,
+        "shell_substitution": false,
+        "split_package": false,
+        "vcs_source_count": 0
+      },
+      "srcinfo_sha256": "7a57327e536fdc7a33e056b956f56a1337c8127f9ca29d6ec4ad7bdd3066f9b4"
+    },
+    {
+      "admission_class": "sealed-script",
+      "line_count": 44,
+      "packages": [
+        "intel-lpmd"
+      ],
+      "path": "intel-lpmd/PKGBUILD",
+      "pkgbuild_sha256": "0335c969ca0dd02ba09ade017fb16adf65d8db593df0f5117d5582f7f56c76f1",
+      "reason_codes": [],
+      "signals": {
+        "floating_vcs": false,
+        "functions": [
+          "build",
+          "package",
+          "prepare"
+        ],
+        "has_sources": false,
+        "install_hook": false,
+        "missing_checksum": false,
+        "pacman_hook": false,
+        "pkgver_function": false,
+        "shell_substitution": false,
+        "split_package": false,
+        "vcs_source_count": 0
+      },
+      "srcinfo_sha256": "ebd2dc692f380cedbbc8037ca700e5c490f204c353a35f902064a9ecf44161fc"
+    },
+    {
+      "admission_class": "rejected",
+      "line_count": 459,
+      "packages": [
+        "jdk-openjdk",
+        "jre-openjdk",
+        "jre-openjdk-headless",
+        "openjdk-doc",
+        "openjdk-src"
+      ],
+      "path": "java/java-openjdk/PKGBUILD",
+      "pkgbuild_sha256": "be667c8347aa291aaf4d369820fcaceff78916615a1613a9132155b7dc0c19d9",
+      "reason_codes": [
+        "INSTALL_HOOK",
+        "SHELL_SUBSTITUTION",
+        "SPLIT_PACKAGE"
+      ],
+      "signals": {
+        "floating_vcs": false,
+        "functions": [
+          "build",
+          "check"
+        ],
+        "has_sources": false,
+        "install_hook": true,
+        "missing_checksum": false,
+        "pacman_hook": false,
+        "pkgver_function": false,
+        "shell_substitution": true,
+        "split_package": true,
+        "vcs_source_count": 0
+      },
+      "srcinfo_sha256": "7eed146474497688abcd54a01b3a3bc1e81274657ce70cfaf3ce1aaf10a1c44c"
+    },
+    {
+      "admission_class": "rejected",
+      "line_count": 461,
+      "packages": [
+        "jdk17-openjdk",
+        "jre17-openjdk",
+        "jre17-openjdk-headless",
+        "openjdk17-doc",
+        "openjdk17-src"
+      ],
+      "path": "java/java17-openjdk/PKGBUILD",
+      "pkgbuild_sha256": "e4dbf7954d0d85217d0552b99c012564fb525632717d839cfd157c77571e8b67",
+      "reason_codes": [
+        "INSTALL_HOOK",
+        "SHELL_SUBSTITUTION",
+        "SPLIT_PACKAGE"
+      ],
+      "signals": {
+        "floating_vcs": false,
+        "functions": [
+          "build",
+          "check"
+        ],
+        "has_sources": false,
+        "install_hook": true,
+        "missing_checksum": false,
+        "pacman_hook": false,
+        "pkgver_function": false,
+        "shell_substitution": true,
+        "split_package": true,
+        "vcs_source_count": 0
+      },
+      "srcinfo_sha256": "2a2f01881108db7a434a3f5a7793ee8ad0c993b322d24eab13c5fb9539e4fb18"
+    },
+    {
+      "admission_class": "rejected",
+      "line_count": 459,
+      "packages": [
+        "jdk21-openjdk",
+        "jre21-openjdk",
+        "jre21-openjdk-headless",
+        "openjdk21-doc",
+        "openjdk21-src"
+      ],
+      "path": "java/java21-openjdk/PKGBUILD",
+      "pkgbuild_sha256": "d6e980e9dd33a9253a89f2d5a9464d14d8193a6f73876e96ca6cff77b54b17e9",
+      "reason_codes": [
+        "INSTALL_HOOK",
+        "SHELL_SUBSTITUTION",
+        "SPLIT_PACKAGE"
+      ],
+      "signals": {
+        "floating_vcs": false,
+        "functions": [
+          "build",
+          "check"
+        ],
+        "has_sources": false,
+        "install_hook": true,
+        "missing_checksum": false,
+        "pacman_hook": false,
+        "pkgver_function": false,
+        "shell_substitution": true,
+        "split_package": true,
+        "vcs_source_count": 0
+      },
+      "srcinfo_sha256": "47ecf7e2574a456ddd0be4877bafbb39ae8ce895c3df47c1c8b9b9e98c20f236"
+    },
+    {
+      "admission_class": "rejected",
+      "line_count": 36,
+      "packages": [
+        "kxkb2locale1"
+      ],
+      "path": "kxkb2locale1/PKGBUILD",
+      "pkgbuild_sha256": "699249f7ac3a2560287daecc76981da06ed0333762316f868cf812937ef300bf",
+      "reason_codes": [
+        "DYNAMIC_PKGVER",
+        "FLOATING_VCS",
+        "MISSING_CHECKSUM"
+      ],
+      "signals": {
+        "floating_vcs": true,
+        "functions": [
+          "build",
+          "package",
+          "pkgver",
+          "prepare"
+        ],
+        "has_sources": true,
+        "install_hook": false,
+        "missing_checksum": true,
+        "pacman_hook": false,
+        "pkgver_function": true,
+        "shell_substitution": false,
+        "split_package": false,
+        "vcs_source_count": 1
+      },
+      "srcinfo_sha256": "fb830a6f41c4d37e5f2240c1419710c9423c84998e9953506afcf1cf6c418c01"
+    },
+    {
+      "admission_class": "rejected",
+      "line_count": 40,
+      "packages": [
+        "lenovolegionlinux-dkms"
+      ],
+      "path": "lenovolegionlinux-dkms/PKGBUILD",
+      "pkgbuild_sha256": "d807457d3580025a5afdf243913ec62d59fc89791a45655a29d7b82041554fc2",
+      "reason_codes": [
+        "DYNAMIC_PKGVER",
+        "INSTALL_HOOK"
+      ],
+      "signals": {
+        "floating_vcs": false,
+        "functions": [
+          "package",
+          "pkgver"
+        ],
+        "has_sources": false,
+        "install_hook": true,
+        "missing_checksum": false,
+        "pacman_hook": false,
+        "pkgver_function": true,
+        "shell_substitution": false,
+        "split_package": false,
+        "vcs_source_count": 0
+      },
+      "srcinfo_sha256": "c10edd172c628e3cf2e21786d12d0b89f2738abe7759e2332f8141ee77ccffa8"
+    },
+    {
+      "admission_class": "rejected",
+      "line_count": 68,
+      "packages": [
+        "lenovolegionlinux"
+      ],
+      "path": "lenovolegionlinux/PKGBUILD",
+      "pkgbuild_sha256": "79ac6cb327424ef4fabf0ad8081bad2f95ab11d3cfaf4a73e0694b3e582664af",
+      "reason_codes": [
+        "DYNAMIC_PKGVER",
+        "INSTALL_HOOK",
+        "MISSING_CHECKSUM"
+      ],
+      "signals": {
+        "floating_vcs": false,
+        "functions": [
+          "build",
+          "package",
+          "pkgver",
+          "prepare"
+        ],
+        "has_sources": true,
+        "install_hook": true,
+        "missing_checksum": true,
+        "pacman_hook": false,
+        "pkgver_function": true,
+        "shell_substitution": false,
+        "split_package": false,
+        "vcs_source_count": 0
+      },
+      "srcinfo_sha256": "01e2161240e93c3771ac4153381c7e3883c631e3542e38d8d1c60c79697b47dc"
+    },
+    {
+      "admission_class": "rejected",
+      "line_count": 80,
+      "packages": [
+        "libpamac-aur"
+      ],
+      "path": "libpamac-aur/PKGBUILD",
+      "pkgbuild_sha256": "05088b8c6faaaeac44e7a9988a8e3ebf42c35e751bb0aa5c38788e750cfe0fd9",
+      "reason_codes": [
+        "INSTALL_HOOK",
+        "SHELL_SUBSTITUTION",
+        "UNPARSED_FUNCTION"
+      ],
+      "signals": {
+        "floating_vcs": false,
+        "functions": [
+          "build",
+          "create_links",
+          "package",
+          "prepare"
+        ],
+        "has_sources": false,
+        "install_hook": true,
+        "missing_checksum": false,
+        "pacman_hook": false,
+        "pkgver_function": false,
+        "shell_substitution": true,
+        "split_package": false,
+        "vcs_source_count": 0
+      },
+      "srcinfo_sha256": "bb5759406c43d7716a6701f496d1e4378bbeaa15daae6f6075735fc6b2ef780b"
+    },
+    {
+      "admission_class": "sealed-script",
+      "line_count": 33,
+      "packages": [
+        "limine"
+      ],
+      "path": "limine/PKGBUILD",
+      "pkgbuild_sha256": "1f6239d88d87106a0b240acf965f0c6b2cf53366ed95a4cbf1fcb20810535ae1",
+      "reason_codes": [],
+      "signals": {
+        "floating_vcs": false,
+        "functions": [
+          "build",
+          "package",
+          "prepare"
+        ],
+        "has_sources": false,
+        "install_hook": false,
+        "missing_checksum": false,
+        "pacman_hook": false,
+        "pkgver_function": false,
+        "shell_substitution": false,
+        "split_package": false,
+        "vcs_source_count": 0
+      },
+      "srcinfo_sha256": "70c6306df4a1f9236ad4739f723b9564f1b63561555642cdcad32f418bd7a13d"
+    },
+    {
+      "admission_class": "sealed-script",
+      "line_count": 391,
+      "packages": [
+        "amd-ucode",
+        "linux-firmware",
+        "linux-firmware-amdgpu",
+        "linux-firmware-atheros",
+        "linux-firmware-broadcom",
+        "linux-firmware-cirrus",
+        "linux-firmware-intel",
+        "linux-firmware-liquidio",
+        "linux-firmware-marvell",
+        "linux-firmware-mediatek",
+        "linux-firmware-mellanox",
+        "linux-firmware-nfp",
+        "linux-firmware-nvidia",
+        "linux-firmware-other",
+        "linux-firmware-qcom",
+        "linux-firmware-qlogic",
+        "linux-firmware-radeon",
+        "linux-firmware-realtek",
+        "linux-firmware-whence"
+      ],
+      "path": "linux-firmware/PKGBUILD",
+      "pkgbuild_sha256": "6c154a7ab696c613343dc2e7dbdcdb0493134bf30640e573c74f57347f110fcf",
+      "reason_codes": [
+        "SHELL_SUBSTITUTION",
+        "SPLIT_PACKAGE",
+        "UNPARSED_FUNCTION"
+      ],
+      "signals": {
+        "floating_vcs": false,
+        "functions": [
+          "_pick",
+          "build",
+          "prepare"
+        ],
+        "has_sources": false,
+        "install_hook": false,
+        "missing_checksum": false,
+        "pacman_hook": false,
+        "pkgver_function": false,
+        "shell_substitution": true,
+        "split_package": true,
+        "vcs_source_count": 0
+      },
+      "srcinfo_sha256": "8c56b6c3d7f79f714ce83407143853291b8de3444f7fa85bad01175ac8ec75ce"
+    },
+    {
+      "admission_class": "rejected",
+      "line_count": 142,
+      "packages": [
+        "lib32-clang-git",
+        "lib32-llvm-git",
+        "lib32-llvm-libs-git"
+      ],
+      "path": "llvm-git/lib32-llvm-git/PKGBUILD",
+      "pkgbuild_sha256": "cd12b36b023fc784bd5fff57ee3d115216732ca9eb627cf64d2d19556ff0018a",
+      "reason_codes": [
+        "DYNAMIC_PKGVER",
+        "MISSING_CHECKSUM",
+        "SHELL_SUBSTITUTION",
+        "SPLIT_PACKAGE",
+        "UNPARSED_FUNCTION"
+      ],
+      "signals": {
+        "floating_vcs": false,
+        "functions": [
+          "_fakeinstall",
+          "build",
+          "pkgver",
+          "prepare"
+        ],
+        "has_sources": true,
+        "install_hook": false,
+        "missing_checksum": true,
+        "pacman_hook": false,
+        "pkgver_function": true,
+        "shell_substitution": true,
+        "split_package": true,
+        "vcs_source_count": 0
+      },
+      "srcinfo_sha256": "e9275294b83c23856fc8fa6c76c5cd43d6c9ef98e950ce9a26b9e6be189a9519"
+    },
+    {
+      "admission_class": "rejected",
+      "line_count": 171,
+      "packages": [
+        "llvm-git",
+        "llvm-libs-git"
+      ],
+      "path": "llvm-git/llvm-git/PKGBUILD",
+      "pkgbuild_sha256": "81fc4ba0cd4a8e5db34a24e447dcd1358e2975d428b4f7be760f470827f9f1c1",
+      "reason_codes": [
+        "DYNAMIC_PKGVER",
+        "MISSING_CHECKSUM",
+        "SHELL_SUBSTITUTION",
+        "SPLIT_PACKAGE",
+        "UNPARSED_FUNCTION"
+      ],
+      "signals": {
+        "floating_vcs": false,
+        "functions": [
+          "_python_optimize",
+          "build",
+          "pkgver",
+          "prepare"
+        ],
+        "has_sources": true,
+        "install_hook": false,
+        "missing_checksum": true,
+        "pacman_hook": false,
+        "pkgver_function": true,
+        "shell_substitution": true,
+        "split_package": true,
+        "vcs_source_count": 0
+      },
+      "srcinfo_sha256": null
+    },
+    {
+      "admission_class": "rejected",
+      "line_count": 73,
+      "packages": [
+        "wasi-compiler-rt-git"
+      ],
+      "path": "llvm-git/wasi-compiler-rt-git/PKGBUILD",
+      "pkgbuild_sha256": "5eb0cb2aeed000c14bd63b9ca461ae11d358b86763737b33e1a90a0b4c8a2c93",
+      "reason_codes": [
+        "DYNAMIC_PKGVER",
+        "MISSING_CHECKSUM",
+        "SHELL_SUBSTITUTION"
+      ],
+      "signals": {
+        "floating_vcs": false,
+        "functions": [
+          "build",
+          "package",
+          "pkgver",
+          "prepare"
+        ],
+        "has_sources": true,
+        "install_hook": false,
+        "missing_checksum": true,
+        "pacman_hook": false,
+        "pkgver_function": true,
+        "shell_substitution": true,
+        "split_package": false,
+        "vcs_source_count": 0
+      },
+      "srcinfo_sha256": "32bee6ee944958c1eb88584e3cf3f94d82b746c8379d06702d0dee3b94fc5e57"
+    },
+    {
+      "admission_class": "rejected",
+      "line_count": 55,
+      "packages": [
+        "wasi-libc-git"
+      ],
+      "path": "llvm-git/wasi-libc-git/PKGBUILD",
+      "pkgbuild_sha256": "e71f7e2698b061f4c25ecbca1a87359ecd67d96d1f4bfe2f75c98abb08293cd3",
+      "reason_codes": [
+        "DYNAMIC_PKGVER",
+        "FLOATING_VCS",
+        "MISSING_CHECKSUM",
+        "SHELL_SUBSTITUTION"
+      ],
+      "signals": {
+        "floating_vcs": true,
+        "functions": [
+          "build",
+          "package",
+          "pkgver"
+        ],
+        "has_sources": true,
+        "install_hook": false,
+        "missing_checksum": true,
+        "pacman_hook": false,
+        "pkgver_function": true,
+        "shell_substitution": true,
+        "split_package": false,
+        "vcs_source_count": 1
+      },
+      "srcinfo_sha256": null
+    },
+    {
+      "admission_class": "rejected",
+      "line_count": 207,
+      "packages": [
+        "wasi-libc++-git",
+        "wasi-libc++abi-git"
+      ],
+      "path": "llvm-git/wasi-libcplusplus-git/PKGBUILD",
+      "pkgbuild_sha256": "ffa6f06a5194360fa6db9f937e14446ae621f9efbde685034916c33d91064290",
+      "reason_codes": [
+        "DYNAMIC_PKGVER",
+        "MISSING_CHECKSUM",
+        "SHELL_SUBSTITUTION",
+        "SPLIT_PACKAGE"
+      ],
+      "signals": {
+        "floating_vcs": false,
+        "functions": [
+          "build",
+          "pkgver",
+          "prepare"
+        ],
+        "has_sources": true,
+        "install_hook": false,
+        "missing_checksum": true,
+        "pacman_hook": false,
+        "pkgver_function": true,
+        "shell_substitution": true,
+        "split_package": true,
+        "vcs_source_count": 0
+      },
+      "srcinfo_sha256": "a2e282fb39847f1c95ab5115abc76cd125e80d0307d2df98ca49376b5a306b03"
+    },
+    {
+      "admission_class": "sealed-script",
+      "line_count": 77,
+      "packages": [
+        "llvm-propeller"
+      ],
+      "path": "llvm-propeller/PKGBUILD",
+      "pkgbuild_sha256": "5cd286eab68f3b810977aa88c8e38de521167787b6dc6bbf57c7baa6ee2e3e6b",
+      "reason_codes": [
+        "DYNAMIC_PKGVER",
+        "SHELL_SUBSTITUTION"
+      ],
+      "signals": {
+        "floating_vcs": false,
+        "functions": [
+          "build",
+          "check",
+          "package",
+          "pkgver",
+          "prepare"
+        ],
+        "has_sources": false,
+        "install_hook": false,
+        "missing_checksum": false,
+        "pacman_hook": false,
+        "pkgver_function": true,
+        "shell_substitution": true,
+        "split_package": false,
+        "vcs_source_count": 0
+      },
+      "srcinfo_sha256": "a214c7f2119b4647701b9a6a26af6807bd8f7f04726fd236f22e19072640c30f"
+    },
+    {
+      "admission_class": "sealed-script",
+      "line_count": 201,
+      "packages": [
+        "llvm",
+        "llvm-libs"
+      ],
+      "path": "llvm/PKGBUILD",
+      "pkgbuild_sha256": "e991e75f81e0c2cf6701a52a771bfcd90b939a03ce8e470cf4c23c8024aee979",
+      "reason_codes": [
+        "SHELL_SUBSTITUTION",
+        "SPLIT_PACKAGE",
+        "UNPARSED_FUNCTION"
+      ],
+      "signals": {
+        "floating_vcs": false,
+        "functions": [
+          "_get_distribution_components",
+          "build",
+          "check",
+          "package_llvm",
+          "prepare"
+        ],
+        "has_sources": false,
+        "install_hook": false,
+        "missing_checksum": false,
+        "pacman_hook": false,
+        "pkgver_function": false,
+        "shell_substitution": true,
+        "split_package": true,
+        "vcs_source_count": 0
+      },
+      "srcinfo_sha256": "953bf0cd87db9b4eafd4edb47dc2ee779fb467bb6903f517e63d626ca4fc7118"
+    },
+    {
+      "admission_class": "rejected",
+      "line_count": 77,
+      "packages": [
+        "lsfg-vk"
+      ],
+      "path": "lsfg-vk/PKGBUILD",
+      "pkgbuild_sha256": "fab3aba39a39a2c1a778d65200dfde61f648b051e607700259f65cd44720ccaa",
+      "reason_codes": [
+        "DYNAMIC_PKGVER",
+        "INSTALL_HOOK",
+        "SHELL_SUBSTITUTION"
+      ],
+      "signals": {
+        "floating_vcs": false,
+        "functions": [
+          "build",
+          "package",
+          "pkgver",
+          "prepare"
+        ],
+        "has_sources": false,
+        "install_hook": true,
+        "missing_checksum": false,
+        "pacman_hook": false,
+        "pkgver_function": true,
+        "shell_substitution": true,
+        "split_package": false,
+        "vcs_source_count": 0
+      },
+      "srcinfo_sha256": "dcebcb39526d60d670547ec3f17d77a16fc5072cc5580cc50188007f95546f9c"
+    },
+    {
+      "admission_class": "sealed-script",
+      "line_count": 120,
+      "packages": [
+        "lz4"
+      ],
+      "path": "lz4/PKGBUILD",
+      "pkgbuild_sha256": "597e2bfa974497760189d7e3e8554157f8f1db7b76b859a509a36ac049d6fe89",
+      "reason_codes": [
+        "SHELL_SUBSTITUTION",
+        "UNPARSED_FUNCTION"
+      ],
+      "signals": {
+        "floating_vcs": false,
+        "functions": [
+          "_generate_and_process_data",
+          "build",
+          "check",
+          "package"
+        ],
+        "has_sources": false,
+        "install_hook": false,
+        "missing_checksum": false,
+        "pacman_hook": false,
+        "pkgver_function": false,
+        "shell_substitution": true,
+        "split_package": false,
+        "vcs_source_count": 0
+      },
+      "srcinfo_sha256": "18e59e3eca3250e43fc5eb2549db6947d8c38ab2a0ec4ca8151e61aa19e43938"
+    },
+    {
+      "admission_class": "sealed-script",
+      "line_count": 796,
+      "packages": [
+        "lib32-mesa",
+        "lib32-opencl-mesa",
+        "lib32-vulkan-asahi",
+        "lib32-vulkan-broadcom",
+        "lib32-vulkan-dzn",
+        "lib32-vulkan-freedreno",
+        "lib32-vulkan-gfxstream",
+        "lib32-vulkan-intel",
+        "lib32-vulkan-mesa-implicit-layers",
+        "lib32-vulkan-mesa-layers",
+        "lib32-vulkan-nouveau",
+        "lib32-vulkan-panfrost",
+        "lib32-vulkan-powervr",
+        "lib32-vulkan-radeon",
+        "lib32-vulkan-swrast",
+        "lib32-vulkan-virtio"
+      ],
+      "path": "mesa/lib32-mesa/PKGBUILD",
+      "pkgbuild_sha256": "845062801e064ca039f4e3c9d34f6105b3f44b513a05e13c899d06bed5186ef8",
+      "reason_codes": [
+        "SHELL_SUBSTITUTION",
+        "SPLIT_PACKAGE",
+        "UNPARSED_FUNCTION"
+      ],
+      "signals": {
+        "floating_vcs": false,
+        "functions": [
+          "_gencrates",
+          "_pick",
+          "build",
+          "prepare"
+        ],
+        "has_sources": false,
+        "install_hook": false,
+        "missing_checksum": false,
+        "pacman_hook": false,
+        "pkgver_function": false,
+        "shell_substitution": true,
+        "split_package": true,
+        "vcs_source_count": 0
+      },
+      "srcinfo_sha256": "e8b9d12ae7c5eca92d17da6fa02b9b3d172a7b420b2b0b18a25f095fb2e34022"
+    },
+    {
+      "admission_class": "sealed-script",
+      "line_count": 709,
+      "packages": [
+        "mesa-git"
+      ],
+      "path": "mesa/mesa-git/PKGBUILD",
+      "pkgbuild_sha256": "16923f22879f043c259af18d37e7e2e298e69491f5f5aa5d72fd49cdb4da7cae",
+      "reason_codes": [
+        "DYNAMIC_PKGVER",
+        "SHELL_SUBSTITUTION",
+        "UNPARSED_FUNCTION"
+      ],
+      "signals": {
+        "floating_vcs": false,
+        "functions": [
+          "build",
+          "pkgver",
+          "prepare",
+          "user_patcher"
+        ],
+        "has_sources": false,
+        "install_hook": false,
+        "missing_checksum": false,
+        "pacman_hook": false,
+        "pkgver_function": true,
+        "shell_substitution": true,
+        "split_package": false,
+        "vcs_source_count": 0
+      },
+      "srcinfo_sha256": null
+    },
+    {
+      "admission_class": "sealed-script",
+      "line_count": 818,
+      "packages": [
+        "mesa",
+        "mesa-docs",
+        "opencl-mesa",
+        "vulkan-asahi",
+        "vulkan-broadcom",
+        "vulkan-dzn",
+        "vulkan-freedreno",
+        "vulkan-gfxstream",
+        "vulkan-intel",
+        "vulkan-mesa-implicit-layers",
+        "vulkan-mesa-layers",
+        "vulkan-nouveau",
+        "vulkan-panfrost",
+        "vulkan-powervr",
+        "vulkan-radeon",
+        "vulkan-swrast",
+        "vulkan-virtio"
+      ],
+      "path": "mesa/mesa/PKGBUILD",
+      "pkgbuild_sha256": "5edb35eab228f39d7396c76cdf3e543cd0427f0bc9a643d940a72c457ba54e23",
+      "reason_codes": [
+        "SHELL_SUBSTITUTION",
+        "SPLIT_PACKAGE",
+        "UNPARSED_FUNCTION"
+      ],
+      "signals": {
+        "floating_vcs": false,
+        "functions": [
+          "_gencrates",
+          "_pick",
+          "build",
+          "package_mesa",
+          "prepare"
+        ],
+        "has_sources": false,
+        "install_hook": false,
+        "missing_checksum": false,
+        "pacman_hook": false,
+        "pkgver_function": false,
+        "shell_substitution": true,
+        "split_package": true,
+        "vcs_source_count": 0
+      },
+      "srcinfo_sha256": "6cd5c110e49c39bef597a1f8f7a35537430697bd84f5de8ee57e288fc30ab9f4"
+    },
+    {
+      "admission_class": "sealed-script",
+      "line_count": 57,
+      "packages": [
+        "mkinitcpio"
+      ],
+      "path": "mkinitcpio/PKGBUILD",
+      "pkgbuild_sha256": "236714e22801fa7f77fbf885df048d130f943ee5cc7468bb421c52b67f25d1f8",
+      "reason_codes": [],
+      "signals": {
+        "floating_vcs": false,
+        "functions": [
+          "build",
+          "check",
+          "package",
+          "prepare"
+        ],
+        "has_sources": false,
+        "install_hook": false,
+        "missing_checksum": false,
+        "pacman_hook": false,
+        "pkgver_function": false,
+        "shell_substitution": false,
+        "split_package": false,
+        "vcs_source_count": 0
+      },
+      "srcinfo_sha256": "7ca4e27e902f3d939c1a5e0182569bffb8bb0a4abd59571c61a53b9154bd77da"
+    },
+    {
+      "admission_class": "rejected",
+      "line_count": 80,
+      "packages": [
+        "mpv-git"
+      ],
+      "path": "mpv-git/PKGBUILD",
+      "pkgbuild_sha256": "26c375096a1aab0bed35816487614721b33fdd5b68e84539f249d14907479784",
+      "reason_codes": [
+        "DYNAMIC_PKGVER",
+        "FLOATING_VCS",
+        "MISSING_CHECKSUM"
+      ],
+      "signals": {
+        "floating_vcs": true,
+        "functions": [
+          "build",
+          "check",
+          "package",
+          "pkgver"
+        ],
+        "has_sources": true,
+        "install_hook": false,
+        "missing_checksum": true,
+        "pacman_hook": false,
+        "pkgver_function": true,
+        "shell_substitution": false,
+        "split_package": false,
+        "vcs_source_count": 1
+      },
+      "srcinfo_sha256": "bf6fdfc27371a654824a3a1d06035db59c2116d9da7918a9ded362d450ecb559"
+    },
+    {
+      "admission_class": "sealed-script",
+      "line_count": 437,
+      "packages": [
+        "nginx",
+        "nginx-mod-geoip",
+        "nginx-mod-image-filter",
+        "nginx-mod-mail",
+        "nginx-mod-perl",
+        "nginx-mod-stream",
+        "nginx-mod-xslt",
+        "nginx-src"
+      ],
+      "path": "nginx/PKGBUILD",
+      "pkgbuild_sha256": "ac0a080f80aee7a25110d42168d14951b88ea4ba1391ee2653b269fea027ede8",
+      "reason_codes": [
+        "SHELL_SUBSTITUTION",
+        "SPLIT_PACKAGE",
+        "UNPARSED_FUNCTION"
+      ],
+      "signals": {
+        "floating_vcs": false,
+        "functions": [
+          "_configure_nginx",
+          "_package_module",
+          "_pgo_train",
+          "build",
+          "check",
+          "package_nginx",
+          "prepare"
+        ],
+        "has_sources": false,
+        "install_hook": false,
+        "missing_checksum": false,
+        "pacman_hook": false,
+        "pkgver_function": false,
+        "shell_substitution": true,
+        "split_package": true,
+        "vcs_source_count": 0
+      },
+      "srcinfo_sha256": "7e8c1f09f93dc061f29af10dcdc41c59ad10147bd9d538e31ec9d711db0f88cf"
+    },
+    {
+      "admission_class": "sealed-script",
+      "line_count": 165,
+      "packages": [
+        "nodejs"
+      ],
+      "path": "nodejs/PKGBUILD",
+      "pkgbuild_sha256": "683042a299bc92132e1dd0b7ec1237a1107320aa228531122baccf4242f78f11",
+      "reason_codes": [
+        "UNPARSED_FUNCTION"
+      ],
+      "signals": {
+        "floating_vcs": false,
+        "functions": [
+          "_set_flags",
+          "build",
+          "package"
+        ],
+        "has_sources": false,
+        "install_hook": false,
+        "missing_checksum": false,
+        "pacman_hook": false,
+        "pkgver_function": false,
+        "shell_substitution": false,
+        "split_package": false,
+        "vcs_source_count": 0
+      },
+      "srcinfo_sha256": "34d1c24cdeb0c4c2be35862ad6c9b7126bb2f6f5e0d2561f8f95568ee12f6774"
+    },
+    {
+      "admission_class": "sealed-script",
+      "line_count": 109,
+      "packages": [
+        "lib32-nvidia-utils",
+        "lib32-opencl-nvidia"
+      ],
+      "path": "nvidia/lib32-nvidia-utils/PKGBUILD",
+      "pkgbuild_sha256": "b2609dc9f27fead2dc71a8cec2cfe17a074a129848e70e4377ca7652a97583b8",
+      "reason_codes": [
+        "SHELL_SUBSTITUTION",
+        "SPLIT_PACKAGE",
+        "UNPARSED_FUNCTION"
+      ],
+      "signals": {
+        "floating_vcs": false,
+        "functions": [
+          "build",
+          "create_links"
+        ],
+        "has_sources": false,
+        "install_hook": false,
+        "missing_checksum": false,
+        "pacman_hook": false,
+        "pkgver_function": false,
+        "shell_substitution": true,
+        "split_package": true,
+        "vcs_source_count": 0
+      },
+      "srcinfo_sha256": "f1051d277420c5dfca5a3b751fd65575d48900d5d88a9b9c9fc51ab43dc0675c"
+    },
+    {
+      "admission_class": "rejected",
+      "line_count": 314,
+      "packages": [
+        "nvidia-390xx-dkms",
+        "nvidia-390xx-utils",
+        "opencl-nvidia-390xx"
+      ],
+      "path": "nvidia/nvidia-390xx-utils/PKGBUILD",
+      "pkgbuild_sha256": "00a1487c8ba444fbf68e6325188ffd778227fee5d125925b9aa26a0d5b451f2e",
+      "reason_codes": [
+        "INSTALL_HOOK",
+        "SHELL_SUBSTITUTION",
+        "SPLIT_PACKAGE",
+        "UNPARSED_FUNCTION"
+      ],
+      "signals": {
+        "floating_vcs": false,
+        "functions": [
+          "create_links",
+          "prepare"
+        ],
+        "has_sources": false,
+        "install_hook": true,
+        "missing_checksum": false,
+        "pacman_hook": false,
+        "pkgver_function": false,
+        "shell_substitution": true,
+        "split_package": true,
+        "vcs_source_count": 0
+      },
+      "srcinfo_sha256": "f742fd127fef5f020bca8585ad8f00dd58ef6849ef48fc4e119ceef8336b7701"
+    },
+    {
+      "admission_class": "rejected",
+      "line_count": 310,
+      "packages": [
+        "nvidia-470xx-dkms",
+        "nvidia-470xx-utils",
+        "opencl-nvidia-470xx"
+      ],
+      "path": "nvidia/nvidia-470xx-utils/PKGBUILD",
+      "pkgbuild_sha256": "cbe9975af2cca2c9b37e9c1474bc25de64929f0f4815c5582e588a4f325bd49e",
+      "reason_codes": [
+        "INSTALL_HOOK",
+        "SHELL_SUBSTITUTION",
+        "SPLIT_PACKAGE",
+        "UNPARSED_FUNCTION"
+      ],
+      "signals": {
+        "floating_vcs": false,
+        "functions": [
+          "create_links",
+          "prepare"
+        ],
+        "has_sources": false,
+        "install_hook": true,
+        "missing_checksum": false,
+        "pacman_hook": false,
+        "pkgver_function": false,
+        "shell_substitution": true,
+        "split_package": true,
+        "vcs_source_count": 0
+      },
+      "srcinfo_sha256": "50f251496ab0f663a3a39efc57bddd2ad3e13922c62f0e6e44adec1fa8f419df"
+    },
+    {
+      "admission_class": "sealed-script",
+      "line_count": 107,
+      "packages": [
+        "lib32-nvidia-580xx-utils",
+        "lib32-opencl-nvidia-580xx"
+      ],
+      "path": "nvidia/nvidia-580xx/lib32-nvidia-580xx-utils/PKGBUILD",
+      "pkgbuild_sha256": "5f4f1f025542651659fef742a2073e61401765d9b4bd6c559bc7902613f588da",
+      "reason_codes": [
+        "SHELL_SUBSTITUTION",
+        "SPLIT_PACKAGE",
+        "UNPARSED_FUNCTION"
+      ],
+      "signals": {
+        "floating_vcs": false,
+        "functions": [
+          "build",
+          "create_links"
+        ],
+        "has_sources": false,
+        "install_hook": false,
+        "missing_checksum": false,
+        "pacman_hook": false,
+        "pkgver_function": false,
+        "shell_substitution": true,
+        "split_package": true,
+        "vcs_source_count": 0
+      },
+      "srcinfo_sha256": "339362516d321cb3146a1996822c9fc3b8cef73107744dcca38e5cbe65bde3c9"
+    },
+    {
+      "admission_class": "rejected",
+      "line_count": 385,
+      "packages": [
+        "nvidia-580xx-dkms",
+        "nvidia-580xx-open-dkms",
+        "nvidia-580xx-utils",
+        "opencl-nvidia-580xx"
+      ],
+      "path": "nvidia/nvidia-580xx/nvidia-580xx-utils/PKGBUILD",
+      "pkgbuild_sha256": "4ec410459c419b3b909399e87a505554a0fc975ffda45c0d9dc8e096f3ab21b8",
+      "reason_codes": [
+        "INSTALL_HOOK",
+        "SHELL_SUBSTITUTION",
+        "SPLIT_PACKAGE",
+        "UNPARSED_FUNCTION"
+      ],
+      "signals": {
+        "floating_vcs": false,
+        "functions": [
+          "create_links",
+          "prepare"
+        ],
+        "has_sources": false,
+        "install_hook": true,
+        "missing_checksum": false,
+        "pacman_hook": false,
+        "pkgver_function": false,
+        "shell_substitution": true,
+        "split_package": true,
+        "vcs_source_count": 0
+      },
+      "srcinfo_sha256": "a08eb177eacd5ccd072a86d915edba3d14da8f2c0ab0972d210dacf75319077a"
+    },
+    {
+      "admission_class": "sealed-script",
+      "line_count": 65,
+      "packages": [
+        "libxnvctrl",
+        "nvidia-settings"
+      ],
+      "path": "nvidia/nvidia-settings/PKGBUILD",
+      "pkgbuild_sha256": "98a7f336effbef209cc148c0e17f72811a424e76b3e2a8540dc579f681f0a725",
+      "reason_codes": [
+        "SPLIT_PACKAGE"
+      ],
+      "signals": {
+        "floating_vcs": false,
+        "functions": [
+          "build",
+          "package_libxnvctrl",
+          "prepare"
+        ],
+        "has_sources": false,
+        "install_hook": false,
+        "missing_checksum": false,
+        "pacman_hook": false,
+        "pkgver_function": false,
+        "shell_substitution": false,
+        "split_package": true,
+        "vcs_source_count": 0
+      },
+      "srcinfo_sha256": "8b2dbbbafe7b5e03911cc03111bfdc439c96dde116d84afaa116f65d30141f52"
+    },
+    {
+      "admission_class": "rejected",
+      "line_count": 325,
+      "packages": [
+        "nvidia-open-dkms",
+        "nvidia-utils",
+        "opencl-nvidia"
+      ],
+      "path": "nvidia/nvidia-utils/PKGBUILD",
+      "pkgbuild_sha256": "fbe2abdca756423ef8b6c4cb9276c8012acf391aa6f315ece4ddabac67fa02db",
+      "reason_codes": [
+        "INSTALL_HOOK",
+        "SHELL_SUBSTITUTION",
+        "SPLIT_PACKAGE",
+        "UNPARSED_FUNCTION"
+      ],
+      "signals": {
+        "floating_vcs": false,
+        "functions": [
+          "create_links",
+          "prepare"
+        ],
+        "has_sources": false,
+        "install_hook": true,
+        "missing_checksum": false,
+        "pacman_hook": false,
+        "pkgver_function": false,
+        "shell_substitution": true,
+        "split_package": true,
+        "vcs_source_count": 0
+      },
+      "srcinfo_sha256": "f1ae62f6e1022fe1b437476be3e6c76792b9ff76f0a2cf49a533289499c75767"
+    },
+    {
+      "admission_class": "sealed-script",
+      "line_count": 147,
+      "packages": [
+        "obs-studio-browser"
+      ],
+      "path": "obs-studio-browser/PKGBUILD",
+      "pkgbuild_sha256": "cacf387b9e254b9aae88f2c37ea26a9df62c03648e47e0e34995c85ff3fcb3eb",
+      "reason_codes": [],
+      "signals": {
+        "floating_vcs": false,
+        "functions": [
+          "build",
+          "package",
+          "prepare"
+        ],
+        "has_sources": false,
+        "install_hook": false,
+        "missing_checksum": false,
+        "pacman_hook": false,
+        "pkgver_function": false,
+        "shell_substitution": false,
+        "split_package": false,
+        "vcs_source_count": 0
+      },
+      "srcinfo_sha256": "a42c67311d64e856b1ec45a805989457d9aa3ac3505e6616e3727fe2f003cb4c"
+    },
+    {
+      "admission_class": "sealed-script",
+      "line_count": 105,
+      "packages": [
+        "blas-openblas",
+        "blas64-openblas",
+        "openblas",
+        "openblas64"
+      ],
+      "path": "openblas/openblas-v3/PKGBUILD",
+      "pkgbuild_sha256": "ca14093ae2a78c2430bb6faa448068a845bbb31ae634f955eb89ea042c9f413c",
+      "reason_codes": [
+        "SHELL_SUBSTITUTION",
+        "SPLIT_PACKAGE"
+      ],
+      "signals": {
+        "floating_vcs": false,
+        "functions": [
+          "build",
+          "check",
+          "package_openblas",
+          "package_openblas64"
+        ],
+        "has_sources": false,
+        "install_hook": false,
+        "missing_checksum": false,
+        "pacman_hook": false,
+        "pkgver_function": false,
+        "shell_substitution": true,
+        "split_package": true,
+        "vcs_source_count": 0
+      },
+      "srcinfo_sha256": "4055e87c7c8b5afa93db0f20dd5bdb50062891da67321f5a5373a2f593c3e7f6"
+    },
+    {
+      "admission_class": "sealed-script",
+      "line_count": 105,
+      "packages": [
+        "blas-openblas",
+        "blas64-openblas",
+        "openblas",
+        "openblas64"
+      ],
+      "path": "openblas/openblas-v4/PKGBUILD",
+      "pkgbuild_sha256": "d512305d6c39442d71954481c562e660290481675af464d68511026a31b11632",
+      "reason_codes": [
+        "SHELL_SUBSTITUTION",
+        "SPLIT_PACKAGE"
+      ],
+      "signals": {
+        "floating_vcs": false,
+        "functions": [
+          "build",
+          "check",
+          "package_openblas",
+          "package_openblas64"
+        ],
+        "has_sources": false,
+        "install_hook": false,
+        "missing_checksum": false,
+        "pacman_hook": false,
+        "pkgver_function": false,
+        "shell_substitution": true,
+        "split_package": true,
+        "vcs_source_count": 0
+      },
+      "srcinfo_sha256": "4055e87c7c8b5afa93db0f20dd5bdb50062891da67321f5a5373a2f593c3e7f6"
+    },
+    {
+      "admission_class": "sealed-script",
+      "line_count": 56,
+      "packages": [
+        "pacman-contrib"
+      ],
+      "path": "pacman-contrib/PKGBUILD",
+      "pkgbuild_sha256": "cabeecc1e1e30676dee1a3e7a920633f712d3815c7eb87cf01da57b10edd641f",
+      "reason_codes": [],
+      "signals": {
+        "floating_vcs": false,
+        "functions": [
+          "build",
+          "check",
+          "package",
+          "prepare"
+        ],
+        "has_sources": false,
+        "install_hook": false,
+        "missing_checksum": false,
+        "pacman_hook": false,
+        "pkgver_function": false,
+        "shell_substitution": false,
+        "split_package": false,
+        "vcs_source_count": 0
+      },
+      "srcinfo_sha256": "5269fe82c68c49c3f385c01527995755746468cc81a533bb36508c39c6e0d34e"
+    },
+    {
+      "admission_class": "sealed-script",
+      "line_count": 237,
+      "packages": [
+        "pacman"
+      ],
+      "path": "pacman/PKGBUILD",
+      "pkgbuild_sha256": "1ca93466764e2ab223ba231780c513f097ba95a511010fa49a2a46a87a06d5af",
+      "reason_codes": [
+        "SHELL_SUBSTITUTION"
+      ],
+      "signals": {
+        "floating_vcs": false,
+        "functions": [
+          "build",
+          "check",
+          "package",
+          "prepare"
+        ],
+        "has_sources": false,
+        "install_hook": false,
+        "missing_checksum": false,
+        "pacman_hook": false,
+        "pkgver_function": false,
+        "shell_substitution": true,
+        "split_package": false,
+        "vcs_source_count": 0
+      },
+      "srcinfo_sha256": "2682573a7966adced8dcd5e6f237af30af7b9f2d3a0eb790e73fb210ad63a7c7"
+    },
+    {
+      "admission_class": "sealed-script",
+      "line_count": 59,
+      "packages": [
+        "pacutils"
+      ],
+      "path": "pacutils/PKGBUILD",
+      "pkgbuild_sha256": "761d4f09b625fe050fb4ef93d5c6dcacff8ef27df5e22c3fcd141490438e6dd6",
+      "reason_codes": [],
+      "signals": {
+        "floating_vcs": false,
+        "functions": [
+          "build",
+          "check",
+          "package",
+          "prepare"
+        ],
+        "has_sources": false,
+        "install_hook": false,
+        "missing_checksum": false,
+        "pacman_hook": false,
+        "pkgver_function": false,
+        "shell_substitution": false,
+        "split_package": false,
+        "vcs_source_count": 0
+      },
+      "srcinfo_sha256": "d762c1f256a0155a7f5b932b4ea557b0ed865cd1ed7c3155be8cb3ae105915e8"
+    },
+    {
+      "admission_class": "rejected",
+      "line_count": 60,
+      "packages": [
+        "pak-git"
+      ],
+      "path": "pak-git/PKGBUILD",
+      "pkgbuild_sha256": "39229c916473294424d45265422c28276c404249004bb119b10365c4dcd64335",
+      "reason_codes": [
+        "DYNAMIC_PKGVER",
+        "FLOATING_VCS",
+        "MISSING_CHECKSUM",
+        "PACMAN_HOOK"
+      ],
+      "signals": {
+        "floating_vcs": true,
+        "functions": [
+          "package",
+          "pkgver"
+        ],
+        "has_sources": true,
+        "install_hook": false,
+        "missing_checksum": true,
+        "pacman_hook": true,
+        "pkgver_function": true,
+        "shell_substitution": false,
+        "split_package": false,
+        "vcs_source_count": 1
+      },
+      "srcinfo_sha256": "2591650f248a5f43b7b443cf46c8d29412627ebdaf1b385f99fcb4967de47a5f"
+    },
+    {
+      "admission_class": "sealed-script",
+      "line_count": 62,
+      "packages": [
+        "paru"
+      ],
+      "path": "paru/PKGBUILD",
+      "pkgbuild_sha256": "d0d5c218004fb0740f4d3609c88762559a25a3cb0be8ad40d2c0d3eb7e428a09",
+      "reason_codes": [
+        "SHELL_SUBSTITUTION"
+      ],
+      "signals": {
+        "floating_vcs": false,
+        "functions": [
+          "build",
+          "package",
+          "prepare"
+        ],
+        "has_sources": false,
+        "install_hook": false,
+        "missing_checksum": false,
+        "pacman_hook": false,
+        "pkgver_function": false,
+        "shell_substitution": true,
+        "split_package": false,
+        "vcs_source_count": 0
+      },
+      "srcinfo_sha256": "fb073447ee6c5eaaffdc82a4cf17386dd419211709c82b5866a40dc4c2fbdf4e"
+    },
+    {
+      "admission_class": "sealed-script",
+      "line_count": 356,
+      "packages": [
+        "php",
+        "php-apache",
+        "php-cgi",
+        "php-dblib",
+        "php-embed",
+        "php-enchant",
+        "php-fpm",
+        "php-gd",
+        "php-odbc",
+        "php-pgsql",
+        "php-phpdbg",
+        "php-snmp",
+        "php-sodium",
+        "php-sqlite",
+        "php-tidy",
+        "php-xsl"
+      ],
+      "path": "php/PKGBUILD",
+      "pkgbuild_sha256": "a7d463fe988253d02d4b0cf4c24d46340c9fd539367d7b0a0ab0f700a1763ff9",
+      "reason_codes": [
+        "SHELL_SUBSTITUTION",
+        "SPLIT_PACKAGE"
+      ],
+      "signals": {
+        "floating_vcs": false,
+        "functions": [
+          "build",
+          "package_php",
+          "prepare"
+        ],
+        "has_sources": false,
+        "install_hook": false,
+        "missing_checksum": false,
+        "pacman_hook": false,
+        "pkgver_function": false,
+        "shell_substitution": true,
+        "split_package": true,
+        "vcs_source_count": 0
+      },
+      "srcinfo_sha256": "a0bf0c4365a11969b49e449cda4a97a467a38b6ef9a1f49989d1b333cb6eb239"
+    },
+    {
+      "admission_class": "sealed-script",
+      "line_count": 45,
+      "packages": [
+        "pkg-manage-util"
+      ],
+      "path": "pkg-manage-util/PKGBUILD",
+      "pkgbuild_sha256": "261d00f75973795c28748adb327aae4e9fc40639833c6aad8ebb7e4382526c3e",
+      "reason_codes": [],
+      "signals": {
+        "floating_vcs": false,
+        "functions": [
+          "build",
+          "package",
+          "prepare"
+        ],
+        "has_sources": false,
+        "install_hook": false,
+        "missing_checksum": false,
+        "pacman_hook": false,
+        "pkgver_function": false,
+        "shell_substitution": false,
+        "split_package": false,
+        "vcs_source_count": 0
+      },
+      "srcinfo_sha256": "466ceca5011aee93badf437f1e8636185f0946c8236b13b717d159c27291b903"
+    },
+    {
+      "admission_class": "sealed-script",
+      "line_count": 62,
+      "packages": [
+        "plasma-login-manager"
+      ],
+      "path": "plasma-login-manager/PKGBUILD",
+      "pkgbuild_sha256": "0dd2704b2e5d03bd34dc7d5340f27084f1f016abb607a68f9b45ee32a5b3e859",
+      "reason_codes": [
+        "SHELL_SUBSTITUTION"
+      ],
+      "signals": {
+        "floating_vcs": false,
+        "functions": [
+          "build",
+          "package",
+          "prepare"
+        ],
+        "has_sources": false,
+        "install_hook": false,
+        "missing_checksum": false,
+        "pacman_hook": false,
+        "pkgver_function": false,
+        "shell_substitution": true,
+        "split_package": false,
+        "vcs_source_count": 0
+      },
+      "srcinfo_sha256": "eb814f6777d757d23acad59e03da79a7c104801bd7e63cdb70f65b159d374ad4"
+    },
+    {
+      "admission_class": "sealed-script",
+      "line_count": 58,
+      "packages": [
+        "power-profiles-daemon"
+      ],
+      "path": "power-profiles-daemon/PKGBUILD",
+      "pkgbuild_sha256": "0af345ae2bdb5b58ae1591434f3b293e8b91fd4ab9f5d773c86f35afcba1ed5c",
+      "reason_codes": [],
+      "signals": {
+        "floating_vcs": false,
+        "functions": [
+          "build",
+          "check",
+          "package",
+          "prepare"
+        ],
+        "has_sources": false,
+        "install_hook": false,
+        "missing_checksum": false,
+        "pacman_hook": false,
+        "pkgver_function": false,
+        "shell_substitution": false,
+        "split_package": false,
+        "vcs_source_count": 0
+      },
+      "srcinfo_sha256": "06355308550aaf308d87b3ef93bddc1f25f40d03db5b10f730bc21082f1009e5"
+    },
+    {
+      "admission_class": "rejected",
+      "line_count": 356,
+      "packages": [
+        "proton-cachyos-native"
+      ],
+      "path": "proton-cachyos-native/PKGBUILD",
+      "pkgbuild_sha256": "2d1ca129474e98a60e31c22e1cc9733a287752d1dc473c4a4c1feeb35cec21c0",
+      "reason_codes": [
+        "INSTALL_HOOK",
+        "SHELL_SUBSTITUTION",
+        "UNPARSED_FUNCTION"
+      ],
+      "signals": {
+        "floating_vcs": false,
+        "functions": [
+          "_make_wrappers",
+          "build",
+          "package",
+          "prepare"
+        ],
+        "has_sources": false,
+        "install_hook": true,
+        "missing_checksum": false,
+        "pacman_hook": false,
+        "pkgver_function": false,
+        "shell_substitution": true,
+        "split_package": false,
+        "vcs_source_count": 0
+      },
+      "srcinfo_sha256": "fde48f32c48cb4b7b0ddc5c39880af943d7ca94dc37a3aeb7ba3a8c5ae4f74ad"
+    },
+    {
+      "admission_class": "rejected",
+      "line_count": 110,
+      "packages": [
+        "proton-cachyos-slr"
+      ],
+      "path": "proton-cachyos-slr/PKGBUILD",
+      "pkgbuild_sha256": "a2fee6709b1664c15d33e009f203f57f2c964fc66b877370a1f7164f17e90a27",
+      "reason_codes": [
+        "INSTALL_HOOK"
+      ],
+      "signals": {
+        "floating_vcs": false,
+        "functions": [
+          "build",
+          "package"
+        ],
+        "has_sources": false,
+        "install_hook": true,
+        "missing_checksum": false,
+        "pacman_hook": false,
+        "pkgver_function": false,
+        "shell_substitution": false,
+        "split_package": false,
+        "vcs_source_count": 0
+      },
+      "srcinfo_sha256": "4116530583026b1e45227cc4f88f611076ee8e191093895b75ea9c0b73d5fe7e"
+    },
+    {
+      "admission_class": "sealed-script",
+      "line_count": 154,
+      "packages": [
+        "python",
+        "python-tests"
+      ],
+      "path": "python/PKGBUILD",
+      "pkgbuild_sha256": "72b52ad16bba2894e1652dd4ec718a51e33589040c9b15f0958268d408bf9457",
+      "reason_codes": [
+        "SHELL_SUBSTITUTION",
+        "SPLIT_PACKAGE"
+      ],
+      "signals": {
+        "floating_vcs": false,
+        "functions": [
+          "build",
+          "check",
+          "package_python",
+          "prepare"
+        ],
+        "has_sources": false,
+        "install_hook": false,
+        "missing_checksum": false,
+        "pacman_hook": false,
+        "pkgver_function": false,
+        "shell_substitution": true,
+        "split_package": true,
+        "vcs_source_count": 0
+      },
+      "srcinfo_sha256": "b1a1f18d2d6a01878908f4bab06cc51ac39c83876f357d30e5f1912123d9e120"
+    },
+    {
+      "admission_class": "rejected",
+      "line_count": 70,
+      "packages": [
+        "quickshell-git"
+      ],
+      "path": "quickshell-git/PKGBUILD",
+      "pkgbuild_sha256": "29a89436463d459f125da1a3c3b9b42f51d4f7774227fc3b3c67736c302ba948",
+      "reason_codes": [
+        "DYNAMIC_PKGVER",
+        "PACMAN_HOOK"
+      ],
+      "signals": {
+        "floating_vcs": false,
+        "functions": [
+          "build",
+          "package",
+          "pkgver"
+        ],
+        "has_sources": false,
+        "install_hook": false,
+        "missing_checksum": false,
+        "pacman_hook": true,
+        "pkgver_function": true,
+        "shell_substitution": false,
+        "split_package": false,
+        "vcs_source_count": 0
+      },
+      "srcinfo_sha256": "a0040508489d9c9591b466fd7cdd446490a2b085288f0efa6dd5421ff9c092dd"
+    },
+    {
+      "admission_class": "sealed-script",
+      "line_count": 92,
+      "packages": [
+        "rare"
+      ],
+      "path": "rare/PKGBUILD",
+      "pkgbuild_sha256": "4e61df03f5d082fc93d25247438154afb0c264082ee610cd2a61a92e5e1afbd8",
+      "reason_codes": [],
+      "signals": {
+        "floating_vcs": false,
+        "functions": [
+          "build",
+          "package",
+          "prepare"
+        ],
+        "has_sources": false,
+        "install_hook": false,
+        "missing_checksum": false,
+        "pacman_hook": false,
+        "pkgver_function": false,
+        "shell_substitution": false,
+        "split_package": false,
+        "vcs_source_count": 0
+      },
+      "srcinfo_sha256": "b6a219cd72200b0bfc13a29191fb882dc11e2506bc6f51655663e5c7d88ed2d7"
+    },
+    {
+      "admission_class": "sealed-script",
+      "line_count": 54,
+      "packages": [
+        "rate-mirrors"
+      ],
+      "path": "rate-mirrors/PKGBUILD",
+      "pkgbuild_sha256": "066451f18577f31b3dd7b53304e76b4e6305567586a6d085baaf490dcfe9c43b",
+      "reason_codes": [],
+      "signals": {
+        "floating_vcs": false,
+        "functions": [
+          "build",
+          "package",
+          "prepare"
+        ],
+        "has_sources": false,
+        "install_hook": false,
+        "missing_checksum": false,
+        "pacman_hook": false,
+        "pkgver_function": false,
+        "shell_substitution": false,
+        "split_package": false,
+        "vcs_source_count": 0
+      },
+      "srcinfo_sha256": "f420d7133e253b2d29b99279deef2d246a1a9feaf35f2984a7243b5c43a8cc66"
+    },
+    {
+      "admission_class": "sealed-script",
+      "line_count": 46,
+      "packages": [
+        "repo-manage-util"
+      ],
+      "path": "repo-manage-util/PKGBUILD",
+      "pkgbuild_sha256": "282540c85780d0539d7cce3d05ae39589f4ad6a55ef62cf946919dc5280880d4",
+      "reason_codes": [],
+      "signals": {
+        "floating_vcs": false,
+        "functions": [
+          "build",
+          "package",
+          "prepare"
+        ],
+        "has_sources": false,
+        "install_hook": false,
+        "missing_checksum": false,
+        "pacman_hook": false,
+        "pkgver_function": false,
+        "shell_substitution": false,
+        "split_package": false,
+        "vcs_source_count": 0
+      },
+      "srcinfo_sha256": "444c388bcb025e8f21b1a9eae10f349cf6b056d00e34e582239a299aff1c59d2"
+    },
+    {
+      "admission_class": "sealed-script",
+      "line_count": 104,
+      "packages": [
+        "ripgrep"
+      ],
+      "path": "ripgrep/PKGBUILD",
+      "pkgbuild_sha256": "1954ccd6e8e9a703e3a2bc350d79d58d06619b511e8bb75bc6a81a9775555e40",
+      "reason_codes": [],
+      "signals": {
+        "floating_vcs": false,
+        "functions": [
+          "build",
+          "check",
+          "package",
+          "prepare"
+        ],
+        "has_sources": false,
+        "install_hook": false,
+        "missing_checksum": false,
+        "pacman_hook": false,
+        "pkgver_function": false,
+        "shell_substitution": false,
+        "split_package": false,
+        "vcs_source_count": 0
+      },
+      "srcinfo_sha256": "de31ff38190dbfe9c03dd39eef9d997447bab1927fb2a5b8dfd65ea35506bd42"
+    },
+    {
+      "admission_class": "sealed-script",
+      "line_count": 58,
+      "packages": [
+        "scx-manager-git"
+      ],
+      "path": "scx/scx-manager-git/PKGBUILD",
+      "pkgbuild_sha256": "a5bd1b62c9a40bcd976ab64bcdc4e6917c8b995634c2acecbbc47207d01f7164",
+      "reason_codes": [
+        "DYNAMIC_PKGVER"
+      ],
+      "signals": {
+        "floating_vcs": false,
+        "functions": [
+          "build",
+          "package",
+          "pkgver"
+        ],
+        "has_sources": false,
+        "install_hook": false,
+        "missing_checksum": false,
+        "pacman_hook": false,
+        "pkgver_function": true,
+        "shell_substitution": false,
+        "split_package": false,
+        "vcs_source_count": 0
+      },
+      "srcinfo_sha256": "620a3a1202afd93f9510894cc6dd780b2a7a8acdf09ea4da41fd8a272c1c8bb1"
+    },
+    {
+      "admission_class": "sealed-script",
+      "line_count": 54,
+      "packages": [
+        "scx-manager"
+      ],
+      "path": "scx/scx-manager/PKGBUILD",
+      "pkgbuild_sha256": "4751bbedbce8f2f5b8364ba8dd76196706c1a6ff26b13a5b08594be217549dbf",
+      "reason_codes": [],
+      "signals": {
+        "floating_vcs": false,
+        "functions": [
+          "build",
+          "package"
+        ],
+        "has_sources": false,
+        "install_hook": false,
+        "missing_checksum": false,
+        "pacman_hook": false,
+        "pkgver_function": false,
+        "shell_substitution": false,
+        "split_package": false,
+        "vcs_source_count": 0
+      },
+      "srcinfo_sha256": "fbc7ee96d5e91be557547030c4098ec95a9a0ec1afd1ae59200a81c00f6afd49"
+    },
+    {
+      "admission_class": "rejected",
+      "line_count": 95,
+      "packages": [
+        "scx-scheds-git"
+      ],
+      "path": "scx/scx-scheds/scx-scheds-git/PKGBUILD",
+      "pkgbuild_sha256": "6dcf60ccbd19e0d43d68ff826bbe42f53e226d6c11e962501a105242bddfcaaf",
+      "reason_codes": [
+        "DYNAMIC_PKGVER",
+        "FLOATING_VCS",
+        "MISSING_CHECKSUM",
+        "SHELL_SUBSTITUTION"
+      ],
+      "signals": {
+        "floating_vcs": true,
+        "functions": [
+          "build",
+          "package",
+          "pkgver",
+          "prepare"
+        ],
+        "has_sources": true,
+        "install_hook": false,
+        "missing_checksum": true,
+        "pacman_hook": false,
+        "pkgver_function": true,
+        "shell_substitution": true,
+        "split_package": false,
+        "vcs_source_count": 1
+      },
+      "srcinfo_sha256": "31c4c4f3ebe5c1f8cef62902c572cd43d7e7b84dddaf4e7bdede833f34266602"
+    },
+    {
+      "admission_class": "sealed-script",
+      "line_count": 96,
+      "packages": [
+        "scx-scheds"
+      ],
+      "path": "scx/scx-scheds/scx-scheds/PKGBUILD",
+      "pkgbuild_sha256": "8d6bbc63717f11165278f24bf6718141740dcb6790839e76a191e28e6c96a642",
+      "reason_codes": [
+        "SHELL_SUBSTITUTION"
+      ],
+      "signals": {
+        "floating_vcs": false,
+        "functions": [
+          "build",
+          "package",
+          "prepare"
+        ],
+        "has_sources": false,
+        "install_hook": false,
+        "missing_checksum": false,
+        "pacman_hook": false,
+        "pkgver_function": false,
+        "shell_substitution": true,
+        "split_package": false,
+        "vcs_source_count": 0
+      },
+      "srcinfo_sha256": "8a9170d4763dd152e5479b6a5aa0b2118f859498fcf6f8217f4735ffe781c0d2"
+    },
+    {
+      "admission_class": "rejected",
+      "line_count": 88,
+      "packages": [
+        "scx-tools-git"
+      ],
+      "path": "scx/scx-tools/scx-tools-git/PKGBUILD",
+      "pkgbuild_sha256": "97bdd99494087e85d0af48e4044e873cfb1ba469ee88f10d265895b1d5db9cd9",
+      "reason_codes": [
+        "DYNAMIC_PKGVER",
+        "FLOATING_VCS",
+        "MISSING_CHECKSUM",
+        "SHELL_SUBSTITUTION"
+      ],
+      "signals": {
+        "floating_vcs": true,
+        "functions": [
+          "build",
+          "package",
+          "pkgver",
+          "prepare"
+        ],
+        "has_sources": true,
+        "install_hook": false,
+        "missing_checksum": true,
+        "pacman_hook": false,
+        "pkgver_function": true,
+        "shell_substitution": true,
+        "split_package": false,
+        "vcs_source_count": 1
+      },
+      "srcinfo_sha256": "615c9ec09a3e6d0fef77ddbdcf56764f282f37034683441a80a356b12bc7dd25"
+    },
+    {
+      "admission_class": "sealed-script",
+      "line_count": 83,
+      "packages": [
+        "scx-tools"
+      ],
+      "path": "scx/scx-tools/scx-tools/PKGBUILD",
+      "pkgbuild_sha256": "21f41421de422463006b0c8a34c28e07a0b62a5291dfb423eff868730ba2d3f0",
+      "reason_codes": [
+        "SHELL_SUBSTITUTION"
+      ],
+      "signals": {
+        "floating_vcs": false,
+        "functions": [
+          "build",
+          "package",
+          "prepare"
+        ],
+        "has_sources": false,
+        "install_hook": false,
+        "missing_checksum": false,
+        "pacman_hook": false,
+        "pkgver_function": false,
+        "shell_substitution": true,
+        "split_package": false,
+        "vcs_source_count": 0
+      },
+      "srcinfo_sha256": "aea4fc8d74f39c3313d95e3ee1f2114f94a9e02048c7608ad6e482296421c43a"
+    },
+    {
+      "admission_class": "sealed-script",
+      "line_count": 238,
+      "packages": [
+        "lemon",
+        "sqlite",
+        "sqlite-analyzer",
+        "sqlite-doc",
+        "sqlite-tcl"
+      ],
+      "path": "sqlite/PKGBUILD",
+      "pkgbuild_sha256": "0cb622205f6b4821a03c70e23945e5bff1ff43f0ca1402e5d9170d86b037fc71",
+      "reason_codes": [
+        "SHELL_SUBSTITUTION",
+        "SPLIT_PACKAGE",
+        "UNPARSED_FUNCTION"
+      ],
+      "signals": {
+        "floating_vcs": false,
+        "functions": [
+          "build",
+          "package_lemon",
+          "package_sqlite",
+          "pgo_profiler",
+          "prepare"
+        ],
+        "has_sources": false,
+        "install_hook": false,
+        "missing_checksum": false,
+        "pacman_hook": false,
+        "pkgver_function": false,
+        "shell_substitution": true,
+        "split_package": true,
+        "vcs_source_count": 0
+      },
+      "srcinfo_sha256": "07bce560ad37e3f941f1bacd3c66e59495824d30c1137b57dcc42e053932cb24"
+    },
+    {
+      "admission_class": "sealed-script",
+      "line_count": 35,
+      "packages": [
+        "stacer"
+      ],
+      "path": "stacer/PKGBUILD",
+      "pkgbuild_sha256": "de3c1e68d467956bc977eeb660076a5d8c8689e39c8a81b8923aaacd2e172be1",
+      "reason_codes": [
+        "SHELL_SUBSTITUTION"
+      ],
+      "signals": {
+        "floating_vcs": false,
+        "functions": [
+          "build",
+          "package"
+        ],
+        "has_sources": false,
+        "install_hook": false,
+        "missing_checksum": false,
+        "pacman_hook": false,
+        "pkgver_function": false,
+        "shell_substitution": true,
+        "split_package": false,
+        "vcs_source_count": 0
+      },
+      "srcinfo_sha256": "0331f3082bed4f119224bad9020fb38243e3489440dc38707419844f413137e6"
+    },
+    {
+      "admission_class": "rejected",
+      "line_count": 90,
+      "packages": [
+        "sudo-rs"
+      ],
+      "path": "sudo-rs/PKGBUILD",
+      "pkgbuild_sha256": "0bd18e29b6664c25e4c58d14ac49cafb0713fb97ea9612495d0ee1a5d2a61553",
+      "reason_codes": [
+        "FLOATING_VCS",
+        "INSTALL_HOOK",
+        "SHELL_SUBSTITUTION"
+      ],
+      "signals": {
+        "floating_vcs": true,
+        "functions": [
+          "build",
+          "check",
+          "package",
+          "prepare"
+        ],
+        "has_sources": true,
+        "install_hook": true,
+        "missing_checksum": false,
+        "pacman_hook": false,
+        "pkgver_function": false,
+        "shell_substitution": true,
+        "split_package": false,
+        "vcs_source_count": 1
+      },
+      "srcinfo_sha256": "e54404f69a85e6b0e3ccc5b60ac94ef72ad03feda102ee65d5532d6d33d674dd"
+    },
+    {
+      "admission_class": "sealed-script",
+      "line_count": 50,
+      "packages": [
+        "svt-av1"
+      ],
+      "path": "svt-av1/PKGBUILD",
+      "pkgbuild_sha256": "6a0756fe831e26e18e087f648c0de66bc4a9d1634051c254f8d9e00b85e3a984",
+      "reason_codes": [],
+      "signals": {
+        "floating_vcs": false,
+        "functions": [
+          "build",
+          "package",
+          "prepare"
+        ],
+        "has_sources": false,
+        "install_hook": false,
+        "missing_checksum": false,
+        "pacman_hook": false,
+        "pkgver_function": false,
+        "shell_substitution": false,
+        "split_package": false,
+        "vcs_source_count": 0
+      },
+      "srcinfo_sha256": "c153bb49201227d6ecac8d2c2ffe005a003dd547c0d4304db3d0830ae5df123b"
+    },
+    {
+      "admission_class": "rejected",
+      "line_count": 37,
+      "packages": [
+        "systemd-boot-manager"
+      ],
+      "path": "systemd-boot-manager/PKGBUILD",
+      "pkgbuild_sha256": "5c01635dd8fe715fa2cf4360713fc1ea5a9a2d8b37c2e784caae78e8e6b44a7a",
+      "reason_codes": [
+        "PACMAN_HOOK"
+      ],
+      "signals": {
+        "floating_vcs": false,
+        "functions": [
+          "package"
+        ],
+        "has_sources": true,
+        "install_hook": false,
+        "missing_checksum": false,
+        "pacman_hook": true,
+        "pkgver_function": false,
+        "shell_substitution": false,
+        "split_package": false,
+        "vcs_source_count": 0
+      },
+      "srcinfo_sha256": "c7444757263a624c2ba9939190d3872cb3dc1ab18ff5ef54820b10f3a89019a9"
+    },
+    {
+      "admission_class": "sealed-script",
+      "line_count": 69,
+      "packages": [
+        "tiny-dfr"
+      ],
+      "path": "tiny-dfr/PKGBUILD",
+      "pkgbuild_sha256": "23929e8f5569cbe0328cc79aa0c4e1199c6e9a72acc1f59c6e8caf7d2ec197c6",
+      "reason_codes": [],
+      "signals": {
+        "floating_vcs": false,
+        "functions": [
+          "build",
+          "package",
+          "prepare"
+        ],
+        "has_sources": false,
+        "install_hook": false,
+        "missing_checksum": false,
+        "pacman_hook": false,
+        "pkgver_function": false,
+        "shell_substitution": false,
+        "split_package": false,
+        "vcs_source_count": 0
+      },
+      "srcinfo_sha256": "df9f1a8f491be2c818219358bbdb5b07e3d1ff4f387b0c0a9bde4e91d6518201"
+    },
+    {
+      "admission_class": "rejected",
+      "line_count": 177,
+      "packages": [
+        "binutils"
+      ],
+      "path": "toolchain/binutils/PKGBUILD",
+      "pkgbuild_sha256": "f5236e9697b53fb76dee4337c1578c9e1345cda3f7522888691e67ec006e2e0b",
+      "reason_codes": [
+        "DYNAMIC_PKGVER",
+        "FLOATING_VCS"
+      ],
+      "signals": {
+        "floating_vcs": true,
+        "functions": [
+          "build",
+          "check",
+          "package",
+          "pkgver",
+          "prepare"
+        ],
+        "has_sources": true,
+        "install_hook": false,
+        "missing_checksum": false,
+        "pacman_hook": false,
+        "pkgver_function": true,
+        "shell_substitution": false,
+        "split_package": false,
+        "vcs_source_count": 1
+      },
+      "srcinfo_sha256": "9c54c367b0da677826d0bb0d83aaf02e778af0aed57716f7193c57c9811693de"
+    },
+    {
+      "admission_class": "rejected",
+      "line_count": 967,
+      "packages": [
+        "gcc",
+        "gcc-ada",
+        "gcc-d",
+        "gcc-fortran",
+        "gcc-gcobol",
+        "gcc-go",
+        "gcc-libs",
+        "gcc-m2",
+        "gcc-objc",
+        "gcc-rust",
+        "lib32-gcc-libs",
+        "libasan",
+        "libatomic",
+        "libgcc",
+        "libgccjit",
+        "libgcobol",
+        "libgfortran",
+        "libgm2",
+        "libgo",
+        "libgomp",
+        "libgphobos",
+        "libhwasan",
+        "libitm",
+        "liblsan",
+        "libobjc",
+        "libquadmath",
+        "libstdc++",
+        "libtsan",
+        "libubsan",
+        "lto-dump"
+      ],
+      "path": "toolchain/gcc/PKGBUILD",
+      "pkgbuild_sha256": "1453ef3251eb0d52ee9f579f688fc435a18bc69b05182a7e66f6b79451cf5722",
+      "reason_codes": [
+        "FLOATING_VCS",
+        "SHELL_SUBSTITUTION",
+        "SPLIT_PACKAGE",
+        "UNPARSED_FUNCTION"
+      ],
+      "signals": {
+        "floating_vcs": true,
+        "functions": [
+          "_install_runtime_library_exception",
+          "_pick",
+          "build",
+          "check",
+          "package_gcc",
+          "package_libasan",
+          "package_libatomic",
+          "package_libgcc",
+          "package_libgccjit",
+          "package_libgcobol",
+          "package_libgfortran",
+          "package_libgm2",
+          "package_libgo",
+          "package_libgomp",
+          "package_libgphobos",
+          "package_libhwasan",
+          "package_libitm",
+          "package_liblsan",
+          "package_libobjc",
+          "package_libquadmath",
+          "package_libtsan",
+          "package_libubsan",
+          "prepare"
+        ],
+        "has_sources": true,
+        "install_hook": false,
+        "missing_checksum": false,
+        "pacman_hook": false,
+        "pkgver_function": false,
+        "shell_substitution": true,
+        "split_package": true,
+        "vcs_source_count": 1
+      },
+      "srcinfo_sha256": "4444783fcf7c301a10734dee8c42a6a7aea4f2e7b336f841c26d08abbe136e98"
+    },
+    {
+      "admission_class": "rejected",
+      "line_count": 284,
+      "packages": [
+        "glibc",
+        "glibc-locales",
+        "lib32-glibc"
+      ],
+      "path": "toolchain/glibc/PKGBUILD",
+      "pkgbuild_sha256": "cda2c6d6005ec293756fbbe12240d6ac1880c2ed0afba317bd9a0daf4edb9803",
+      "reason_codes": [
+        "PACMAN_HOOK",
+        "SPLIT_PACKAGE",
+        "UNPARSED_FUNCTION"
+      ],
+      "signals": {
+        "floating_vcs": false,
+        "functions": [
+          "_skip_test",
+          "build",
+          "package_glibc",
+          "prepare"
+        ],
+        "has_sources": false,
+        "install_hook": false,
+        "missing_checksum": false,
+        "pacman_hook": true,
+        "pkgver_function": false,
+        "shell_substitution": false,
+        "split_package": true,
+        "vcs_source_count": 0
+      },
+      "srcinfo_sha256": "e5656d33e1631104e298d1da0e5764f48f7b1cfb034bfcc4b3fae738f7e742f5"
+    },
+    {
+      "admission_class": "rejected",
+      "line_count": 122,
+      "packages": [
+        "lib32-libltdl",
+        "libtool"
+      ],
+      "path": "toolchain/libtool/PKGBUILD",
+      "pkgbuild_sha256": "ed2a60875e03716b38b28f1910ec4a31930676131e6cc483a2d082457fcefea1",
+      "reason_codes": [
+        "DYNAMIC_PKGVER",
+        "FLOATING_VCS",
+        "MISSING_CHECKSUM",
+        "SPLIT_PACKAGE"
+      ],
+      "signals": {
+        "floating_vcs": true,
+        "functions": [
+          "build",
+          "check",
+          "package_libtool",
+          "pkgver",
+          "prepare"
+        ],
+        "has_sources": true,
+        "install_hook": false,
+        "missing_checksum": true,
+        "pacman_hook": false,
+        "pkgver_function": true,
+        "shell_substitution": false,
+        "split_package": true,
+        "vcs_source_count": 2
+      },
+      "srcinfo_sha256": "4ce5cba0a698d7d4d56b1a6afb5dcf8e442bc90f3593fca17f12fb7d4ad914dd"
+    },
+    {
+      "admission_class": "sealed-script",
+      "line_count": 35,
+      "packages": [
+        "linux-api-headers"
+      ],
+      "path": "toolchain/linux-api-headers/PKGBUILD",
+      "pkgbuild_sha256": "e017f2b53d6abe8a25a9531981e76f4dfc0a14e4b2f1d4afa5c150820e0c8ed2",
+      "reason_codes": [],
+      "signals": {
+        "floating_vcs": false,
+        "functions": [
+          "build",
+          "package",
+          "prepare"
+        ],
+        "has_sources": false,
+        "install_hook": false,
+        "missing_checksum": false,
+        "pacman_hook": false,
+        "pkgver_function": false,
+        "shell_substitution": false,
+        "split_package": false,
+        "vcs_source_count": 0
+      },
+      "srcinfo_sha256": "7b81e972b1e84df6337af68388c93bbe0f1ff8170e2b8d66b5b5d11f3d2ba406"
+    },
+    {
+      "admission_class": "sealed-script",
+      "line_count": 67,
+      "packages": [
+        "tuned-cachy",
+        "tuned-cachy-ppd"
+      ],
+      "path": "tuned/PKGBUILD",
+      "pkgbuild_sha256": "eba8998f57614624bae63e61434f1a4bca38accb7beaeff51477120b4cc37ad1",
+      "reason_codes": [
+        "SPLIT_PACKAGE"
+      ],
+      "signals": {
+        "floating_vcs": false,
+        "functions": [
+          "prepare"
+        ],
+        "has_sources": true,
+        "install_hook": false,
+        "missing_checksum": false,
+        "pacman_hook": false,
+        "pkgver_function": false,
+        "shell_substitution": false,
+        "split_package": true,
+        "vcs_source_count": 1
+      },
+      "srcinfo_sha256": "af9352cc1a3eac8544b543f90f237919242b5b2d89b25db5546c464bc9820c62"
+    },
+    {
+      "admission_class": "sealed-script",
+      "line_count": 95,
+      "packages": [
+        "umu-launcher"
+      ],
+      "path": "umu-launcher/PKGBUILD",
+      "pkgbuild_sha256": "326e3358f44520c9dfec492efcb971727ff583ee11b735a70aa9546303daa0c1",
+      "reason_codes": [
+        "SHELL_SUBSTITUTION"
+      ],
+      "signals": {
+        "floating_vcs": false,
+        "functions": [
+          "build",
+          "package",
+          "prepare"
+        ],
+        "has_sources": false,
+        "install_hook": false,
+        "missing_checksum": false,
+        "pacman_hook": false,
+        "pkgver_function": false,
+        "shell_substitution": true,
+        "split_package": false,
+        "vcs_source_count": 0
+      },
+      "srcinfo_sha256": "331a95145d79b93cff02bacf41664deaa80f382b4eaf0c9c65218d19dc95f062"
+    },
+    {
+      "admission_class": "rejected",
+      "line_count": 135,
+      "packages": [
+        "valkey"
+      ],
+      "path": "valkey/PKGBUILD",
+      "pkgbuild_sha256": "b3b9942ff51114bdaf648c2bb4f615b4f2f5c7cb6947c32a7a1a959f5ad961e0",
+      "reason_codes": [
+        "FLOATING_VCS",
+        "INSTALL_HOOK"
+      ],
+      "signals": {
+        "floating_vcs": true,
+        "functions": [
+          "build",
+          "package",
+          "prepare"
+        ],
+        "has_sources": true,
+        "install_hook": true,
+        "missing_checksum": false,
+        "pacman_hook": false,
+        "pkgver_function": false,
+        "shell_substitution": false,
+        "split_package": false,
+        "vcs_source_count": 1
+      },
+      "srcinfo_sha256": "2802f04e8719c849600277fa6ad3c03b3c347cf59b9311a1c1578637f14d6c07"
+    },
+    {
+      "admission_class": "rejected",
+      "line_count": 31,
+      "packages": [
+        "vapormark-git"
+      ],
+      "path": "vapormark-git/PKGBUILD",
+      "pkgbuild_sha256": "7e6b7949070cc65d25bf755ecdc2d4b4caa1d7f37a78c2f636bcf94c7975dd52",
+      "reason_codes": [
+        "DYNAMIC_PKGVER",
+        "FLOATING_VCS",
+        "MISSING_CHECKSUM",
+        "SHELL_SUBSTITUTION"
+      ],
+      "signals": {
+        "floating_vcs": true,
+        "functions": [
+          "build",
+          "package",
+          "pkgver"
+        ],
+        "has_sources": true,
+        "install_hook": false,
+        "missing_checksum": true,
+        "pacman_hook": false,
+        "pkgver_function": true,
+        "shell_substitution": true,
+        "split_package": false,
+        "vcs_source_count": 1
+      },
+      "srcinfo_sha256": "9327a68e5d0ba40caee5e8a612729f1f920a0503893301506eea08db6b1b1fc3"
+    },
+    {
+      "admission_class": "sealed-script",
+      "line_count": 95,
+      "packages": [
+        "void"
+      ],
+      "path": "void/PKGBUILD",
+      "pkgbuild_sha256": "a3b7229360123fb53db6ae2629985a7e3cb1fb23041063b4df334adaf3e6c3f0",
+      "reason_codes": [
+        "SHELL_SUBSTITUTION"
+      ],
+      "signals": {
+        "floating_vcs": false,
+        "functions": [
+          "build",
+          "package"
+        ],
+        "has_sources": true,
+        "install_hook": false,
+        "missing_checksum": false,
+        "pacman_hook": false,
+        "pkgver_function": false,
+        "shell_substitution": true,
+        "split_package": false,
+        "vcs_source_count": 1
+      },
+      "srcinfo_sha256": "99f7578db0291267f375b75f1be37f22cedd310766ee2b8c67f6485596396574"
+    },
+    {
+      "admission_class": "sealed-script",
+      "line_count": 73,
+      "packages": [
+        "winboat"
+      ],
+      "path": "winboat/PKGBUILD",
+      "pkgbuild_sha256": "c40726d1dd0d166fa8a75e57f26c9f1734c157251ca787084ed400c69d9a5a6c",
+      "reason_codes": [],
+      "signals": {
+        "floating_vcs": false,
+        "functions": [
+          "build",
+          "package",
+          "prepare"
+        ],
+        "has_sources": false,
+        "install_hook": false,
+        "missing_checksum": false,
+        "pacman_hook": false,
+        "pkgver_function": false,
+        "shell_substitution": false,
+        "split_package": false,
+        "vcs_source_count": 0
+      },
+      "srcinfo_sha256": "c03543055c5969419bfd58d67aaf6caf56113eadbfedeb72bab1043d88e70aac"
+    },
+    {
+      "admission_class": "rejected",
+      "line_count": 234,
+      "packages": [
+        "wine-cachyos-opt"
+      ],
+      "path": "wine-cachyos-opt/PKGBUILD",
+      "pkgbuild_sha256": "db3de4b002568bbba6ff415598cdfbd540ef3b7c8e0024f260cea8cfa5aec6c0",
+      "reason_codes": [
+        "INSTALL_HOOK"
+      ],
+      "signals": {
+        "floating_vcs": false,
+        "functions": [
+          "build",
+          "package",
+          "prepare"
+        ],
+        "has_sources": false,
+        "install_hook": true,
+        "missing_checksum": false,
+        "pacman_hook": false,
+        "pkgver_function": false,
+        "shell_substitution": false,
+        "split_package": false,
+        "vcs_source_count": 0
+      },
+      "srcinfo_sha256": "e5ceba56c350cb443c771d59bb7d7a2e6122279fd251d2ef54895f30b44390df"
+    },
+    {
+      "admission_class": "rejected",
+      "line_count": 238,
+      "packages": [
+        "wine-cachyos"
+      ],
+      "path": "wine-cachyos/PKGBUILD",
+      "pkgbuild_sha256": "d341c7bff609c627e6461e4d99a727328ee4bc47bb1128e834d8256d4cd701ff",
+      "reason_codes": [
+        "INSTALL_HOOK"
+      ],
+      "signals": {
+        "floating_vcs": false,
+        "functions": [
+          "build",
+          "package",
+          "prepare"
+        ],
+        "has_sources": false,
+        "install_hook": true,
+        "missing_checksum": false,
+        "pacman_hook": false,
+        "pkgver_function": false,
+        "shell_substitution": false,
+        "split_package": false,
+        "vcs_source_count": 0
+      },
+      "srcinfo_sha256": "92b085d99d787ba0253cfaf6c5dda74a42608d4d9facadce4c7f8d1d4b27a6a5"
+    },
+    {
+      "admission_class": "sealed-script",
+      "line_count": 51,
+      "packages": [
+        "xz"
+      ],
+      "path": "xz/PKGBUILD",
+      "pkgbuild_sha256": "d34ee045db3f2c9237515d9f55269134b76d8fcf4525655909b584deefe2802c",
+      "reason_codes": [],
+      "signals": {
+        "floating_vcs": false,
+        "functions": [
+          "build",
+          "check",
+          "package",
+          "prepare"
+        ],
+        "has_sources": false,
+        "install_hook": false,
+        "missing_checksum": false,
+        "pacman_hook": false,
+        "pkgver_function": false,
+        "shell_substitution": false,
+        "split_package": false,
+        "vcs_source_count": 0
+      },
+      "srcinfo_sha256": "367351cc675e9f7e353f618ea7eb1b09da607888b5b514ac2d11a870cb4d8838"
+    },
+    {
+      "admission_class": "meta",
+      "line_count": 10,
+      "packages": [
+        "zfs-meta"
+      ],
+      "path": "zfs/zfs-meta/PKGBUILD",
+      "pkgbuild_sha256": "74f6574e63a3a7a18975081a277e202aec357ab7d008cd4bebb43aacbbe15713",
+      "reason_codes": [],
+      "signals": {
+        "floating_vcs": false,
+        "functions": [],
+        "has_sources": false,
+        "install_hook": false,
+        "missing_checksum": false,
+        "pacman_hook": false,
+        "pkgver_function": false,
+        "shell_substitution": false,
+        "split_package": false,
+        "vcs_source_count": 0
+      },
+      "srcinfo_sha256": "9ce09a9bde1ed176a3c7183ae450b59cd666eee9c47ae50645f7ca86f8d72a90"
+    },
+    {
+      "admission_class": "sealed-script",
+      "line_count": 87,
+      "packages": [
+        "zfs-utils"
+      ],
+      "path": "zfs/zfs-utils/PKGBUILD",
+      "pkgbuild_sha256": "a6cf5c0b2b4866cceda02ade06c0e3bcb4ba23e8f33840a34b8cbd5dd506be8c",
+      "reason_codes": [],
+      "signals": {
+        "floating_vcs": false,
+        "functions": [
+          "build",
+          "package",
+          "prepare"
+        ],
+        "has_sources": false,
+        "install_hook": false,
+        "missing_checksum": false,
+        "pacman_hook": false,
+        "pkgver_function": false,
+        "shell_substitution": false,
+        "split_package": false,
+        "vcs_source_count": 0
+      },
+      "srcinfo_sha256": "c65ebbde00db9024745221960f7d4e36fc6a21026d55334458d3f7e01b108212"
+    },
+    {
+      "admission_class": "sealed-script",
+      "line_count": 100,
+      "packages": [
+        "lib32-zlib-ng",
+        "lib32-zlib-ng-compat"
+      ],
+      "path": "zlib-ng/lib32-zlib-ng/PKGBUILD",
+      "pkgbuild_sha256": "47cc0f0dd19c3dc31127c57e3eb9a7869f215a2dc04754b74f3f266cc403278d",
+      "reason_codes": [
+        "SPLIT_PACKAGE"
+      ],
+      "signals": {
+        "floating_vcs": false,
+        "functions": [
+          "build",
+          "check"
+        ],
+        "has_sources": false,
+        "install_hook": false,
+        "missing_checksum": false,
+        "pacman_hook": false,
+        "pkgver_function": false,
+        "shell_substitution": false,
+        "split_package": true,
+        "vcs_source_count": 0
+      },
+      "srcinfo_sha256": "55e5106055f7913a4c9b5fbf6b69be971a03c7508e155da6cc42fae6633aefcd"
+    },
+    {
+      "admission_class": "sealed-script",
+      "line_count": 92,
+      "packages": [
+        "zlib-ng",
+        "zlib-ng-compat"
+      ],
+      "path": "zlib-ng/zlib-ng/PKGBUILD",
+      "pkgbuild_sha256": "595e556eb584157adfd3a47739fc80c2af45291573fc7275e15bd92c945efca0",
+      "reason_codes": [
+        "SPLIT_PACKAGE"
+      ],
+      "signals": {
+        "floating_vcs": false,
+        "functions": [
+          "build",
+          "check"
+        ],
+        "has_sources": false,
+        "install_hook": false,
+        "missing_checksum": false,
+        "pacman_hook": false,
+        "pkgver_function": false,
+        "shell_substitution": false,
+        "split_package": true,
+        "vcs_source_count": 0
+      },
+      "srcinfo_sha256": "f905eef1d5176a2d6707d8d66599ff66b9d8daf32f715a43cf16cf4a65c1f56b"
+    },
+    {
+      "admission_class": "rejected",
+      "line_count": 165,
+      "packages": [
+        "zsh"
+      ],
+      "path": "zsh/PKGBUILD",
+      "pkgbuild_sha256": "75f6412fbee0b55f854ef3f0a35e2fe9a133386e57d7c0085c784f8e50123c64",
+      "reason_codes": [
+        "INSTALL_HOOK",
+        "SPLIT_PACKAGE"
+      ],
+      "signals": {
+        "floating_vcs": false,
+        "functions": [
+          "build",
+          "check",
+          "package_zsh",
+          "prepare"
+        ],
+        "has_sources": false,
+        "install_hook": true,
+        "missing_checksum": false,
+        "pacman_hook": false,
+        "pkgver_function": false,
+        "shell_substitution": false,
+        "split_package": true,
+        "vcs_source_count": 0
+      },
+      "srcinfo_sha256": "2acd01b3d3aaef7ac7de5c1dc056f10a87119a6e60f9277cff4daef857db0c23"
+    },
+    {
+      "admission_class": "sealed-script",
+      "line_count": 87,
+      "packages": [
+        "lib32-zstd"
+      ],
+      "path": "zstd/lib32-zstd/PKGBUILD",
+      "pkgbuild_sha256": "0d19c3294449a508052a85647e91a9fadcf2c8d7d056c4832545f13d0c163af2",
+      "reason_codes": [
+        "SHELL_SUBSTITUTION"
+      ],
+      "signals": {
+        "floating_vcs": false,
+        "functions": [
+          "build",
+          "check",
+          "package",
+          "prepare"
+        ],
+        "has_sources": false,
+        "install_hook": false,
+        "missing_checksum": false,
+        "pacman_hook": false,
+        "pkgver_function": false,
+        "shell_substitution": true,
+        "split_package": false,
+        "vcs_source_count": 0
+      },
+      "srcinfo_sha256": "90a37be0ea1edc75dd5725fcc9891e61d3874ee507bd61eeb2c88bb1905bdeb1"
+    },
+    {
+      "admission_class": "sealed-script",
+      "line_count": 137,
+      "packages": [
+        "zstd"
+      ],
+      "path": "zstd/zstd-pgo/PKGBUILD",
+      "pkgbuild_sha256": "579f5160e6c1f6ec67b409ceb9a35b233501f9d21b778709e193ef3149d2f6cb",
+      "reason_codes": [
+        "SHELL_SUBSTITUTION"
+      ],
+      "signals": {
+        "floating_vcs": false,
+        "functions": [
+          "build",
+          "check",
+          "package",
+          "prepare"
+        ],
+        "has_sources": false,
+        "install_hook": false,
+        "missing_checksum": false,
+        "pacman_hook": false,
+        "pkgver_function": false,
+        "shell_substitution": true,
+        "split_package": false,
+        "vcs_source_count": 0
+      },
+      "srcinfo_sha256": "6b688dafb9cc5659e48bcd4bee1f646096e31532db8ca5b43681c95bdb4db81c"
+    },
+    {
+      "admission_class": "sealed-script",
+      "line_count": 93,
+      "packages": [
+        "zstd"
+      ],
+      "path": "zstd/zstd/PKGBUILD",
+      "pkgbuild_sha256": "2df24378148a455aff6cd1840ce8bb49ba112d8b442e296569baaebd3bce8f8b",
+      "reason_codes": [
+        "SHELL_SUBSTITUTION"
+      ],
+      "signals": {
+        "floating_vcs": false,
+        "functions": [
+          "build",
+          "check",
+          "package",
+          "prepare"
+        ],
+        "has_sources": false,
+        "install_hook": false,
+        "missing_checksum": false,
+        "pacman_hook": false,
+        "pkgver_function": false,
+        "shell_substitution": true,
+        "split_package": false,
+        "vcs_source_count": 0
+      },
+      "srcinfo_sha256": "1c178552040e388740c93ffd25a4dd8f9476e1886f00912e91384f37fc82adbe"
+    }
+  ],
+  "repository": "https://github.com/CachyOS/CachyOS-PKGBUILDS.git",
+  "resolved_package_outputs": 326,
+  "revision": "8753877a6ed4af2bf510b8b3f5bda88b793f28ec",
+  "unresolved_pkgbuilds": 0
+}
