@@ -72,7 +72,7 @@ jobs:
             scripts/verify_cachyos_candidates.py \
             scripts/verify_cachyos_ingress.py
       - name: Check C metadata preflight
-        run: scripts/check-c.sh
+        run: bash scripts/check-c.sh
       - name: Check repository whitespace
         run: git diff --check
 
