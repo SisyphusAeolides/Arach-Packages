@@ -1,0 +1,114 @@
+name: Repair Gentoo classifier CI
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - .github/workflows/ci-repair-gentoo.yml
+
+permissions:
+  contents: write
+
+concurrency:
+  group: ci-repair-gentoo
+  cancel-in-progress: false
+
+jobs:
+  repair:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v7
+        with:
+          fetch-depth: 0
+      - name: Repair Gentoo classification
+        run: |
+          python3 - <<'PY'
+          from pathlib import Path
+
+          path = Path("scripts/inventory_gentoo_ebuild_shard.py")
+          text = path.read_text(encoding="utf-8")
+
+          old = '''    if FUNCTION_RE.search(text):
+        dynamic.append("phase-functions")
+    return assignments, sorted(set(dynamic))
+'''
+          if text.count(old) != 1:
+              raise SystemExit("phase-function marker differs")
+          text = text.replace(old, '''    return assignments, sorted(set(dynamic))
+''')
+
+          old = '''        if len(fields) < 6 or len(fields) % 2 != 0:
+            raise GentooError(f"invalid DIST entry at line {line_number}")
+'''
+          if text.count(old) != 1:
+              raise SystemExit("Manifest pair marker differs")
+          text = text.replace(old, '''        if len(fields) < 5 or (len(fields) - 3) % 2 != 0:
+            raise GentooError(f"invalid DIST entry at line {line_number}")
+''')
+
+          old = '''def static_sources(value: str) -> list[dict[str, Any]]:
+    words = split_shell_words(value)
+    sources: list[dict[str, Any]] = []
+    redirect = False
+    for word in words:
+        if redirect:
+            redirect = False
+            continue
+        if word == "->":
+            if not sources:
+                raise GentooError("SRC_URI redirect has no source")
+            redirect = True
+            continue
+        if not word.startswith("https://") or any(character.isspace() for character in word):
+            raise GentooError("SRC_URI contains a non-HTTPS or dynamic source")
+        filename = word.rsplit("/", 1)[-1]
+        if not filename:
+            raise GentooError("SRC_URI source has no filename")
+        sources.append({"url": word, "filename": filename})
+    if redirect:
+        raise GentooError("SRC_URI redirect has no target")
+    return sources
+'''
+          new = '''def static_sources(value: str) -> list[dict[str, Any]]:
+    words = split_shell_words(value)
+    sources: list[dict[str, Any]] = []
+    redirect_target = False
+    for word in words:
+        if redirect_target:
+            if not word or "/" in word or "\\\\" in word or word in {".", ".."}:
+                raise GentooError("SRC_URI redirect target is not a safe filename")
+            sources[-1]["filename"] = word
+            redirect_target = False
+            continue
+        if word == "->":
+            if not sources:
+                raise GentooError("SRC_URI redirect has no source")
+            redirect_target = True
+            continue
+        if not word.startswith("https://") or any(character.isspace() for character in word):
+            raise GentooError("SRC_URI contains a non-HTTPS or dynamic source")
+        filename = word.rsplit("/", 1)[-1]
+        if not filename:
+            raise GentooError("SRC_URI source has no filename")
+        sources.append({"url": word, "filename": filename})
+    if redirect_target:
+        raise GentooError("SRC_URI redirect has no target")
+    return sources
+'''
+          if text.count(old) != 1:
+              raise SystemExit("SRC_URI redirect marker differs")
+          path.write_text(text.replace(old, new), encoding="utf-8")
+          PY
+      - name: Validate Gentoo repair
+        run: |
+          python3 -m unittest tests/test_inventory_gentoo_ebuild_shard.py
+          python3 -m py_compile scripts/inventory_gentoo_ebuild_shard.py
+          git diff --check
+      - name: Commit repair
+        run: |
+          git config user.name 'SisyphusAeolides'
+          git config user.email '37166405+SisyphusAeolides@users.noreply.github.com'
+          git add scripts/inventory_gentoo_ebuild_shard.py
+          git commit -m 'fix: repair Gentoo ebuild classification'
+          git pull --rebase origin main
+          git push origin HEAD:main
