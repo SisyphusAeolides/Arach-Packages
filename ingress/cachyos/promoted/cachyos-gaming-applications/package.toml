@@ -1,0 +1,38 @@
+format = 1
+
+[package]
+name = "cachyos-gaming-applications"
+version = "1.0.0"
+release = 3
+summary = "Common applications used for gaming"
+license = "LicenseRef-Unspecified"
+scope = "user"
+publish_authority = "arach-native"
+architectures = ["x86-64"]
+
+[build]
+system = "meta"
+depends = []
+commands = []
+outputs = []
+
+[runtime]
+depends = [
+  "cachyos-gaming-meta",
+  "faugus-launcher",
+  "gamescope",
+  "goverlay",
+  "heroic-games-launcher",
+  "lib32-mangohud",
+  "lutris",
+  "mangohud",
+  "steam",
+  "wqy-zenhei",
+]
+provides = []
+conflicts = []
+
+[policy]
+network = false
+sandbox = true
+reproducible = true
