@@ -1,0 +1,312 @@
+{
+  "format": 1,
+  "distribution": "Arach OS",
+  "routes": [
+    "native-recipe",
+    "signed-binary",
+    "compatibility-runtime",
+    "container",
+    "managed-vm"
+  ],
+  "categories": [
+    {
+      "id": "core-system",
+      "title": "Core system and boot",
+      "workloads": [
+        {
+          "name": "kernel-boot-runtime",
+          "route": "native-recipe",
+          "status": "present",
+          "packages": ["arach-kernel", "granite", "push", "slope", "corinth"],
+          "evidence": []
+        },
+        {
+          "name": "installer",
+          "route": "native-recipe",
+          "status": "present",
+          "packages": ["arach-os-installer", "arach-hwd"],
+          "evidence": []
+        }
+      ]
+    },
+    {
+      "id": "desktop-foundation",
+      "title": "COSMIC desktop foundation",
+      "workloads": [
+        {
+          "name": "cosmic-session",
+          "route": "native-recipe",
+          "status": "present",
+          "packages": ["cosmic-desktop", "greetd", "seatd", "dbus-broker", "pipewire", "wireplumber"],
+          "evidence": []
+        },
+        {
+          "name": "input-stack",
+          "route": "native-recipe",
+          "status": "present",
+          "packages": ["libinput-rs", "elan-guardian"],
+          "evidence": []
+        }
+      ]
+    },
+    {
+      "id": "system-utilities",
+      "title": "System utilities",
+      "workloads": [
+        {
+          "name": "tuning-and-log-presentation",
+          "route": "native-recipe",
+          "status": "present",
+          "packages": ["tuned-rs", "ccze-rs"],
+          "evidence": []
+        }
+      ]
+    },
+    {
+      "id": "toolchains-libc",
+      "title": "Toolchains and libc",
+      "workloads": [
+        {
+          "name": "native-c-cpp-toolchain",
+          "route": "native-recipe",
+          "status": "missing",
+          "packages": ["binutils", "gcc", "llvm", "clang", "lld"],
+          "evidence": []
+        },
+        {
+          "name": "system-libc",
+          "route": "native-recipe",
+          "status": "missing",
+          "packages": ["glibc", "musl"],
+          "evidence": []
+        }
+      ]
+    },
+    {
+      "id": "crypto-tls",
+      "title": "Cryptography and TLS",
+      "workloads": [
+        {
+          "name": "tls-foundation",
+          "route": "native-recipe",
+          "status": "missing",
+          "packages": ["openssl", "ca-certificates"],
+          "evidence": []
+        }
+      ]
+    },
+    {
+      "id": "networking",
+      "title": "Networking",
+      "workloads": [
+        {
+          "name": "network-management",
+          "route": "native-recipe",
+          "status": "missing",
+          "packages": ["networkmanager", "wpa-supplicant", "iw", "dhcp-client"],
+          "evidence": []
+        },
+        {
+          "name": "network-diagnostics",
+          "route": "native-recipe",
+          "status": "missing",
+          "packages": ["iproute2", "ethtool", "bind-tools", "curl"],
+          "evidence": []
+        }
+      ]
+    },
+    {
+      "id": "browsers",
+      "title": "Web browsers",
+      "workloads": [
+        {
+          "name": "firefox",
+          "route": "signed-binary",
+          "status": "planned",
+          "packages": ["firefox"],
+          "evidence": []
+        }
+      ]
+    },
+    {
+      "id": "office",
+      "title": "Office software",
+      "workloads": [
+        {
+          "name": "office-suite",
+          "route": "native-recipe",
+          "status": "missing",
+          "packages": ["libreoffice"],
+          "evidence": []
+        }
+      ]
+    },
+    {
+      "id": "printing-scanning",
+      "title": "Printing and scanning",
+      "workloads": [
+        {
+          "name": "printing",
+          "route": "native-recipe",
+          "status": "missing",
+          "packages": ["cups", "cups-filters"],
+          "evidence": []
+        },
+        {
+          "name": "scanning",
+          "route": "native-recipe",
+          "status": "missing",
+          "packages": ["sane-backends"],
+          "evidence": []
+        }
+      ]
+    },
+    {
+      "id": "media",
+      "title": "Codecs and media applications",
+      "workloads": [
+        {
+          "name": "codec-stack",
+          "route": "native-recipe",
+          "status": "missing",
+          "packages": ["ffmpeg", "gstreamer", "gst-plugins-base", "gst-plugins-good"],
+          "evidence": []
+        },
+        {
+          "name": "media-player",
+          "route": "native-recipe",
+          "status": "missing",
+          "packages": ["mpv"],
+          "evidence": []
+        }
+      ]
+    },
+    {
+      "id": "developer-tools",
+      "title": "Developer tools",
+      "workloads": [
+        {
+          "name": "source-control-and-remote-shell",
+          "route": "native-recipe",
+          "status": "missing",
+          "packages": ["git", "openssh"],
+          "evidence": []
+        }
+      ]
+    },
+    {
+      "id": "language-runtimes",
+      "title": "Language runtimes",
+      "workloads": [
+        {
+          "name": "python",
+          "route": "native-recipe",
+          "status": "missing",
+          "packages": ["python"],
+          "evidence": []
+        },
+        {
+          "name": "java",
+          "route": "native-recipe",
+          "status": "missing",
+          "packages": ["openjdk"],
+          "evidence": []
+        },
+        {
+          "name": "go",
+          "route": "native-recipe",
+          "status": "missing",
+          "packages": ["go"],
+          "evidence": []
+        },
+        {
+          "name": "nodejs",
+          "route": "native-recipe",
+          "status": "missing",
+          "packages": ["nodejs", "npm"],
+          "evidence": []
+        }
+      ]
+    },
+    {
+      "id": "gaming-compatibility",
+      "title": "Gaming and Windows compatibility",
+      "workloads": [
+        {
+          "name": "wine-proton",
+          "route": "compatibility-runtime",
+          "status": "missing",
+          "packages": ["wine", "proton"],
+          "evidence": []
+        },
+        {
+          "name": "steam",
+          "route": "managed-vm",
+          "status": "missing",
+          "packages": ["steam"],
+          "evidence": []
+        }
+      ]
+    },
+    {
+      "id": "application-distribution",
+      "title": "Application distribution and containers",
+      "workloads": [
+        {
+          "name": "flatpak",
+          "route": "compatibility-runtime",
+          "status": "missing",
+          "packages": ["flatpak"],
+          "evidence": []
+        },
+        {
+          "name": "oci-runtime",
+          "route": "container",
+          "status": "missing",
+          "packages": ["runc", "containerd"],
+          "evidence": []
+        },
+        {
+          "name": "appimage",
+          "route": "compatibility-runtime",
+          "status": "missing",
+          "packages": ["appimage-runtime"],
+          "evidence": []
+        }
+      ]
+    },
+    {
+      "id": "firmware",
+      "title": "Firmware",
+      "workloads": [
+        {
+          "name": "system-firmware",
+          "route": "signed-binary",
+          "status": "missing",
+          "packages": ["linux-firmware", "cpu-microcode"],
+          "evidence": []
+        }
+      ]
+    },
+    {
+      "id": "diagnostics-recovery",
+      "title": "Diagnostics and recovery",
+      "workloads": [
+        {
+          "name": "storage-and-filesystem-recovery",
+          "route": "native-recipe",
+          "status": "missing",
+          "packages": ["smartmontools", "nvme-cli", "testdisk", "filesystem-tools"],
+          "evidence": []
+        },
+        {
+          "name": "system-diagnostics",
+          "route": "native-recipe",
+          "status": "missing",
+          "packages": ["strace", "lsof", "pciutils", "usbutils"],
+          "evidence": []
+        }
+      ]
+    }
+  ]
+}
