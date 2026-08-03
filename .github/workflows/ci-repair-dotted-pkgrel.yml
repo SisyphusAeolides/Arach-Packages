@@ -1,0 +1,118 @@
+name: Repair dotted package release handling
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - .github/workflows/ci-repair-dotted-pkgrel.yml
+
+permissions:
+  contents: write
+
+concurrency:
+  group: ci-repair-dotted-pkgrel
+  cancel-in-progress: false
+
+jobs:
+  repair:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v7
+        with:
+          fetch-depth: 0
+      - name: Add deterministic dotted release encoding
+        run: |
+          python3 - <<'PY'
+          from pathlib import Path
+
+          path = Path("scripts/prepare_cachyos_overlay.py")
+          text = path.read_text(encoding="utf-8")
+          old = '''def candidate_version(metadata: dict[str, Any]) -> tuple[str, int, int]:
+    version = metadata.get("version")
+    release_text = metadata.get("release")
+    epoch_text = metadata.get("epoch", "0")
+    if not isinstance(version, str) or not version or any(character.isspace() for character in version):
+        raise OverlayError("candidate version is missing or invalid")
+    try:
+        release = int(release_text)
+        epoch = int(epoch_text)
+    except (TypeError, ValueError) as error:
+        raise OverlayError("candidate release or epoch is invalid") from error
+    if release <= 0 or epoch < 0:
+        raise OverlayError("candidate release or epoch is outside its bounds")
+    return version, release, epoch
+'''
+          new = '''def encode_release(value: Any) -> int:
+    if not isinstance(value, str) or not value:
+        raise OverlayError("candidate release is missing or invalid")
+    components = value.split(".")
+    if any(
+        not component.isascii()
+        or not component.isdigit()
+        or (len(component) > 1 and component.startswith("0"))
+        or len(component) > 3
+        for component in components
+    ):
+        raise OverlayError(f"candidate release is not canonical numeric metadata: {value}")
+    release = 0
+    for component in components:
+        release = release * 1000 + int(component)
+        if release > 0xFFFF_FFFF:
+            raise OverlayError("candidate release exceeds the recipe field")
+    if release <= 0:
+        raise OverlayError("candidate release is outside its bounds")
+    return release
+
+
+def candidate_version(metadata: dict[str, Any]) -> tuple[str, int, int]:
+    version = metadata.get("version")
+    release_text = metadata.get("release")
+    epoch_text = metadata.get("epoch", "0")
+    if not isinstance(version, str) or not version or any(character.isspace() for character in version):
+        raise OverlayError("candidate version is missing or invalid")
+    release = encode_release(release_text)
+    try:
+        epoch = int(epoch_text)
+    except (TypeError, ValueError) as error:
+        raise OverlayError("candidate epoch is invalid") from error
+    if epoch < 0:
+        raise OverlayError("candidate epoch is outside its bounds")
+    return version, release, epoch
+'''
+          if text.count(old) != 1:
+              raise SystemExit("candidate_version block differs")
+          path.write_text(text.replace(old, new), encoding="utf-8")
+
+          tests = Path("scripts/test_prepare_cachyos_overlay.py")
+          text = tests.read_text(encoding="utf-8")
+          marker = '''    def test_prepares_every_output_with_distinct_variant_identity(self) -> None:
+'''
+          addition = '''    def test_dotted_release_is_encoded_deterministically(self) -> None:
+        self.assertEqual(MODULE.encode_release("1"), 1)
+        self.assertEqual(MODULE.encode_release("1.1"), 1001)
+        self.assertEqual(MODULE.encode_release("2.10.3"), 2_010_003)
+
+    def test_ambiguous_or_invalid_release_is_rejected(self) -> None:
+        for value in ("", "01", "1.01", "1.a", "-1"):
+            with self.subTest(value=value):
+                with self.assertRaises(MODULE.OverlayError):
+                    MODULE.encode_release(value)
+
+'''
+          if text.count(marker) != 1:
+              raise SystemExit("test insertion marker differs")
+          tests.write_text(text.replace(marker, addition + marker), encoding="utf-8")
+          PY
+      - name: Validate release encoding
+        run: |
+          python3 -m unittest scripts/test_prepare_cachyos_overlay.py
+          python3 -m py_compile scripts/prepare_cachyos_overlay.py
+          git diff --check
+      - name: Commit repair
+        run: |
+          git config user.name 'SisyphusAeolides'
+          git config user.email '37166405+SisyphusAeolides@users.noreply.github.com'
+          git add scripts/prepare_cachyos_overlay.py scripts/test_prepare_cachyos_overlay.py
+          git commit -m 'fix: encode dotted package releases'
+          git pull --rebase origin main
+          git push origin HEAD:main
