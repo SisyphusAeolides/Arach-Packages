@@ -1,0 +1,41 @@
+name: Source SBOM
+
+on:
+  push:
+    paths:
+      - recipes/**
+      - scripts/generate_source_sbom.py
+      - tests/test_source_sbom.py
+      - .github/workflows/source-sbom.yml
+  pull_request:
+    paths:
+      - recipes/**
+      - scripts/generate_source_sbom.py
+      - tests/test_source_sbom.py
+      - .github/workflows/source-sbom.yml
+
+permissions:
+  contents: read
+
+jobs:
+  spdx:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v7
+      - name: Generate deterministic SPDX source SBOM
+        run: |
+          created_unix=$(git log -1 --format=%ct)
+          python3 scripts/generate_source_sbom.py \
+            --root . \
+            --created-unix "$created_unix" \
+            --output target/arach-packages-source.spdx.json
+      - name: Test SBOM invariants
+        run: python3 -m unittest tests/test_source_sbom.py
+      - name: Upload source SBOM
+        uses: actions/upload-artifact@v4
+        with:
+          name: arach-packages-source-sbom-${{ github.sha }}
+          path: target/arach-packages-source.spdx.json
+          if-no-files-found: error
+      - name: Check repository whitespace
+        run: git diff --check
