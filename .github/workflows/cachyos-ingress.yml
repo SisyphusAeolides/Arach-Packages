@@ -11,6 +11,10 @@ on:
       - scripts/emit_cachyos_candidates.py
       - scripts/verify_cachyos_candidates.py
       - scripts/test_cachyos_candidates.py
+      - scripts/validate_cachyos_variants.py
+      - scripts/test_cachyos_variants.py
+      - scripts/prepare_cachyos_overlay.py
+      - scripts/test_prepare_cachyos_overlay.py
       - .github/workflows/cachyos-ingress.yml
   pull_request:
     paths:
@@ -22,6 +26,10 @@ on:
       - scripts/emit_cachyos_candidates.py
       - scripts/verify_cachyos_candidates.py
       - scripts/test_cachyos_candidates.py
+      - scripts/validate_cachyos_variants.py
+      - scripts/test_cachyos_variants.py
+      - scripts/prepare_cachyos_overlay.py
+      - scripts/test_prepare_cachyos_overlay.py
       - .github/workflows/cachyos-ingress.yml
   workflow_dispatch:
   schedule:
@@ -37,8 +45,19 @@ jobs:
       - uses: actions/checkout@v7
       - name: Validate ingress policy
         run: python3 scripts/verify_cachyos_ingress.py --policy ingress/cachyos/policy.toml
-      - name: Test inventory and completeness invariants
-        run: python3 -m unittest scripts/test_cachyos_ingress.py scripts/test_cachyos_candidates.py
+      - name: Validate package variants
+        run: |
+          python3 scripts/validate_cachyos_variants.py \
+            --variants ingress/cachyos/variants.toml \
+            --records ingress/cachyos/snapshots/8753877a6ed4af2bf510b8b3f5bda88b793f28ec.records.json \
+            --policy ingress/cachyos/policy.toml
+      - name: Test ingress, variants, and staging
+        run: >-
+          python3 -m unittest
+          scripts/test_cachyos_ingress.py
+          scripts/test_cachyos_candidates.py
+          scripts/test_cachyos_variants.py
+          scripts/test_prepare_cachyos_overlay.py
       - name: Check Python syntax
         run: >-
           python3 -m py_compile
@@ -48,6 +67,10 @@ jobs:
           scripts/emit_cachyos_candidates.py
           scripts/verify_cachyos_candidates.py
           scripts/test_cachyos_candidates.py
+          scripts/validate_cachyos_variants.py
+          scripts/test_cachyos_variants.py
+          scripts/prepare_cachyos_overlay.py
+          scripts/test_prepare_cachyos_overlay.py
       - name: Check repository whitespace
         run: git diff --check
 
@@ -76,7 +99,7 @@ jobs:
             "$CACHYOS_REPOSITORY" "$CACHYOS_REVISION"
           git -C target/cachyos-pkgbuilds checkout --quiet --detach FETCH_HEAD
           test "$(git -C target/cachyos-pkgbuilds rev-parse HEAD)" = "$CACHYOS_REVISION"
-      - name: Inventory all package outputs
+      - name: Reproduce pinned overlay inventory
         run: |
           python3 scripts/inventory_cachyos.py \
             --mirror target/cachyos-pkgbuilds \
@@ -85,40 +108,61 @@ jobs:
           python3 scripts/verify_cachyos_ingress.py \
             --policy ingress/cachyos/policy.toml \
             --manifest target/cachyos-ingress.json
-      - name: Emit candidate recipes
+      - name: Prepare all ArachOS staging records
         run: |
-          python3 scripts/emit_cachyos_candidates.py \
+          python3 scripts/prepare_cachyos_overlay.py \
             --mirror target/cachyos-pkgbuilds \
             --policy ingress/cachyos/policy.toml \
-            --manifest target/cachyos-ingress.json \
-            --output target/cachyos-candidates \
-            --index target/cachyos-candidates.json
-          python3 scripts/verify_cachyos_candidates.py \
-            --manifest target/cachyos-ingress.json \
-            --index target/cachyos-candidates.json \
-            --root target/cachyos-candidates
-      - name: Archive candidate recipes deterministically
+            --records ingress/cachyos/snapshots/8753877a6ed4af2bf510b8b3f5bda88b793f28ec.records.json \
+            --variants ingress/cachyos/variants.toml \
+            --output target/cachyos-stage \
+            --manifest target/cachyos-stage.json
+          python3 scripts/prepare_cachyos_overlay.py \
+            --mirror target/cachyos-pkgbuilds \
+            --policy ingress/cachyos/policy.toml \
+            --records ingress/cachyos/snapshots/8753877a6ed4af2bf510b8b3f5bda88b793f28ec.records.json \
+            --variants ingress/cachyos/variants.toml \
+            --output target/cachyos-stage \
+            --manifest target/cachyos-stage.json \
+            --verify-only
+      - name: Enforce pinned disposition totals
+        run: |
+          python3 - <<'PY'
+          import json
+          import pathlib
+
+          manifest = json.loads(pathlib.Path('target/cachyos-stage.json').read_text())
+          expected = {
+              'meta-target-ready': 2,
+              'quarantined': 126,
+              'worker-required': 198,
+          }
+          if manifest['distribution'] != 'ArachOS':
+              raise SystemExit('staging distribution differs')
+          if manifest['package_output_count'] != 326:
+              raise SystemExit('staging output count differs')
+          if manifest['canonical_package_name_count'] != 321:
+              raise SystemExit('canonical package name count differs')
+          if manifest['variant_entry_count'] != 10:
+              raise SystemExit('variant entry count differs')
+          if manifest['variant_collision_count'] != 5:
+              raise SystemExit('variant collision count differs')
+          if manifest['counts'] != expected:
+              raise SystemExit(f"staging dispositions differ: {manifest['counts']}")
+          if manifest['production_ready'] is not False:
+              raise SystemExit('unsigned staging must not claim production readiness')
+          PY
+      - name: Archive staging records deterministically
         run: |
           tar --sort=name --mtime=@1 --owner=0 --group=0 --numeric-owner \
-            -cf - -C target cachyos-candidates | gzip -n > target/cachyos-candidates.tar.gz
-      - name: Enforce 39,191 unique dispositions and candidates
-        run: |
-          python3 scripts/verify_cachyos_ingress.py \
-            --policy ingress/cachyos/policy.toml \
-            --manifest target/cachyos-ingress.json \
-            --require-complete
-          python3 scripts/verify_cachyos_candidates.py \
-            --manifest target/cachyos-ingress.json \
-            --index target/cachyos-candidates.json \
-            --root target/cachyos-candidates \
-            --require-complete
-      - name: Retain ingress evidence and candidate recipes
+            -cf - -C target cachyos-stage | gzip -n > target/cachyos-stage.tar.gz
+      - name: Retain ingress and conversion staging
         if: always()
         uses: actions/upload-artifact@v4
         with:
-          name: cachyos-ingress-${{ github.sha }}
+          name: cachyos-overlay-${{ github.sha }}
           path: |
             target/cachyos-ingress.json
-            target/cachyos-candidates.json
-            target/cachyos-candidates.tar.gz
+            target/cachyos-stage.json
+            target/cachyos-stage.tar.gz
           if-no-files-found: warn
