@@ -85,3 +85,14 @@ scripts/check-formal-models.sh
 ```
 
 Passing recipe validation proves schema, source, dependency, and policy correctness. It does not by itself prove that every package builds, runs on Arach Kernel, or belongs in an ArachOS release image.
+
+## Current ArachOS integration status
+
+This project is maintained as part of the ArachOS production graph. Its role is
+locked recipes, package semantics, driver/firmware payload authority, and build evidence..
+
+CI and release evidence are evaluated on immutable revisions. Hardware support
+is reported by bounded route and support level; this README does not claim
+universal native support. Gate 3 requires signed hardware identity, target
+kernel provenance, package authority, health checks, rollback behavior, and
+representative physical-hardware evidence before production qualification.
