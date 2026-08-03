@@ -1,0 +1,23 @@
+format = 1
+upstream_repository = "https://github.com/CachyOS/CachyOS-PKGBUILDS.git"
+mirror_revision = "8753877a6ed4af2bf510b8b3f5bda88b793f28ec"
+target_package_outputs = 39191
+max_pkgbuild_bytes = 524288
+classes = ["static", "sealed-script", "meta", "template", "rejected"]
+reason_codes = [
+  "DYNAMIC_PKGVER",
+  "EVAL",
+  "FLOATING_VCS",
+  "INSTALL_HOOK",
+  "KERNEL_TEMPLATE",
+  "MISSING_CHECKSUM",
+  "PACMAN_HOOK",
+  "SHELL_SUBSTITUTION",
+  "SPLIT_PACKAGE",
+  "UNPARSED_FUNCTION",
+  "UNRESOLVED_PACKAGE_NAMES",
+  "UNSUPPORTED_ARCHITECTURE",
+  "UNSUPPORTED_SOURCE",
+  "UNSUPPORTED_SYNTAX",
+]
+kernel_package_prefixes = ["linux-cachyos"]
