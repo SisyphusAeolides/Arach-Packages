@@ -8,6 +8,9 @@ on:
       - scripts/inventory_cachyos.py
       - scripts/verify_cachyos_ingress.py
       - scripts/test_cachyos_ingress.py
+      - scripts/emit_cachyos_candidates.py
+      - scripts/verify_cachyos_candidates.py
+      - scripts/test_cachyos_candidates.py
       - .github/workflows/cachyos-ingress.yml
   pull_request:
     paths:
@@ -16,6 +19,9 @@ on:
       - scripts/inventory_cachyos.py
       - scripts/verify_cachyos_ingress.py
       - scripts/test_cachyos_ingress.py
+      - scripts/emit_cachyos_candidates.py
+      - scripts/verify_cachyos_candidates.py
+      - scripts/test_cachyos_candidates.py
       - .github/workflows/cachyos-ingress.yml
   workflow_dispatch:
   schedule:
@@ -32,14 +38,21 @@ jobs:
       - name: Validate ingress policy
         run: python3 scripts/verify_cachyos_ingress.py --policy ingress/cachyos/policy.toml
       - name: Test inventory and completeness invariants
-        run: python3 -m unittest scripts/test_cachyos_ingress.py
+        run: python3 -m unittest scripts/test_cachyos_ingress.py scripts/test_cachyos_candidates.py
       - name: Check Python syntax
-        run: python3 -m py_compile scripts/inventory_cachyos.py scripts/verify_cachyos_ingress.py scripts/test_cachyos_ingress.py
+        run: >-
+          python3 -m py_compile
+          scripts/inventory_cachyos.py
+          scripts/verify_cachyos_ingress.py
+          scripts/test_cachyos_ingress.py
+          scripts/emit_cachyos_candidates.py
+          scripts/verify_cachyos_candidates.py
+          scripts/test_cachyos_candidates.py
       - name: Check repository whitespace
         run: git diff --check
 
   full-tree:
-    if: github.event_name == 'workflow_dispatch' || github.event_name == 'schedule'
+    if: github.event_name != 'pull_request'
     runs-on: ubuntu-24.04
     timeout-minutes: 45
     steps:
@@ -69,16 +82,43 @@ jobs:
             --mirror target/cachyos-pkgbuilds \
             --policy ingress/cachyos/policy.toml \
             --output target/cachyos-ingress.json
-      - name: Enforce 39,191 unique dispositions
+          python3 scripts/verify_cachyos_ingress.py \
+            --policy ingress/cachyos/policy.toml \
+            --manifest target/cachyos-ingress.json
+      - name: Emit candidate recipes
+        run: |
+          python3 scripts/emit_cachyos_candidates.py \
+            --mirror target/cachyos-pkgbuilds \
+            --policy ingress/cachyos/policy.toml \
+            --manifest target/cachyos-ingress.json \
+            --output target/cachyos-candidates \
+            --index target/cachyos-candidates.json
+          python3 scripts/verify_cachyos_candidates.py \
+            --manifest target/cachyos-ingress.json \
+            --index target/cachyos-candidates.json \
+            --root target/cachyos-candidates
+      - name: Archive candidate recipes deterministically
+        run: |
+          tar --sort=name --mtime=@1 --owner=0 --group=0 --numeric-owner \
+            -cf - -C target cachyos-candidates | gzip -n > target/cachyos-candidates.tar.gz
+      - name: Enforce 39,191 unique dispositions and candidates
         run: |
           python3 scripts/verify_cachyos_ingress.py \
             --policy ingress/cachyos/policy.toml \
             --manifest target/cachyos-ingress.json \
             --require-complete
-      - name: Retain ingress inventory
+          python3 scripts/verify_cachyos_candidates.py \
+            --manifest target/cachyos-ingress.json \
+            --index target/cachyos-candidates.json \
+            --root target/cachyos-candidates \
+            --require-complete
+      - name: Retain ingress evidence and candidate recipes
         if: always()
         uses: actions/upload-artifact@v4
         with:
           name: cachyos-ingress-${{ github.sha }}
-          path: target/cachyos-ingress.json
-          if-no-files-found: error
+          path: |
+            target/cachyos-ingress.json
+            target/cachyos-candidates.json
+            target/cachyos-candidates.tar.gz
+          if-no-files-found: warn
