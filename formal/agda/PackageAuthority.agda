@@ -2,6 +2,8 @@
 module PackageAuthority where
 
 open import Agda.Builtin.Equality using (_≡_; refl)
+open import Agda.Builtin.List using (List; []; _∷_)
+open import Agda.Builtin.Maybe using (Maybe; just; nothing)
 
 data Scope : Set where
   user system driver firmware : Scope
@@ -31,3 +33,31 @@ driver-is-hardware : (proof : Admitted driver arach-hardware) →
                      proof ≡ hardware-driver
 driver-is-hardware hardware-driver = refl
 
+data Route : Set where
+  native rebuilt compatibility-runtime container managed-vm : Route
+
+data Disposition : Set where
+  routed : Route → Disposition
+  quarantined : Disposition
+
+data Covered : Disposition → Set where
+  has-route : {route : Route} → Covered (routed route)
+  held-back : Covered quarantined
+
+classify-route : Maybe Route → Disposition
+classify-route (just route) = routed route
+classify-route nothing = quarantined
+
+coverage-is-total : (candidate : Maybe Route) → Covered (classify-route candidate)
+coverage-is-total (just route) = has-route
+coverage-is-total nothing = held-back
+
+classify-all : List (Maybe Route) → List Disposition
+classify-all [] = []
+classify-all (candidate ∷ rest) = classify-route candidate ∷ classify-all rest
+
+data Publishable : Disposition → Set where
+  publish-routed : {route : Route} → Publishable (routed route)
+
+quarantine-cannot-publish : Publishable quarantined → ⊥
+quarantine-cannot-publish ()
