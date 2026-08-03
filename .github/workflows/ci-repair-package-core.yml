@@ -1,0 +1,181 @@
+name: Repair package CI failures
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - .github/workflows/ci-repair-package-core.yml
+
+permissions:
+  contents: write
+
+concurrency:
+  group: ci-repair-package-core
+  cancel-in-progress: false
+
+jobs:
+  repair:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v7
+        with:
+          fetch-depth: 0
+      - name: Repair deterministic test failures
+        run: |
+          python3 - <<'PY'
+          from pathlib import Path
+
+          def replace(path: str, old: str, new: str, count: int = 1) -> None:
+              target = Path(path)
+              text = target.read_text(encoding="utf-8")
+              actual = text.count(old)
+              if actual != count:
+                  raise SystemExit(f"{path}: expected {count} matches, found {actual}")
+              target.write_text(text.replace(old, new), encoding="utf-8")
+
+          replace(
+              "native/build_rank_test.f90",
+              """  if (arach_corpus_rank(1_c_int, 0_c_int, 0_c_int, 0_c_int, 0_c_int, &
+                        1.0_c_double, .false._c_bool) /= -1.0_c_double) error stop 7
+  if (arach_corpus_rank(1_c_int, 0_c_int, 0_c_int, 0_c_int, 0_c_int, &
+                        not_a_number, .true._c_bool) /= -1.0_c_double) error stop 8
+""",
+              """  if (abs(arach_corpus_rank(1_c_int, 0_c_int, 0_c_int, 0_c_int, &
+                             0_c_int, 1.0_c_double, .false._c_bool) &
+          + 1.0_c_double) > epsilon(1.0_c_double)) error stop 7
+  if (abs(arach_corpus_rank(1_c_int, 0_c_int, 0_c_int, 0_c_int, &
+                             0_c_int, not_a_number, .true._c_bool) &
+          + 1.0_c_double) > epsilon(1.0_c_double)) error stop 8
+""",
+          )
+
+          replace(
+              "scripts/inventory_gentoo_ebuild_shard.py",
+              """    if FUNCTION_RE.search(text):
+        dynamic.append("phase-functions")
+    return assignments, sorted(set(dynamic))
+""",
+              """    return assignments, sorted(set(dynamic))
+""",
+          )
+          replace(
+              "scripts/inventory_gentoo_ebuild_shard.py",
+              """        if len(fields) < 6 or len(fields) % 2 != 0:
+            raise GentooError(f"invalid DIST entry at line {line_number}")
+""",
+              """        if len(fields) < 5 or (len(fields) - 3) % 2 != 0:
+            raise GentooError(f"invalid DIST entry at line {line_number}")
+""",
+          )
+          replace(
+              "scripts/inventory_gentoo_ebuild_shard.py",
+              """def static_sources(value: str) -> list[dict[str, Any]]:
+    words = split_shell_words(value)
+    sources: list[dict[str, Any]] = []
+    redirect = False
+    for word in words:
+        if redirect:
+            redirect = False
+            continue
+        if word == "->":
+            if not sources:
+                raise GentooError("SRC_URI redirect has no source")
+            redirect = True
+            continue
+        if not word.startswith("https://") or any(character.isspace() for character in word):
+            raise GentooError("SRC_URI contains a non-HTTPS or dynamic source")
+        filename = word.rsplit("/", 1)[-1]
+        if not filename:
+            raise GentooError("SRC_URI source has no filename")
+        sources.append({"url": word, "filename": filename})
+    if redirect:
+        raise GentooError("SRC_URI redirect has no target")
+    return sources
+""",
+              """def static_sources(value: str) -> list[dict[str, Any]]:
+    words = split_shell_words(value)
+    sources: list[dict[str, Any]] = []
+    redirect_target = False
+    for word in words:
+        if redirect_target:
+            if (
+                not word
+                or "/" in word
+                or "\\\\" in word
+                or word in {".", ".."}
+            ):
+                raise GentooError("SRC_URI redirect target is not a safe filename")
+            sources[-1]["filename"] = word
+            redirect_target = False
+            continue
+        if word == "->":
+            if not sources:
+                raise GentooError("SRC_URI redirect has no source")
+            redirect_target = True
+            continue
+        if not word.startswith("https://") or any(character.isspace() for character in word):
+            raise GentooError("SRC_URI contains a non-HTTPS or dynamic source")
+        filename = word.rsplit("/", 1)[-1]
+        if not filename:
+            raise GentooError("SRC_URI source has no filename")
+        sources.append({"url": word, "filename": filename})
+    if redirect_target:
+        raise GentooError("SRC_URI redirect has no target")
+    return sources
+""",
+          )
+
+          replace(
+              "scripts/emit_cachyos_candidates.py",
+              """        key, value = (part.strip() for part in line.split("=", 1))
+        if not key or not value:
+            raise CandidateError(f"empty .SRCINFO field on line {line_number}: {path}")
+        if key == "pkgbase":
+""",
+              """        key, value = (part.strip() for part in line.split("=", 1))
+        if not key:
+            raise CandidateError(f"empty .SRCINFO key on line {line_number}: {path}")
+        if not value:
+            if key in {"pkgbase", "pkgname", "pkgver", "pkgrel"}:
+                raise CandidateError(
+                    f"empty required .SRCINFO field on line {line_number}: {path}"
+                )
+            continue
+        if key == "pkgbase":
+""",
+          )
+          replace(
+              "scripts/test_cachyos_candidates.py",
+              """\tmakedepends = cmake
+\tsource = https://example.invalid/bundle.tar.xz
+""",
+              """\tmakedepends = cmake
+\toptdepends =
+\tsource = https://example.invalid/bundle.tar.xz
+""",
+          )
+          PY
+      - name: Run focused repair tests
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y gfortran
+          scripts/check-fortran.sh
+          python3 -m unittest \
+            tests/test_inventory_gentoo_ebuild_shard.py \
+            scripts/test_cachyos_candidates.py \
+            scripts/test_prepare_cachyos_overlay.py
+          python3 -m py_compile \
+            scripts/inventory_gentoo_ebuild_shard.py \
+            scripts/emit_cachyos_candidates.py
+          git diff --check
+      - name: Commit repair
+        run: |
+          git config user.name 'SisyphusAeolides'
+          git config user.email '37166405+SisyphusAeolides@users.noreply.github.com'
+          git add native/build_rank_test.f90 \
+            scripts/inventory_gentoo_ebuild_shard.py \
+            scripts/emit_cachyos_candidates.py \
+            scripts/test_cachyos_candidates.py
+          git commit -m 'fix: repair package validation failures'
+          git pull --rebase origin main
+          git push origin HEAD:main
