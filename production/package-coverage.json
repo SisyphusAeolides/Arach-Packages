@@ -69,14 +69,14 @@
         {
           "name": "native-c-cpp-toolchain",
           "route": "native-recipe",
-          "status": "missing",
+          "status": "planned",
           "packages": ["binutils", "gcc", "llvm", "clang", "lld"],
           "evidence": []
         },
         {
           "name": "system-libc",
           "route": "native-recipe",
-          "status": "missing",
+          "status": "planned",
           "packages": ["glibc", "musl"],
           "evidence": []
         }
@@ -89,7 +89,7 @@
         {
           "name": "tls-foundation",
           "route": "native-recipe",
-          "status": "missing",
+          "status": "planned",
           "packages": ["openssl", "ca-certificates"],
           "evidence": []
         }
@@ -102,14 +102,14 @@
         {
           "name": "network-management",
           "route": "native-recipe",
-          "status": "missing",
+          "status": "planned",
           "packages": ["networkmanager", "wpa-supplicant", "iw", "dhcp-client"],
           "evidence": []
         },
         {
           "name": "network-diagnostics",
           "route": "native-recipe",
-          "status": "missing",
+          "status": "planned",
           "packages": ["iproute2", "ethtool", "bind-tools", "curl"],
           "evidence": []
         }
@@ -135,7 +135,7 @@
         {
           "name": "office-suite",
           "route": "native-recipe",
-          "status": "missing",
+          "status": "planned",
           "packages": ["libreoffice"],
           "evidence": []
         }
@@ -148,14 +148,14 @@
         {
           "name": "printing",
           "route": "native-recipe",
-          "status": "missing",
+          "status": "planned",
           "packages": ["cups", "cups-filters"],
           "evidence": []
         },
         {
           "name": "scanning",
           "route": "native-recipe",
-          "status": "missing",
+          "status": "planned",
           "packages": ["sane-backends"],
           "evidence": []
         }
@@ -168,14 +168,14 @@
         {
           "name": "codec-stack",
           "route": "native-recipe",
-          "status": "missing",
+          "status": "planned",
           "packages": ["ffmpeg", "gstreamer", "gst-plugins-base", "gst-plugins-good"],
           "evidence": []
         },
         {
           "name": "media-player",
           "route": "native-recipe",
-          "status": "missing",
+          "status": "planned",
           "packages": ["mpv"],
           "evidence": []
         }
@@ -188,7 +188,7 @@
         {
           "name": "source-control-and-remote-shell",
           "route": "native-recipe",
-          "status": "missing",
+          "status": "planned",
           "packages": ["git", "openssh"],
           "evidence": []
         }
@@ -201,28 +201,28 @@
         {
           "name": "python",
           "route": "native-recipe",
-          "status": "missing",
+          "status": "planned",
           "packages": ["python"],
           "evidence": []
         },
         {
           "name": "java",
           "route": "native-recipe",
-          "status": "missing",
+          "status": "planned",
           "packages": ["openjdk"],
           "evidence": []
         },
         {
           "name": "go",
           "route": "native-recipe",
-          "status": "missing",
+          "status": "planned",
           "packages": ["go"],
           "evidence": []
         },
         {
           "name": "nodejs",
           "route": "native-recipe",
-          "status": "missing",
+          "status": "planned",
           "packages": ["nodejs", "npm"],
           "evidence": []
         }
@@ -235,14 +235,14 @@
         {
           "name": "wine-proton",
           "route": "compatibility-runtime",
-          "status": "missing",
+          "status": "planned",
           "packages": ["wine", "proton"],
           "evidence": []
         },
         {
           "name": "steam",
           "route": "managed-vm",
-          "status": "missing",
+          "status": "planned",
           "packages": ["steam"],
           "evidence": []
         }
@@ -255,21 +255,21 @@
         {
           "name": "flatpak",
           "route": "compatibility-runtime",
-          "status": "missing",
+          "status": "planned",
           "packages": ["flatpak"],
           "evidence": []
         },
         {
           "name": "oci-runtime",
           "route": "container",
-          "status": "missing",
+          "status": "planned",
           "packages": ["runc", "containerd"],
           "evidence": []
         },
         {
           "name": "appimage",
           "route": "compatibility-runtime",
-          "status": "missing",
+          "status": "planned",
           "packages": ["appimage-runtime"],
           "evidence": []
         }
@@ -282,7 +282,7 @@
         {
           "name": "system-firmware",
           "route": "signed-binary",
-          "status": "missing",
+          "status": "planned",
           "packages": ["linux-firmware", "cpu-microcode"],
           "evidence": []
         }
@@ -295,14 +295,14 @@
         {
           "name": "storage-and-filesystem-recovery",
           "route": "native-recipe",
-          "status": "missing",
+          "status": "planned",
           "packages": ["smartmontools", "nvme-cli", "testdisk", "filesystem-tools"],
           "evidence": []
         },
         {
           "name": "system-diagnostics",
           "route": "native-recipe",
-          "status": "missing",
+          "status": "planned",
           "packages": ["strace", "lsof", "pciutils", "usbutils"],
           "evidence": []
         }
