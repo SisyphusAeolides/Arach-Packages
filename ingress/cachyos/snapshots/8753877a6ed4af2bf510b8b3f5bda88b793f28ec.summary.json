@@ -1,0 +1,29 @@
+{
+  "declared_universe_target": 39191,
+  "duplicate_package_outputs": 5,
+  "format": 1,
+  "overlay_complete": false,
+  "pkgbuild_count": 175,
+  "repository": "https://github.com/CachyOS/CachyOS-PKGBUILDS.git",
+  "resolved_package_outputs": 326,
+  "revision": "8753877a6ed4af2bf510b8b3f5bda88b793f28ec",
+  "summary": {
+    "classes": {
+      "meta": 2,
+      "rejected": 126,
+      "sealed-script": 198
+    },
+    "reasons": {
+      "DYNAMIC_PKGVER": 31,
+      "FLOATING_VCS": 19,
+      "INSTALL_HOOK": 42,
+      "MISSING_CHECKSUM": 18,
+      "PACMAN_HOOK": 8,
+      "SHELL_SUBSTITUTION": 62,
+      "SPLIT_PACKAGE": 34,
+      "UNPARSED_FUNCTION": 23
+    }
+  },
+  "universe_target_met_by_overlay": false,
+  "unresolved_pkgbuilds": 0
+}
