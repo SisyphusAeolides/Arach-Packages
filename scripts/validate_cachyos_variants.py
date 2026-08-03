@@ -126,7 +126,7 @@ def validate(
         raise VariantError("variant repository differs from ingress policy")
     if expected_revision is not None and revision != expected_revision:
         raise VariantError("variant revision differs from ingress policy")
-    if records.get("repository") != repository or records.get("revision") != revision:
+    if records.get("upstream", {}).get("repository") != repository or records.get("upstream", {}).get("revision") != revision:
         raise VariantError("variant authority differs from retained snapshot records")
 
     snapshot_paths = record_packages(records)

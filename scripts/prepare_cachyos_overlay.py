@@ -359,7 +359,7 @@ def prepare(
 
     repository = policy["upstream_repository"]
     revision = policy["mirror_revision"]
-    if records.get("repository") != repository or records.get("revision") != revision:
+    if records.get("upstream", {}).get("repository") != repository or records.get("upstream", {}).get("revision") != revision:
         raise OverlayError("retained records differ from the ingress policy")
     mapping = VARIANTS.validate(variants, records, repository, revision)
     details = variant_details(variants)
@@ -541,8 +541,8 @@ def prepare(
 
 def records_authority(records: dict[str, Any]) -> dict[str, str]:
     return {
-        "repository": records["repository"],
-        "revision": records["revision"],
+        "repository": records.get("upstream", {}).get("repository"),
+        "revision": records.get("upstream", {}).get("revision"),
     }
 
 

@@ -64,8 +64,7 @@ class PrepareCachyosOverlayTests(unittest.TestCase):
         )
         records = {
             "format": 1,
-            "repository": REPOSITORY,
-            "revision": REVISION,
+            "upstream": { "repository": REPOSITORY, "revision": REVISION },
             "pkgbuild_count": 4,
             "resolved_package_outputs": 4,
             "unresolved_pkgbuilds": 0,
@@ -127,8 +126,7 @@ class PrepareCachyosOverlayTests(unittest.TestCase):
         }
         variants = {
             "format": 1,
-            "repository": REPOSITORY,
-            "revision": REVISION,
+            "repository": REPOSITORY, "revision": REVISION,
             "group": [
                 {
                     "id": "foo-microarchitecture",

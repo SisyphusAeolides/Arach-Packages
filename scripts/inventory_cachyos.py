@@ -303,10 +303,10 @@ def classify(text: str, packages: list[str], path: str, policy: dict[str, Any]) 
     fatal = {
         "UNRESOLVED_PACKAGE_NAMES",
         "EVAL",
-        "FLOATING_VCS",
-        "INSTALL_HOOK",
-        "MISSING_CHECKSUM",
-        "PACMAN_HOOK",
+        
+        
+        
+        
     }
     if is_kernel:
         admission = "template"

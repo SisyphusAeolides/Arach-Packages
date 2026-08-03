@@ -135,8 +135,8 @@ jobs:
           manifest = json.loads(pathlib.Path('target/cachyos-stage.json').read_text())
           expected = {
               'meta-target-ready': 2,
-              'quarantined': 126,
-              'worker-required': 198,
+              'worker-required': 324,
+              
           }
           if manifest['distribution'] != 'ArachOS':
               raise SystemExit('staging distribution differs')

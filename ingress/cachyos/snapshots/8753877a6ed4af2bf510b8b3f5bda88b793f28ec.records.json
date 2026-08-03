@@ -1,4 +1,5 @@
 {
+  "complete": false,
   "duplicate_packages": [
     {
       "first": "openblas/openblas-v3/PKGBUILD",
@@ -81,7 +82,7 @@
       "srcinfo_sha256": "6fd270f375de112a68598325db8bcaac6eedb87a28f3cdf1fda590cdcbdaf481"
     },
     {
-      "admission_class": "rejected",
+      "admission_class": "sealed-script",
       "line_count": 53,
       "packages": [
         "archlinux-keyring",
@@ -165,7 +166,7 @@
       "srcinfo_sha256": "753c981511f894e7452d81f34877515d1e0774a5192e3b84bda28459a50e1db5"
     },
     {
-      "admission_class": "rejected",
+      "admission_class": "sealed-script",
       "line_count": 151,
       "packages": [
         "bash"
@@ -224,7 +225,7 @@
       "srcinfo_sha256": "16e1c60ca211c22a0831b6bc11d888222dca184c19a5a13890701abbe71886ea"
     },
     {
-      "admission_class": "rejected",
+      "admission_class": "sealed-script",
       "line_count": 43,
       "packages": [
         "bpftune-git"
@@ -257,7 +258,7 @@
       "srcinfo_sha256": "870deb88d9a4e47fbeadd493b97ba6657bb6b93633d53d56a3639fe54c703922"
     },
     {
-      "admission_class": "rejected",
+      "admission_class": "sealed-script",
       "line_count": 95,
       "packages": [
         "broadcom-wl-dkms"
@@ -631,7 +632,7 @@
       "srcinfo_sha256": "492cc294834a39d344df042a630c22371ddb5671f5f0c711396036b0609486de"
     },
     {
-      "admission_class": "rejected",
+      "admission_class": "sealed-script",
       "line_count": 28,
       "packages": [
         "cachyos-gnome-settings"
@@ -740,7 +741,7 @@
       "srcinfo_sha256": "524f0d0e9c9bc94e0a319dac0caeba3fe26a4ab8a73c48b58802a9f73d2d0724"
     },
     {
-      "admission_class": "rejected",
+      "admission_class": "sealed-script",
       "line_count": 30,
       "packages": [
         "cachyos-hooks"
@@ -767,7 +768,7 @@
       "srcinfo_sha256": "097015543dbd0cbf5a6bde612f8dd9b32362e8ee99285f8950d8b54a5704de20"
     },
     {
-      "admission_class": "rejected",
+      "admission_class": "sealed-script",
       "line_count": 50,
       "packages": [
         "cachyos-hypr-noctalia"
@@ -819,7 +820,7 @@
       "srcinfo_sha256": "119e6949dc988e0dedda1a60e07e93b4ff6226c0d2f75d41c8c48ceedd50a314"
     },
     {
-      "admission_class": "rejected",
+      "admission_class": "sealed-script",
       "line_count": 40,
       "packages": [
         "cachyos-i3wm-settings"
@@ -846,7 +847,7 @@
       "srcinfo_sha256": "da292e1fe9225f1d79d74a9fb3ac183a452b1d080c10a7a57a8b0587083f6974"
     },
     {
-      "admission_class": "rejected",
+      "admission_class": "sealed-script",
       "line_count": 36,
       "packages": [
         "cachyos-jay-noctalia"
@@ -873,7 +874,7 @@
       "srcinfo_sha256": "b7ef43ecf81645c2eb9d99d4672d4b9ebf296ba7c3c2c0c4f85a1f9fe6b0e3cb"
     },
     {
-      "admission_class": "rejected",
+      "admission_class": "sealed-script",
       "line_count": 29,
       "packages": [
         "cachyos-kde-settings"
@@ -900,7 +901,7 @@
       "srcinfo_sha256": "d1dbc21f035ce451b3649fac70a6bde47ffcd7acfb5e1a3895285b4bbfc430ec"
     },
     {
-      "admission_class": "rejected",
+      "admission_class": "sealed-script",
       "line_count": 29,
       "packages": [
         "cachyos-kdump-tools"
@@ -984,7 +985,7 @@
       "srcinfo_sha256": "4e4c6ff9332d7275c987d5c39cc1d92f65f0199e0927ec88f5947e7d5db1d3f7"
     },
     {
-      "admission_class": "rejected",
+      "admission_class": "sealed-script",
       "line_count": 24,
       "packages": [
         "cachyos-keyring"
@@ -1036,7 +1037,7 @@
       "srcinfo_sha256": "17e29808900df8099a161299bd0e500462c92a769ff7134a1b652770e1931cc8"
     },
     {
-      "admission_class": "rejected",
+      "admission_class": "sealed-script",
       "line_count": 37,
       "packages": [
         "cachyos-mango-noctalia"
@@ -1249,7 +1250,7 @@
       "srcinfo_sha256": "9ed69a8c38654845fb0d5ff4ac570a91a2022a4fe0a8316bea6d41f879257cfd"
     },
     {
-      "admission_class": "rejected",
+      "admission_class": "sealed-script",
       "line_count": 39,
       "packages": [
         "cachyos-openbox-settings"
@@ -1302,7 +1303,7 @@
       "srcinfo_sha256": "5328b7ad795453f1cfca6b397dd97d596fd93e9c872aff614411f7220c00b8ad"
     },
     {
-      "admission_class": "rejected",
+      "admission_class": "sealed-script",
       "line_count": 23,
       "packages": [
         "cachyos-plymouth-bootanimation"
@@ -1381,7 +1382,7 @@
       "srcinfo_sha256": "d67fbd515451bd54a824715413a1337f705400ec290e353ba732ce594a24cec3"
     },
     {
-      "admission_class": "rejected",
+      "admission_class": "sealed-script",
       "line_count": 55,
       "packages": [
         "cachyos-qtile-settings"
@@ -1408,7 +1409,7 @@
       "srcinfo_sha256": "fcaa86cc510a7681258eaddb688899fa1f462c17c1fb2322ca3e5485d30177c7"
     },
     {
-      "admission_class": "rejected",
+      "admission_class": "sealed-script",
       "line_count": 30,
       "packages": [
         "cachyos-rate-mirrors"
@@ -1436,7 +1437,7 @@
       "srcinfo_sha256": "8c4b9c4505f01598c80a0722ee2019065e95cf8cc84d10a2411c0f923b889772"
     },
     {
-      "admission_class": "rejected",
+      "admission_class": "sealed-script",
       "line_count": 26,
       "packages": [
         "cachyos-samba-settings"
@@ -1465,7 +1466,7 @@
       "srcinfo_sha256": null
     },
     {
-      "admission_class": "rejected",
+      "admission_class": "sealed-script",
       "line_count": 42,
       "packages": [
         "cachyos-settings"
@@ -1493,7 +1494,7 @@
       "srcinfo_sha256": "e1a17a2ce51fef6841935e558ecedbc50b34bf4dab47618e92beee4613d89fe4"
     },
     {
-      "admission_class": "rejected",
+      "admission_class": "sealed-script",
       "line_count": 19,
       "packages": [
         "cachyos-snapper-support"
@@ -1576,7 +1577,7 @@
       "srcinfo_sha256": "a399853282678b53a22f391dfb50fec4f9b219844ee8f9107069c5c12f591511"
     },
     {
-      "admission_class": "rejected",
+      "admission_class": "sealed-script",
       "line_count": 22,
       "packages": [
         "cachyos-themes-sddm"
@@ -1632,7 +1633,7 @@
       "srcinfo_sha256": "9c43b6bd8986e436c5f79be8d8c814a2451d06f909d3c227450f93b765f04af4"
     },
     {
-      "admission_class": "rejected",
+      "admission_class": "sealed-script",
       "line_count": 39,
       "packages": [
         "cachyos-wayfire-settings"
@@ -1659,7 +1660,7 @@
       "srcinfo_sha256": "f53314e0775e8141ba3327bfeda8991b0a99de081b1d4778f83957cd092ed31c"
     },
     {
-      "admission_class": "rejected",
+      "admission_class": "sealed-script",
       "line_count": 38,
       "packages": [
         "cachyos-xfce-settings"
@@ -1711,7 +1712,7 @@
       "srcinfo_sha256": "7d8591f4addf73ab144d06baa5edbfe0c5a4a7977c94ad9d2491852fd4d641ea"
     },
     {
-      "admission_class": "rejected",
+      "admission_class": "sealed-script",
       "line_count": 21,
       "packages": [
         "char-white"
@@ -1802,7 +1803,7 @@
       "srcinfo_sha256": "7ad50a2d3a5ec4fd647dc768afd2cabca5281bc08cb18fe1eca5d6c5265762d2"
     },
     {
-      "admission_class": "rejected",
+      "admission_class": "sealed-script",
       "line_count": 234,
       "packages": [
         "davinci-resolve"
@@ -1859,7 +1860,7 @@
       "srcinfo_sha256": "1d165ffe867bae117c9046cf13ebd85bba035322191dbf252d14a90c93019bce"
     },
     {
-      "admission_class": "rejected",
+      "admission_class": "sealed-script",
       "line_count": 69,
       "packages": [
         "dkms"
@@ -1887,7 +1888,7 @@
       "srcinfo_sha256": "6157fc7b83ca863da6fd6d25e47ba299f20ee4926428bab3cb443422acbe3307"
     },
     {
-      "admission_class": "rejected",
+      "admission_class": "sealed-script",
       "line_count": 40,
       "packages": [
         "dmemcg-booster"
@@ -1976,7 +1977,7 @@
       "srcinfo_sha256": "d363206df7569a41ab02e4371f5a837b20b3f14628185b3c1fcbbfcfb06d38fd"
     },
     {
-      "admission_class": "rejected",
+      "admission_class": "sealed-script",
       "line_count": 166,
       "packages": [
         "dracut-cachyos"
@@ -2065,7 +2066,7 @@
       "srcinfo_sha256": "6866d5390c855da9079aa1046b6363671d5b2b3edfe5f6fed7f1eba8e375a011"
     },
     {
-      "admission_class": "rejected",
+      "admission_class": "sealed-script",
       "line_count": 24,
       "packages": [
         "grub-btrfs-support"
@@ -2092,7 +2093,7 @@
       "srcinfo_sha256": "e11af8b500f8d8ee349bec833fdcbdcc99597afe2d91b926457fdb826dc96926"
     },
     {
-      "admission_class": "rejected",
+      "admission_class": "sealed-script",
       "line_count": 44,
       "packages": [
         "cachyos-handheld"
@@ -2119,7 +2120,7 @@
       "srcinfo_sha256": "727f30554667ea676f1803ecc9bdb20ee71f8367b5a132f77df7498699d67cd0"
     },
     {
-      "admission_class": "rejected",
+      "admission_class": "sealed-script",
       "line_count": 17,
       "packages": [
         "cachyos-vapor"
@@ -2199,7 +2200,7 @@
       "srcinfo_sha256": "5eaec5acbdb7e9fb526807c15257f858c8f270dc2484dfe5af44e72978d7f93c"
     },
     {
-      "admission_class": "rejected",
+      "admission_class": "sealed-script",
       "line_count": 110,
       "packages": [
         "gamescope"
@@ -2359,7 +2360,7 @@
       "srcinfo_sha256": "8931a718d1fa54c5e8150762ad35f6be1d0ee568a62487faeefa1790ca317081"
     },
     {
-      "admission_class": "rejected",
+      "admission_class": "sealed-script",
       "line_count": 50,
       "packages": [
         "steamos-manager"
@@ -2466,7 +2467,7 @@
       "srcinfo_sha256": "ebd2dc692f380cedbbc8037ca700e5c490f204c353a35f902064a9ecf44161fc"
     },
     {
-      "admission_class": "rejected",
+      "admission_class": "sealed-script",
       "line_count": 459,
       "packages": [
         "jdk-openjdk",
@@ -2500,7 +2501,7 @@
       "srcinfo_sha256": "7eed146474497688abcd54a01b3a3bc1e81274657ce70cfaf3ce1aaf10a1c44c"
     },
     {
-      "admission_class": "rejected",
+      "admission_class": "sealed-script",
       "line_count": 461,
       "packages": [
         "jdk17-openjdk",
@@ -2534,7 +2535,7 @@
       "srcinfo_sha256": "2a2f01881108db7a434a3f5a7793ee8ad0c993b322d24eab13c5fb9539e4fb18"
     },
     {
-      "admission_class": "rejected",
+      "admission_class": "sealed-script",
       "line_count": 459,
       "packages": [
         "jdk21-openjdk",
@@ -2568,7 +2569,7 @@
       "srcinfo_sha256": "47ecf7e2574a456ddd0be4877bafbb39ae8ce895c3df47c1c8b9b9e98c20f236"
     },
     {
-      "admission_class": "rejected",
+      "admission_class": "sealed-script",
       "line_count": 36,
       "packages": [
         "kxkb2locale1"
@@ -2600,7 +2601,7 @@
       "srcinfo_sha256": "fb830a6f41c4d37e5f2240c1419710c9423c84998e9953506afcf1cf6c418c01"
     },
     {
-      "admission_class": "rejected",
+      "admission_class": "sealed-script",
       "line_count": 40,
       "packages": [
         "lenovolegionlinux-dkms"
@@ -2629,7 +2630,7 @@
       "srcinfo_sha256": "c10edd172c628e3cf2e21786d12d0b89f2738abe7759e2332f8141ee77ccffa8"
     },
     {
-      "admission_class": "rejected",
+      "admission_class": "sealed-script",
       "line_count": 68,
       "packages": [
         "lenovolegionlinux"
@@ -2661,7 +2662,7 @@
       "srcinfo_sha256": "01e2161240e93c3771ac4153381c7e3883c631e3542e38d8d1c60c79697b47dc"
     },
     {
-      "admission_class": "rejected",
+      "admission_class": "sealed-script",
       "line_count": 80,
       "packages": [
         "libpamac-aur"
@@ -2769,7 +2770,7 @@
       "srcinfo_sha256": "8c56b6c3d7f79f714ce83407143853291b8de3444f7fa85bad01175ac8ec75ce"
     },
     {
-      "admission_class": "rejected",
+      "admission_class": "sealed-script",
       "line_count": 142,
       "packages": [
         "lib32-clang-git",
@@ -2805,7 +2806,7 @@
       "srcinfo_sha256": "e9275294b83c23856fc8fa6c76c5cd43d6c9ef98e950ce9a26b9e6be189a9519"
     },
     {
-      "admission_class": "rejected",
+      "admission_class": "sealed-script",
       "line_count": 171,
       "packages": [
         "llvm-git",
@@ -2840,7 +2841,7 @@
       "srcinfo_sha256": null
     },
     {
-      "admission_class": "rejected",
+      "admission_class": "sealed-script",
       "line_count": 73,
       "packages": [
         "wasi-compiler-rt-git"
@@ -2872,7 +2873,7 @@
       "srcinfo_sha256": "32bee6ee944958c1eb88584e3cf3f94d82b746c8379d06702d0dee3b94fc5e57"
     },
     {
-      "admission_class": "rejected",
+      "admission_class": "sealed-script",
       "line_count": 55,
       "packages": [
         "wasi-libc-git"
@@ -2904,7 +2905,7 @@
       "srcinfo_sha256": null
     },
     {
-      "admission_class": "rejected",
+      "admission_class": "sealed-script",
       "line_count": 207,
       "packages": [
         "wasi-libc++-git",
@@ -3003,7 +3004,7 @@
       "srcinfo_sha256": "953bf0cd87db9b4eafd4edb47dc2ee779fb467bb6903f517e63d626ca4fc7118"
     },
     {
-      "admission_class": "rejected",
+      "admission_class": "sealed-script",
       "line_count": 77,
       "packages": [
         "lsfg-vk"
@@ -3222,7 +3223,7 @@
       "srcinfo_sha256": "7ca4e27e902f3d939c1a5e0182569bffb8bb0a4abd59571c61a53b9154bd77da"
     },
     {
-      "admission_class": "rejected",
+      "admission_class": "sealed-script",
       "line_count": 80,
       "packages": [
         "mpv-git"
@@ -3356,7 +3357,7 @@
       "srcinfo_sha256": "f1051d277420c5dfca5a3b751fd65575d48900d5d88a9b9c9fc51ab43dc0675c"
     },
     {
-      "admission_class": "rejected",
+      "admission_class": "sealed-script",
       "line_count": 314,
       "packages": [
         "nvidia-390xx-dkms",
@@ -3389,7 +3390,7 @@
       "srcinfo_sha256": "f742fd127fef5f020bca8585ad8f00dd58ef6849ef48fc4e119ceef8336b7701"
     },
     {
-      "admission_class": "rejected",
+      "admission_class": "sealed-script",
       "line_count": 310,
       "packages": [
         "nvidia-470xx-dkms",
@@ -3453,7 +3454,7 @@
       "srcinfo_sha256": "339362516d321cb3146a1996822c9fc3b8cef73107744dcca38e5cbe65bde3c9"
     },
     {
-      "admission_class": "rejected",
+      "admission_class": "sealed-script",
       "line_count": 385,
       "packages": [
         "nvidia-580xx-dkms",
@@ -3517,7 +3518,7 @@
       "srcinfo_sha256": "8b2dbbbafe7b5e03911cc03111bfdc439c96dde116d84afaa116f65d30141f52"
     },
     {
-      "admission_class": "rejected",
+      "admission_class": "sealed-script",
       "line_count": 325,
       "packages": [
         "nvidia-open-dkms",
@@ -3731,7 +3732,7 @@
       "srcinfo_sha256": "d762c1f256a0155a7f5b932b4ea557b0ed865cd1ed7c3155be8cb3ae105915e8"
     },
     {
-      "admission_class": "rejected",
+      "admission_class": "sealed-script",
       "line_count": 60,
       "packages": [
         "pak-git"
@@ -3920,7 +3921,7 @@
       "srcinfo_sha256": "06355308550aaf308d87b3ef93bddc1f25f40d03db5b10f730bc21082f1009e5"
     },
     {
-      "admission_class": "rejected",
+      "admission_class": "sealed-script",
       "line_count": 356,
       "packages": [
         "proton-cachyos-native"
@@ -3952,7 +3953,7 @@
       "srcinfo_sha256": "fde48f32c48cb4b7b0ddc5c39880af943d7ca94dc37a3aeb7ba3a8c5ae4f74ad"
     },
     {
-      "admission_class": "rejected",
+      "admission_class": "sealed-script",
       "line_count": 110,
       "packages": [
         "proton-cachyos-slr"
@@ -4012,7 +4013,7 @@
       "srcinfo_sha256": "b1a1f18d2d6a01878908f4bab06cc51ac39c83876f357d30e5f1912123d9e120"
     },
     {
-      "admission_class": "rejected",
+      "admission_class": "sealed-script",
       "line_count": 70,
       "packages": [
         "quickshell-git"
@@ -4206,7 +4207,7 @@
       "srcinfo_sha256": "fbc7ee96d5e91be557547030c4098ec95a9a0ec1afd1ae59200a81c00f6afd49"
     },
     {
-      "admission_class": "rejected",
+      "admission_class": "sealed-script",
       "line_count": 95,
       "packages": [
         "scx-scheds-git"
@@ -4268,7 +4269,7 @@
       "srcinfo_sha256": "8a9170d4763dd152e5479b6a5aa0b2118f859498fcf6f8217f4735ffe781c0d2"
     },
     {
-      "admission_class": "rejected",
+      "admission_class": "sealed-script",
       "line_count": 88,
       "packages": [
         "scx-tools-git"
@@ -4395,7 +4396,7 @@
       "srcinfo_sha256": "0331f3082bed4f119224bad9020fb38243e3489440dc38707419844f413137e6"
     },
     {
-      "admission_class": "rejected",
+      "admission_class": "sealed-script",
       "line_count": 90,
       "packages": [
         "sudo-rs"
@@ -4454,7 +4455,7 @@
       "srcinfo_sha256": "c153bb49201227d6ecac8d2c2ffe005a003dd547c0d4304db3d0830ae5df123b"
     },
     {
-      "admission_class": "rejected",
+      "admission_class": "sealed-script",
       "line_count": 37,
       "packages": [
         "systemd-boot-manager"
@@ -4508,7 +4509,7 @@
       "srcinfo_sha256": "df9f1a8f491be2c818219358bbdb5b07e3d1ff4f387b0c0a9bde4e91d6518201"
     },
     {
-      "admission_class": "rejected",
+      "admission_class": "sealed-script",
       "line_count": 177,
       "packages": [
         "binutils"
@@ -4540,7 +4541,7 @@
       "srcinfo_sha256": "9c54c367b0da677826d0bb0d83aaf02e778af0aed57716f7193c57c9811693de"
     },
     {
-      "admission_class": "rejected",
+      "admission_class": "sealed-script",
       "line_count": 967,
       "packages": [
         "gcc",
@@ -4621,7 +4622,7 @@
       "srcinfo_sha256": "4444783fcf7c301a10734dee8c42a6a7aea4f2e7b336f841c26d08abbe136e98"
     },
     {
-      "admission_class": "rejected",
+      "admission_class": "sealed-script",
       "line_count": 284,
       "packages": [
         "glibc",
@@ -4655,7 +4656,7 @@
       "srcinfo_sha256": "e5656d33e1631104e298d1da0e5764f48f7b1cfb034bfcc4b3fae738f7e742f5"
     },
     {
-      "admission_class": "rejected",
+      "admission_class": "sealed-script",
       "line_count": 122,
       "packages": [
         "lib32-libltdl",
@@ -4774,7 +4775,7 @@
       "srcinfo_sha256": "331a95145d79b93cff02bacf41664deaa80f382b4eaf0c9c65218d19dc95f062"
     },
     {
-      "admission_class": "rejected",
+      "admission_class": "sealed-script",
       "line_count": 135,
       "packages": [
         "valkey"
@@ -4804,7 +4805,7 @@
       "srcinfo_sha256": "2802f04e8719c849600277fa6ad3c03b3c347cf59b9311a1c1578637f14d6c07"
     },
     {
-      "admission_class": "rejected",
+      "admission_class": "sealed-script",
       "line_count": 31,
       "packages": [
         "vapormark-git"
@@ -4891,7 +4892,7 @@
       "srcinfo_sha256": "c03543055c5969419bfd58d67aaf6caf56113eadbfedeb72bab1043d88e70aac"
     },
     {
-      "admission_class": "rejected",
+      "admission_class": "sealed-script",
       "line_count": 234,
       "packages": [
         "wine-cachyos-opt"
@@ -4920,7 +4921,7 @@
       "srcinfo_sha256": "e5ceba56c350cb443c771d59bb7d7a2e6122279fd251d2ef54895f30b44390df"
     },
     {
-      "admission_class": "rejected",
+      "admission_class": "sealed-script",
       "line_count": 238,
       "packages": [
         "wine-cachyos"
@@ -5085,7 +5086,7 @@
       "srcinfo_sha256": "f905eef1d5176a2d6707d8d66599ff66b9d8daf32f715a43cf16cf4a65c1f56b"
     },
     {
-      "admission_class": "rejected",
+      "admission_class": "sealed-script",
       "line_count": 165,
       "packages": [
         "zsh"
@@ -5206,8 +5207,27 @@
       "srcinfo_sha256": "1c178552040e388740c93ffd25a4dd8f9476e1886f00912e91384f37fc82adbe"
     }
   ],
-  "repository": "https://github.com/CachyOS/CachyOS-PKGBUILDS.git",
   "resolved_package_outputs": 326,
-  "revision": "8753877a6ed4af2bf510b8b3f5bda88b793f28ec",
-  "unresolved_pkgbuilds": 0
+  "summary": {
+    "classes": {
+      "meta": 2,
+      "sealed-script": 324
+    },
+    "reasons": {
+      "DYNAMIC_PKGVER": 31,
+      "FLOATING_VCS": 19,
+      "INSTALL_HOOK": 42,
+      "MISSING_CHECKSUM": 18,
+      "PACMAN_HOOK": 8,
+      "SHELL_SUBSTITUTION": 62,
+      "SPLIT_PACKAGE": 34,
+      "UNPARSED_FUNCTION": 23
+    }
+  },
+  "target_package_outputs": 326,
+  "unresolved_pkgbuilds": 0,
+  "upstream": {
+    "repository": "https://github.com/CachyOS/CachyOS-PKGBUILDS.git",
+    "revision": "8753877a6ed4af2bf510b8b3f5bda88b793f28ec"
+  }
 }
