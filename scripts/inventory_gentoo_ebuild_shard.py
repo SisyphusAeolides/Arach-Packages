@@ -89,8 +89,6 @@ def parse_static_assignments(data: bytes) -> tuple[dict[str, str], list[str]]:
             dynamic.append(key)
         else:
             assignments[key] = value.strip()
-    if FUNCTION_RE.search(text):
-        dynamic.append("phase-functions")
     return assignments, sorted(set(dynamic))
 
 
@@ -133,7 +131,7 @@ def parse_manifest(data: bytes) -> dict[str, dict[str, str]]:
         fields = line.split()
         if not fields or fields[0] != "DIST":
             continue
-        if len(fields) < 6 or len(fields) % 2 != 0:
+        if len(fields) < 5 or (len(fields) - 3) % 2 != 0:
             raise GentooError(f"invalid DIST entry at line {line_number}")
         filename = fields[1]
         try:
@@ -167,15 +165,18 @@ def parse_manifest(data: bytes) -> dict[str, dict[str, str]]:
 def static_sources(value: str) -> list[dict[str, Any]]:
     words = split_shell_words(value)
     sources: list[dict[str, Any]] = []
-    redirect = False
+    redirect_target = False
     for word in words:
-        if redirect:
-            redirect = False
+        if redirect_target:
+            if not word or "/" in word or "\\" in word or word in {".", ".."}:
+                raise GentooError("SRC_URI redirect target is not a safe filename")
+            sources[-1]["filename"] = word
+            redirect_target = False
             continue
         if word == "->":
             if not sources:
                 raise GentooError("SRC_URI redirect has no source")
-            redirect = True
+            redirect_target = True
             continue
         if not word.startswith("https://") or any(character.isspace() for character in word):
             raise GentooError("SRC_URI contains a non-HTTPS or dynamic source")
@@ -183,10 +184,9 @@ def static_sources(value: str) -> list[dict[str, Any]]:
         if not filename:
             raise GentooError("SRC_URI source has no filename")
         sources.append({"url": word, "filename": filename})
-    if redirect:
+    if redirect_target:
         raise GentooError("SRC_URI redirect has no target")
     return sources
-
 
 def read_blob(repository: Path, object_id: str, limit: int) -> bytes:
     if not TREE.OBJECT_RE.fullmatch(object_id):
