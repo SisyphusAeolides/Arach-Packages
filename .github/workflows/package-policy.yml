@@ -59,6 +59,7 @@ jobs:
             scripts/emit_cachyos_candidates.py \
             scripts/generate_source_sbom.py \
             scripts/inventory_cachyos.py \
+            scripts/inventory_git_tree.py \
             scripts/merge_recipe_inventories.py \
             scripts/prepare_cachyos_overlay.py \
             scripts/validate_cachyos_variants.py \
