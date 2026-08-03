@@ -3,7 +3,7 @@ format = 1
 [package]
 name = "push"
 version = "0.1.0"
-release = 7
+release = 8
 summary = "Measured Arach PID 1 and service supervisor"
 license = "MIT"
 scope = "system"
@@ -13,7 +13,7 @@ architectures = ["x86-64"]
 [[source]]
 kind = "git"
 url = "https://github.com/SisyphusAeolides/Push.git"
-revision = "5bd361b86c048b60b6a8422a8e173ea0ec867bff"
+revision = "74b8db4640401c367fcfd1a6a9ba5f3fddd3860b"
 submodules = false
 
 [build]
@@ -23,7 +23,7 @@ outputs = ["target/release/push"]
 
 [runtime]
 depends = ["slope"]
-provides = ["pid-1", "service-supervisor"]
+provides = ["pid-1", "service-supervisor", "ordered-session-shutdown"]
 
 [policy]
 network = false
