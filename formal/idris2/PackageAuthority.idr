@@ -57,6 +57,51 @@ firmwareCannotUseNative : Admitted Firmware ArachNative -> Void
 firmwareCannotUseNative value = absurd value
 
 public export
+data Route
+  = Native
+  | Rebuilt
+  | CompatibilityRuntime
+  | Container
+  | ManagedVM
+
+public export
+data Disposition
+  = Routed Route
+  | Quarantined
+
+public export
+data Covered : Disposition -> Type where
+  HasRoute : Covered (Routed route)
+  HeldBack : Covered Quarantined
+
+public export
+classifyRoute : Maybe Route -> Disposition
+classifyRoute (Just route) = Routed route
+classifyRoute Nothing = Quarantined
+
+public export
+coverageIsTotal : (candidate : Maybe Route) -> Covered (classifyRoute candidate)
+coverageIsTotal (Just route) = HasRoute
+coverageIsTotal Nothing = HeldBack
+
+public export
+classifyAll : List (Maybe Route) -> List Disposition
+classifyAll [] = []
+classifyAll (candidate :: rest) = classifyRoute candidate :: classifyAll rest
+
+public export
+data Publishable : Disposition -> Type where
+  PublishRouted : Publishable (Routed route)
+
+public export
+Uninhabited (Publishable Quarantined) where
+  uninhabited PublishRouted impossible
+
+public export
+quarantineCannotPublish : Publishable Quarantined -> Void
+quarantineCannotPublish value = absurd value
+
+public export
 record Candidate where
   constructor MkCandidate
   source : Source
