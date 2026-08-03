@@ -1,0 +1,50 @@
+{
+  "format": 1,
+  "output_count": 2,
+  "records": [
+    {
+      "packages": [
+        "cachyos-gaming-applications"
+      ],
+      "path": "cachyos-gaming-applications/PKGBUILD",
+      "pkgbuild_sha256": "16428264da83018137fa66613bce298e6088c3713cff792f24f87383bbe9a99c",
+      "reason_codes": [],
+      "signals": {
+        "floating_vcs": false,
+        "functions": [],
+        "has_sources": false,
+        "install_hook": false,
+        "missing_checksum": false,
+        "pacman_hook": false,
+        "pkgver_function": false,
+        "shell_substitution": false,
+        "split_package": false,
+        "vcs_source_count": 0
+      },
+      "srcinfo_sha256": "15d02174e2eb87d47c35b5cdaee629228d9b4aff5dc62cbf3009eec843c59654"
+    },
+    {
+      "packages": [
+        "zfs-meta"
+      ],
+      "path": "zfs/zfs-meta/PKGBUILD",
+      "pkgbuild_sha256": "74f6574e63a3a7a18975081a277e202aec357ab7d008cd4bebb43aacbbe15713",
+      "reason_codes": [],
+      "signals": {
+        "floating_vcs": false,
+        "functions": [],
+        "has_sources": false,
+        "install_hook": false,
+        "missing_checksum": false,
+        "pacman_hook": false,
+        "pkgver_function": false,
+        "shell_substitution": false,
+        "split_package": false,
+        "vcs_source_count": 0
+      },
+      "srcinfo_sha256": "9ce09a9bde1ed176a3c7183ae450b59cd666eee9c47ae50645f7ca86f8d72a90"
+    }
+  ],
+  "repository": "https://github.com/CachyOS/CachyOS-PKGBUILDS.git",
+  "revision": "8753877a6ed4af2bf510b8b3f5bda88b793f28ec"
+}
