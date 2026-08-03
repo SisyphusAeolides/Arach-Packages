@@ -1,0 +1,197 @@
+name: Split overlay and universe targets
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - .github/workflows/split-overlay-universe-targets.yml
+
+permissions:
+  contents: write
+
+concurrency:
+  group: split-overlay-universe-targets
+  cancel-in-progress: false
+
+jobs:
+  migrate:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v7
+        with:
+          fetch-depth: 0
+      - name: Separate overlay and corpus counts
+        run: |
+          python3 - <<'PY'
+          from pathlib import Path
+
+          files = [
+              Path('scripts/inventory_cachyos.py'),
+              Path('scripts/verify_cachyos_ingress.py'),
+              Path('scripts/test_cachyos_ingress.py'),
+              Path('scripts/emit_cachyos_candidates.py'),
+              Path('scripts/verify_cachyos_candidates.py'),
+              Path('scripts/test_cachyos_candidates.py'),
+          ]
+          for path in files:
+              text = path.read_text(encoding='utf-8')
+              text = text.replace('target_package_outputs', 'overlay_expected_package_outputs')
+              path.write_text(text, encoding='utf-8')
+
+          policy = Path('ingress/cachyos/policy.toml')
+          text = policy.read_text(encoding='utf-8')
+          old = 'target_package_outputs = 39191\n'
+          if text.count(old) != 1:
+              raise SystemExit('policy target field differs')
+          text = text.replace(
+              old,
+              'overlay_expected_package_outputs = 326\n'
+              'universe_target_package_outputs = 39191\n',
+          )
+          policy.write_text(text, encoding='utf-8')
+
+          inventory = Path('scripts/inventory_cachyos.py')
+          text = inventory.read_text(encoding='utf-8')
+          marker = '        "overlay_expected_package_outputs",\n'
+          if text.count(marker) != 1:
+              raise SystemExit('inventory policy field set differs')
+          text = text.replace(
+              marker,
+              marker + '        "universe_target_package_outputs",\n',
+          )
+          marker = '    if not isinstance(policy["overlay_expected_package_outputs"], int) or policy["overlay_expected_package_outputs"] <= 0:\n        raise InventoryError("target package count must be positive")\n'
+          if text.count(marker) != 1:
+              raise SystemExit('inventory target validation differs')
+          text = text.replace(
+              marker,
+              marker
+              + '    if (\n'
+              + '        not isinstance(policy["universe_target_package_outputs"], int)\n'
+              + '        or policy["universe_target_package_outputs"] < policy["overlay_expected_package_outputs"]\n'
+              + '    ):\n'
+              + '        raise InventoryError("universe package target cannot be smaller than the overlay")\n',
+          )
+          marker = '        "overlay_expected_package_outputs": policy["overlay_expected_package_outputs"],\n'
+          if text.count(marker) != 1:
+              raise SystemExit('inventory manifest target differs')
+          text = text.replace(
+              marker,
+              marker
+              + '        "universe_target_package_outputs": policy["universe_target_package_outputs"],\n',
+          )
+          inventory.write_text(text, encoding='utf-8')
+
+          verifier = Path('scripts/verify_cachyos_ingress.py')
+          text = verifier.read_text(encoding='utf-8')
+          marker = '        "overlay_expected_package_outputs",\n'
+          if text.count(marker) != 2:
+              raise SystemExit('ingress verifier target field sets differ')
+          text = text.replace(
+              marker,
+              marker + '        "universe_target_package_outputs",\n',
+          )
+          marker = '    if not isinstance(policy["overlay_expected_package_outputs"], int) or policy["overlay_expected_package_outputs"] <= 0:\n        raise ValidationError("target package output count is invalid")\n'
+          if text.count(marker) != 1:
+              raise SystemExit('ingress verifier policy validation differs')
+          text = text.replace(
+              marker,
+              marker
+              + '    if (\n'
+              + '        not isinstance(policy["universe_target_package_outputs"], int)\n'
+              + '        or policy["universe_target_package_outputs"] < policy["overlay_expected_package_outputs"]\n'
+              + '    ):\n'
+              + '        raise ValidationError("universe target cannot be smaller than the overlay")\n',
+          )
+          marker = '    if manifest["overlay_expected_package_outputs"] != policy["overlay_expected_package_outputs"]:\n        raise ValidationError("manifest target package count differs from policy")\n'
+          if text.count(marker) != 1:
+              raise SystemExit('ingress verifier manifest target validation differs')
+          text = text.replace(
+              marker,
+              marker
+              + '    if manifest["universe_target_package_outputs"] != policy["universe_target_package_outputs"]:\n'
+              + '        raise ValidationError("manifest universe target differs from policy")\n',
+          )
+          verifier.write_text(text, encoding='utf-8')
+
+          emitter = Path('scripts/emit_cachyos_candidates.py')
+          text = emitter.read_text(encoding='utf-8')
+          marker = '        "overlay_expected_package_outputs": manifest["overlay_expected_package_outputs"],\n'
+          if text.count(marker) != 1:
+              raise SystemExit('candidate emitter target differs')
+          text = text.replace(
+              marker,
+              marker
+              + '        "universe_target_package_outputs": manifest["universe_target_package_outputs"],\n',
+          )
+          emitter.write_text(text, encoding='utf-8')
+
+          candidate_verifier = Path('scripts/verify_cachyos_candidates.py')
+          text = candidate_verifier.read_text(encoding='utf-8')
+          marker = '    if set(index) != {"format", "upstream", "overlay_expected_package_outputs", "candidate_count", "candidates"}:\n'
+          if text.count(marker) != 1:
+              raise SystemExit('candidate index schema differs')
+          text = text.replace(
+              marker,
+              '    if set(index) != {\n'
+              '        "format",\n'
+              '        "upstream",\n'
+              '        "overlay_expected_package_outputs",\n'
+              '        "universe_target_package_outputs",\n'
+              '        "candidate_count",\n'
+              '        "candidates",\n'
+              '    }:\n',
+          )
+          marker = '    if index["overlay_expected_package_outputs"] != manifest["overlay_expected_package_outputs"]:\n        raise CandidateValidationError("candidate target differs from ingress manifest")\n'
+          if text.count(marker) != 1:
+              raise SystemExit('candidate target comparison differs')
+          text = text.replace(
+              marker,
+              marker
+              + '    if index["universe_target_package_outputs"] != manifest["universe_target_package_outputs"]:\n'
+              + '        raise CandidateValidationError("candidate universe target differs from ingress manifest")\n',
+          )
+          candidate_verifier.write_text(text, encoding='utf-8')
+
+          for path in [Path('scripts/test_cachyos_ingress.py'), Path('scripts/test_cachyos_candidates.py')]:
+              text = path.read_text(encoding='utf-8')
+              marker = 'overlay_expected_package_outputs = {target}\n' if path.name == 'test_cachyos_ingress.py' else '        "overlay_expected_package_outputs": 2,\n'
+              if marker not in text:
+                  raise SystemExit(f'test target marker differs: {path}')
+              addition = (
+                  'universe_target_package_outputs = 39191\n'
+                  if path.name == 'test_cachyos_ingress.py'
+                  else '        "universe_target_package_outputs": 39191,\n'
+              )
+              text = text.replace(marker, marker + addition, 1)
+              path.write_text(text, encoding='utf-8')
+
+          workflow = Path('.github/workflows/cachyos-ingress.yml')
+          text = workflow.read_text(encoding='utf-8')
+          text = text.replace(
+              'Enforce 39,191 unique dispositions and candidates',
+              'Enforce complete pinned overlay dispositions and candidates',
+          )
+          workflow.write_text(text, encoding='utf-8')
+
+          plan = Path('production/recipe-corpus-plan.json')
+          data = plan.read_text(encoding='utf-8').replace('"distribution": "Arach OS"', '"distribution": "ArachOS"')
+          plan.write_text(data, encoding='utf-8')
+
+          Path('.github/workflows/split-overlay-universe-targets.yml').unlink()
+          PY
+          python3 -m unittest scripts/test_cachyos_ingress.py scripts/test_cachyos_candidates.py
+          python3 -m py_compile \
+            scripts/inventory_cachyos.py \
+            scripts/verify_cachyos_ingress.py \
+            scripts/emit_cachyos_candidates.py \
+            scripts/verify_cachyos_candidates.py
+          git diff --check
+      - name: Commit target separation
+        run: |
+          git config user.name 'SisyphusAeolides'
+          git config user.email '37166405+SisyphusAeolides@users.noreply.github.com'
+          git add -A
+          git commit -m 'fix: separate overlay and corpus package targets'
+          git pull --rebase origin main
+          git push origin HEAD:main
