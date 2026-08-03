@@ -166,10 +166,12 @@ def validate_inventory(document: dict[str, Any], source: str) -> tuple[str, list
             not isinstance(package, str)
             or not PACKAGE_RE.fullmatch(package)
             or not valid_version(version)
-            or architecture not in {"x86-64", "aarch64", "riscv64"}
+            or architecture != "x86-64"
             or strategy not in STRATEGIES
         ):
-            raise MergeError(f"{base} package identity or strategy is invalid")
+            raise MergeError(
+                f"{base} package identity, architecture, or strategy is invalid"
+            )
         identity = (package, version, architecture)
         if previous is not None and previous >= identity:
             raise MergeError(f"{base} is not in canonical order")
@@ -320,6 +322,8 @@ def merge(inventories: list[tuple[str, dict[str, Any]]], require_complete: bool)
 
     if len(merged) > MAX_ENTRIES:
         raise MergeError("merged corpus exceeds bounded capacity")
+    if len(merged) > TARGET:
+        raise MergeError("merged corpus exceeds the production target")
     merged.sort(
         key=lambda entry: (
             UPSTREAM_ORDER[entry["upstream"]],
@@ -357,19 +361,21 @@ def merge(inventories: list[tuple[str, dict[str, Any]]], require_complete: bool)
         "missing_upstreams": sorted(set(UPSTREAMS) - seen_upstreams, key=UPSTREAM_ORDER.get),
         "strategy_counts": dict(sorted(strategies.items())),
         "snapshots": snapshots,
-        "manifest_sha256": hashlib.sha256(
-            (json.dumps(manifest, sort_keys=True, separators=(",", ":")) + "\n").encode("utf-8")
-        ).hexdigest(),
+        "manifest_sha256": hashlib.sha256(json_bytes(manifest)).hexdigest(),
         "authorization": "unsigned-package-index-manifest",
     }
     return manifest, report
+
+
+def json_bytes(value: dict[str, Any]) -> bytes:
+    return (json.dumps(value, indent=2, sort_keys=True) + "\n").encode("utf-8")
 
 
 def write_new(path: Path, value: dict[str, Any]) -> None:
     if path.exists() or path.is_symlink():
         raise MergeError(f"output path must be new: {path}")
     path.parent.mkdir(parents=True, exist_ok=True)
-    path.write_text(json.dumps(value, indent=2, sort_keys=True) + "\n", encoding="utf-8")
+    path.write_bytes(json_bytes(value))
 
 
 def main() -> int:

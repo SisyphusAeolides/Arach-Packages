@@ -79,6 +79,10 @@ class RecipeInventoryMergeTests(unittest.TestCase):
         self.assertEqual(report["remaining_entries"], 39189)
         self.assertEqual(report["authorization"], "unsigned-package-index-manifest")
         self.assertEqual(
+            report["manifest_sha256"],
+            MODULE.hashlib.sha256(MODULE.json_bytes(manifest)).hexdigest(),
+        )
+        self.assertEqual(
             report["strategy_counts"],
             {"deterministic-worker": 1, "static-importer": 1},
         )
