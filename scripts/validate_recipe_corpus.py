@@ -19,6 +19,7 @@ SHARD_COUNT = 256
 UPSTREAMS = [
     "arch",
     "aur",
+    "cachyos",
     "fedora",
     "debian",
     "alpine",
@@ -85,7 +86,7 @@ def validate_plan(plan: dict[str, Any]) -> None:
         raise CorpusError("recipe corpus plan has unexpected or missing fields")
     if (
         plan["format"] != 1
-        or plan["distribution"] != "Arach OS"
+        or plan["distribution"] != "ArachOS"
         or plan["target_count"] != TARGET_COUNT
         or plan["shard_count"] != SHARD_COUNT
         or plan["architecture"] != "x86-64"
@@ -170,7 +171,7 @@ def validate_manifest(manifest: dict[str, Any]) -> list[dict[str, Any]]:
         raise CorpusError("recipe corpus manifest has unexpected or missing fields")
     if (
         manifest["format"] != 1
-        or manifest["distribution"] != "Arach OS"
+        or manifest["distribution"] != "ArachOS"
         or manifest["target_count"] != TARGET_COUNT
         or manifest["shard_count"] != SHARD_COUNT
         or manifest["architecture"] != "x86-64"

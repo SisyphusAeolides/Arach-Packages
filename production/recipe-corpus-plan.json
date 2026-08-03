@@ -1,6 +1,6 @@
 {
   "format": 1,
-  "distribution": "Arach OS",
+  "distribution": "ArachOS",
   "target_count": 39191,
   "shard_count": 256,
   "architecture": "x86-64",
@@ -9,6 +9,7 @@
   "upstreams": [
     "arch",
     "aur",
+    "cachyos",
     "fedora",
     "debian",
     "alpine",
