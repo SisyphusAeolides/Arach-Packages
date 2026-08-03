@@ -12,6 +12,8 @@ program build_rank_test
   real(c_double) :: empty
   real(c_double) :: invalid
   real(c_double) :: not_a_number
+  real(c_double) :: untrusted_corpus
+  real(c_double) :: invalid_memory
 
   untrusted = arach_build_rank(1.0_c_double, 20_c_int, .true._c_bool, &
                                1.0_c_double, .false._c_bool)
@@ -39,13 +41,19 @@ program build_rank_test
                               0_c_int, 0_c_int, 0.0_c_double, &
                               .true._c_bool)
   not_a_number = ieee_value(0.0_c_double, ieee_quiet_nan)
+  untrusted_corpus = arach_corpus_rank(1_c_int, 0_c_int, 0_c_int, &
+                                       0_c_int, 0_c_int, 1.0_c_double, &
+                                       .false._c_bool)
+  invalid_memory = arach_corpus_rank(1_c_int, 0_c_int, 0_c_int, &
+                                     0_c_int, 0_c_int, not_a_number, &
+                                     .true._c_bool)
 
   if (static_heavy <= worker_heavy) error stop 3
   if (blocked >= static_heavy) error stop 4
   if (abs(empty) > epsilon(empty)) error stop 5
   if (abs(invalid + 1.0_c_double) > epsilon(invalid)) error stop 6
-  if (arach_corpus_rank(1_c_int, 0_c_int, 0_c_int, 0_c_int, 0_c_int, &
-                        1.0_c_double, .false._c_bool) /= -1.0_c_double) error stop 7
-  if (arach_corpus_rank(1_c_int, 0_c_int, 0_c_int, 0_c_int, 0_c_int, &
-                        not_a_number, .true._c_bool) /= -1.0_c_double) error stop 8
+  if (abs(untrusted_corpus + 1.0_c_double) > &
+      epsilon(untrusted_corpus)) error stop 7
+  if (abs(invalid_memory + 1.0_c_double) > &
+      epsilon(invalid_memory)) error stop 8
 end program build_rank_test
