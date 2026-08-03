@@ -19,6 +19,7 @@ on:
       - native/**
       - formal/**
       - .github/workflows/package-policy.yml
+  workflow_dispatch:
 
 permissions:
   contents: read
@@ -26,6 +27,7 @@ permissions:
 jobs:
   policy:
     runs-on: ubuntu-24.04
+    timeout-minutes: 20
     steps:
       - uses: actions/checkout@v7
       - name: Validate declared coverage
@@ -76,6 +78,7 @@ jobs:
 
   fortran:
     runs-on: ubuntu-24.04
+    timeout-minutes: 20
     steps:
       - uses: actions/checkout@v7
       - run: sudo apt-get update && sudo apt-get install -y gfortran
