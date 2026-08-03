@@ -1,0 +1,34 @@
+name: Package coverage
+
+on:
+  push:
+    paths:
+      - recipes/**
+      - production/package-coverage.json
+      - production/evidence/**
+      - scripts/audit_package_coverage.py
+      - tests/test_package_coverage.py
+      - .github/workflows/package-coverage.yml
+  pull_request:
+    paths:
+      - recipes/**
+      - production/package-coverage.json
+      - production/evidence/**
+      - scripts/audit_package_coverage.py
+      - tests/test_package_coverage.py
+      - .github/workflows/package-coverage.yml
+
+permissions:
+  contents: read
+
+jobs:
+  coverage:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v7
+      - name: Audit package coverage
+        run: python3 scripts/audit_package_coverage.py --root .
+      - name: Test coverage invariants
+        run: python3 -m unittest tests/test_package_coverage.py
+      - name: Check repository whitespace
+        run: git diff --check
