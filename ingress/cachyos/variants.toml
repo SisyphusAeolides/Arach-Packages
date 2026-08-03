@@ -1,0 +1,41 @@
+format = 1
+repository = "https://github.com/CachyOS/CachyOS-PKGBUILDS.git"
+revision = "8753877a6ed4af2bf510b8b3f5bda88b793f28ec"
+
+[[group]]
+id = "openblas-microarchitecture"
+selection_dimension = "x86-64-microarchitecture"
+selection_required = true
+coinstallable = false
+packages = ["blas-openblas", "blas64-openblas", "openblas", "openblas64"]
+
+[[group.candidate]]
+id = "x86-64-v3"
+pkgbuild_path = "openblas/openblas-v3/PKGBUILD"
+policy_value = "x86-64-v3"
+build_identity = "cmake-target-haswell"
+
+[[group.candidate]]
+id = "x86-64-v4"
+pkgbuild_path = "openblas/openblas-v4/PKGBUILD"
+policy_value = "x86-64-v4"
+build_identity = "cmake-target-skylakex"
+
+[[group]]
+id = "zstd-optimization"
+selection_dimension = "optimization-profile"
+selection_required = true
+coinstallable = false
+packages = ["zstd"]
+
+[[group.candidate]]
+id = "plain"
+pkgbuild_path = "zstd/zstd/PKGBUILD"
+policy_value = "plain"
+build_identity = "standard-release"
+
+[[group.candidate]]
+id = "pgo"
+pkgbuild_path = "zstd/zstd-pgo/PKGBUILD"
+policy_value = "pgo"
+build_identity = "profile-guided-release"
