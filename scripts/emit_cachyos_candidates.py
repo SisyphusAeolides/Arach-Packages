@@ -25,7 +25,11 @@ def array(values: list[str]) -> str:
     return "[" + ", ".join(quote(value) for value in values) + "]"
 
 
-def parse_srcinfo(path: Path, mirror: Path, maximum: int) -> tuple[dict[str, list[str]], dict[str, dict[str, list[str]]]]:
+def parse_srcinfo(
+    path: Path,
+    mirror: Path,
+    maximum: int,
+) -> tuple[dict[str, list[str]], dict[str, dict[str, list[str]]]]:
     data = inventory.ensure_contained_regular(mirror, path, maximum)
     try:
         text = data.decode("utf-8")
@@ -41,8 +45,14 @@ def parse_srcinfo(path: Path, mirror: Path, maximum: int) -> tuple[dict[str, lis
         if "=" not in line:
             raise CandidateError(f"invalid .SRCINFO line {line_number}: {path}")
         key, value = (part.strip() for part in line.split("=", 1))
-        if not key or not value:
-            raise CandidateError(f"empty .SRCINFO field on line {line_number}: {path}")
+        if not key:
+            raise CandidateError(f"empty .SRCINFO key on line {line_number}: {path}")
+        if not value:
+            if key in {"pkgbase", "pkgname", "pkgver", "pkgrel"}:
+                raise CandidateError(
+                    f"empty required .SRCINFO field on line {line_number}: {path}"
+                )
+            continue
         if key == "pkgbase":
             base.setdefault(key, []).append(value)
             current = base
@@ -56,11 +66,19 @@ def parse_srcinfo(path: Path, mirror: Path, maximum: int) -> tuple[dict[str, lis
     return base, packages
 
 
-def merged_values(base: dict[str, list[str]], package: dict[str, list[str]], key: str) -> list[str]:
+def merged_values(
+    base: dict[str, list[str]],
+    package: dict[str, list[str]],
+    key: str,
+) -> list[str]:
     return sorted(set(base.get(key, []) + package.get(key, [])))
 
 
-def scalar(base: dict[str, list[str]], package: dict[str, list[str]], key: str) -> str | None:
+def scalar(
+    base: dict[str, list[str]],
+    package: dict[str, list[str]],
+    key: str,
+) -> str | None:
     values = package.get(key) or base.get(key) or []
     return values[-1] if values else None
 
@@ -122,15 +140,42 @@ def record_metadata(
         "epoch": assignment_scalar(text, "epoch") or "0",
         "summary": assignment_scalar(text, "pkgdesc"),
         "homepage": assignment_scalar(text, "url"),
-        "architectures": inventory.parse_tokens(inventory.assignment_value(text, "arch") or "") or [],
-        "licenses": inventory.parse_tokens(inventory.assignment_value(text, "license") or "") or [],
-        "runtime": inventory.parse_tokens(inventory.assignment_value(text, "depends") or "") or [],
-        "build": inventory.parse_tokens(inventory.assignment_value(text, "makedepends") or "") or [],
-        "check": inventory.parse_tokens(inventory.assignment_value(text, "checkdepends") or "") or [],
-        "optional": inventory.parse_tokens(inventory.assignment_value(text, "optdepends") or "") or [],
-        "provides": inventory.parse_tokens(inventory.assignment_value(text, "provides") or "") or [],
-        "conflicts": inventory.parse_tokens(inventory.assignment_value(text, "conflicts") or "") or [],
-        "replaces": inventory.parse_tokens(inventory.assignment_value(text, "replaces") or "") or [],
+        "architectures": inventory.parse_tokens(
+            inventory.assignment_value(text, "arch") or ""
+        )
+        or [],
+        "licenses": inventory.parse_tokens(
+            inventory.assignment_value(text, "license") or ""
+        )
+        or [],
+        "runtime": inventory.parse_tokens(
+            inventory.assignment_value(text, "depends") or ""
+        )
+        or [],
+        "build": inventory.parse_tokens(
+            inventory.assignment_value(text, "makedepends") or ""
+        )
+        or [],
+        "check": inventory.parse_tokens(
+            inventory.assignment_value(text, "checkdepends") or ""
+        )
+        or [],
+        "optional": inventory.parse_tokens(
+            inventory.assignment_value(text, "optdepends") or ""
+        )
+        or [],
+        "provides": inventory.parse_tokens(
+            inventory.assignment_value(text, "provides") or ""
+        )
+        or [],
+        "conflicts": inventory.parse_tokens(
+            inventory.assignment_value(text, "conflicts") or ""
+        )
+        or [],
+        "replaces": inventory.parse_tokens(
+            inventory.assignment_value(text, "replaces") or ""
+        )
+        or [],
         "sources": inventory.source_tokens(text),
         "checksums": [],
     }
@@ -174,7 +219,15 @@ def render_candidate(
     if record.get("srcinfo_sha256"):
         lines.append(f"srcinfo_sha256 = {quote(record['srcinfo_sha256'])}")
     lines.extend(["", "[dependencies]"])
-    for key in ("runtime", "build", "check", "optional", "provides", "conflicts", "replaces"):
+    for key in (
+        "runtime",
+        "build",
+        "check",
+        "optional",
+        "provides",
+        "conflicts",
+        "replaces",
+    ):
         lines.append(f"{key} = {array(metadata.get(key, []))}")
     lines.extend(
         [
@@ -209,7 +262,12 @@ def emit(
             if package_name in seen:
                 raise CandidateError(f"duplicate package output: {package_name}")
             seen.add(package_name)
-            metadata = record_metadata(mirror, pkgbuild, package_name, policy["max_pkgbuild_bytes"])
+            metadata = record_metadata(
+                mirror,
+                pkgbuild,
+                package_name,
+                policy["max_pkgbuild_bytes"],
+            )
             text = render_candidate(package_name, record, metadata, manifest["upstream"])
             digest = hashlib.sha256(text.encode("utf-8")).hexdigest()
             shard = hashlib.sha256(package_name.encode("utf-8")).hexdigest()[:2]
@@ -241,7 +299,10 @@ def write_index(path: Path, index: dict[str, Any]) -> None:
     if path.is_symlink():
         raise CandidateError("candidate index cannot be a symlink")
     path.parent.mkdir(parents=True, exist_ok=True)
-    path.write_text(json.dumps(index, indent=2, sort_keys=True) + "\n", encoding="utf-8")
+    path.write_text(
+        json.dumps(index, indent=2, sort_keys=True) + "\n",
+        encoding="utf-8",
+    )
 
 
 def main() -> int:
@@ -257,7 +318,12 @@ def main() -> int:
         manifest = json.loads(arguments.manifest.read_text(encoding="utf-8"))
         index = emit(arguments.mirror, manifest, policy, arguments.output)
         write_index(arguments.index, index)
-    except (OSError, json.JSONDecodeError, CandidateError, inventory.InventoryError) as error:
+    except (
+        OSError,
+        json.JSONDecodeError,
+        CandidateError,
+        inventory.InventoryError,
+    ) as error:
         print(error, file=sys.stderr)
         return 1
     print(f"emitted {index['candidate_count']} CachyOS candidate recipes")
