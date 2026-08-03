@@ -112,19 +112,41 @@ def normalize_architectures(values: list[str]) -> list[str]:
     return sorted(normalized)
 
 
+def encode_release(value: Any) -> int:
+    if not isinstance(value, str) or not value:
+        raise OverlayError("candidate release is missing or invalid")
+    components = value.split(".")
+    if any(
+        not component.isascii()
+        or not component.isdigit()
+        or (len(component) > 1 and component.startswith("0"))
+        or len(component) > 3
+        for component in components
+    ):
+        raise OverlayError(f"candidate release is not canonical numeric metadata: {value}")
+    release = 0
+    for component in components:
+        release = release * 1000 + int(component)
+        if release > 0xFFFF_FFFF:
+            raise OverlayError("candidate release exceeds the recipe field")
+    if release <= 0:
+        raise OverlayError("candidate release is outside its bounds")
+    return release
+
+
 def candidate_version(metadata: dict[str, Any]) -> tuple[str, int, int]:
     version = metadata.get("version")
     release_text = metadata.get("release")
     epoch_text = metadata.get("epoch", "0")
     if not isinstance(version, str) or not version or any(character.isspace() for character in version):
         raise OverlayError("candidate version is missing or invalid")
+    release = encode_release(release_text)
     try:
-        release = int(release_text)
         epoch = int(epoch_text)
     except (TypeError, ValueError) as error:
-        raise OverlayError("candidate release or epoch is invalid") from error
-    if release <= 0 or epoch < 0:
-        raise OverlayError("candidate release or epoch is outside its bounds")
+        raise OverlayError("candidate epoch is invalid") from error
+    if epoch < 0:
+        raise OverlayError("candidate epoch is outside its bounds")
     return version, release, epoch
 
 

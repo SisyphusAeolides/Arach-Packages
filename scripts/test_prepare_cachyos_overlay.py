@@ -155,6 +155,17 @@ class PrepareCachyosOverlayTests(unittest.TestCase):
         }
         return policy, records, variants
 
+    def test_dotted_release_is_encoded_deterministically(self) -> None:
+        self.assertEqual(MODULE.encode_release("1"), 1)
+        self.assertEqual(MODULE.encode_release("1.1"), 1001)
+        self.assertEqual(MODULE.encode_release("2.10.3"), 2_010_003)
+
+    def test_ambiguous_or_invalid_release_is_rejected(self) -> None:
+        for value in ("", "01", "1.01", "1.a", "-1"):
+            with self.subTest(value=value):
+                with self.assertRaises(MODULE.OverlayError):
+                    MODULE.encode_release(value)
+
     def test_prepares_every_output_with_distinct_variant_identity(self) -> None:
         with tempfile.TemporaryDirectory() as directory:
             root = Path(directory)
