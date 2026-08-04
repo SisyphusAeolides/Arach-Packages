@@ -28,7 +28,7 @@ SPEC.loader.exec_module(TREE)
 
 DIGEST_RE = re.compile(r"^[0-9a-f]{64}$")
 VERSION_RE = re.compile(r"^[^\x00-\x20/\\@]{1,256}$")
-MAX_INDEX_BLOB_BYTES = 8 * 1024 * 1024
+MAX_INDEX_BLOB_BYTES = 64 * 1024 * 1024
 MAX_SHARD_RECORDS = 25_000
 
 

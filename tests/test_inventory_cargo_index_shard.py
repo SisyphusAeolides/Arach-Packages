@@ -7,6 +7,7 @@ import subprocess
 import sys
 import tempfile
 import unittest
+from unittest import mock
 from pathlib import Path
 
 
@@ -69,6 +70,27 @@ def repository(root: Path, crates: dict[str, str]) -> str:
 
 
 class CargoIndexShardTests(unittest.TestCase):
+    def test_large_valid_index_above_legacy_bound_is_accepted(self) -> None:
+        release = {
+            "name": "demo",
+            "vers": "1.0.0",
+            "deps": [],
+            "cksum": "a" * 64,
+            "features": {"large": ["x" * (8 * 1024 * 1024)]},
+            "yanked": False,
+        }
+        data = (json.dumps(release, separators=(",", ":")) + "\n").encode()
+        self.assertGreater(len(data), 8 * 1024 * 1024)
+        self.assertLess(len(data), MODULE.MAX_INDEX_BLOB_BYTES)
+        result = MODULE.parse_release_lines("demo", data)
+        self.assertEqual(result["status"], "candidate")
+        self.assertEqual(result["version"], "1.0.0")
+
+    def test_index_blob_bound_is_enforced(self) -> None:
+        with mock.patch.object(MODULE, "MAX_INDEX_BLOB_BYTES", 64):
+            with self.assertRaisesRegex(MODULE.CargoIndexError, "byte bound"):
+                MODULE.parse_release_lines("demo", b"x" * 65)
+
     def test_selects_latest_non_yanked_release(self) -> None:
         data = (
             registry_line("demo", "1.0.0", "a" * 64)
