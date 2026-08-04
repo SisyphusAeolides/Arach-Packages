@@ -22,10 +22,6 @@ permissions:
   contents: read
   statuses: write
 
-concurrency:
-  group: ci-aggregate-${{ github.ref }}
-  cancel-in-progress: true
-
 jobs:
   aggregate:
     runs-on: ubuntu-24.04
@@ -42,6 +38,7 @@ jobs:
           actions_url="https://github.com/$repo/actions"
           observed=0
           unobserved=0
+          pending=0
           failed=0
           printf '## CI aggregate status\n\n| Workflow | Conclusion | Revision |\n|---|---|---|\n' >> "$GITHUB_STEP_SUMMARY"
           while IFS=$'\t' read -r workflow_id workflow_name workflow_path; do
@@ -56,17 +53,11 @@ jobs:
             observed=$((observed + 1))
             run_id="$(jq -r '.id' <<< "$run_json")"
             status="$(jq -r '.status' <<< "$run_json")"
-            deadline=$((SECONDS + 1800))
-            while [ "$status" != "completed" ] && [ "$SECONDS" -lt "$deadline" ]; do
-              sleep 20
-              run_json="$(gh api "repos/$repo/actions/runs/$run_id")"
-              status="$(jq -r '.status' <<< "$run_json")"
-            done
             run_sha="$(jq -r '.head_sha // "unknown"' <<< "$run_json")"
             run_url="$(jq -r '.html_url // empty' <<< "$run_json")"
             [ -n "$run_url" ] || run_url="$actions_url"
             if [ "$status" != "completed" ]; then
-              state="error"; conclusion="timed_out"; failed=$((failed + 1))
+              state="pending"; conclusion="$status"; pending=$((pending + 1))
             else
               conclusion="$(jq -r '.conclusion // "unknown"' <<< "$run_json")"
               case "$conclusion" in
@@ -80,5 +71,5 @@ jobs:
             gh api --method POST "repos/$repo/statuses/$sha" -f state="$state" -f context="$context" -f description="latest $conclusion at $short_sha" -f target_url="$run_url" >/dev/null
             printf '| %s | %s | `%s` |\n' "$workflow_name" "$conclusion" "$short_sha" >> "$GITHUB_STEP_SUMMARY"
           done < <(gh api --paginate "repos/$repo/actions/workflows?per_page=100" --jq '.workflows[] | select(.state == "active") | [.id, .name, .path] | @tsv')
-          if [ "$observed" -eq 0 ]; then aggregate_state="error"; aggregate_description="no main workflow runs observed"; elif [ "$failed" -eq 0 ]; then aggregate_state="success"; aggregate_description="$observed observed workflows green; $unobserved not scheduled"; else aggregate_state="failure"; aggregate_description="$failed of $observed observed workflows require repair"; fi
+          if [ "$observed" -eq 0 ]; then aggregate_state="error"; aggregate_description="no main workflow runs observed"; elif [ "$failed" -gt 0 ]; then aggregate_state="failure"; aggregate_description="$failed of $observed observed workflows require repair"; elif [ "$pending" -gt 0 ]; then aggregate_state="pending"; aggregate_description="$pending of $observed observed workflows pending"; else aggregate_state="success"; aggregate_description="$observed observed workflows green; $unobserved not scheduled"; fi
           gh api --method POST "repos/$repo/statuses/$sha" -f state="$aggregate_state" -f context="ci/aggregate" -f description="$aggregate_description" -f target_url="$actions_url" >/dev/null
