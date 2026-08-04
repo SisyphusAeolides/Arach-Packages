@@ -3,6 +3,18 @@ name: CI aggregate status
 on:
   push:
     branches: [main]
+  workflow_run:
+    workflows:
+      - Arach Packages validation
+      - Arach kernel package
+      - Package coverage
+      - Source SBOM
+      - CachyOS package ingress
+      - Package policy validation
+      - Large upstream inventory
+      - Cargo index inventory
+    types: [completed]
+    branches: [main]
   workflow_dispatch:
 
 permissions:
